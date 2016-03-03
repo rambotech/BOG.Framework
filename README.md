@@ -20,7 +20,7 @@ The classes are:
   Enables formatting of an exception with:
   - Optional header/footer content:
   - One of three level of details for display or logging: User, Machine or Enterprise.
-  - Option masking of user and password, or only password, in URLs and connection strings.
+  - Optional masking of user and password, or only password, in URLs and connection strings.
   
 ###DynamicScripting
   A wrapper for the CodeDom namespace for simple real-time compilation and execution of C#/VB scripts.
