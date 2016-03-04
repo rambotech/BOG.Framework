@@ -15,6 +15,7 @@ namespace BOG.Framework_Test
     {
         string PersistPath = Path.GetTempPath();
         Dictionary<string, SettingsDictionary> sdd = new Dictionary<string, Framework.SettingsDictionary>();
+        string lastGridDisplay = string.Empty;
 
         public frmSettingsDictionary()
         {
@@ -55,10 +56,22 @@ namespace BOG.Framework_Test
                 foreach (string key in sdd[dictKey].GetKeys())
                 {
                     dgvSettingsDictionary.Rows.Add(new object[] { dictKey, key, sdd[dictKey].GetSetting(key, "{null}") });
+                    dgvSettingsDictionary.Rows[dgvSettingsDictionary.Rows.Count - 2].Tag = dictKey;
                 }
             }
             MessageBox.Show("Example files created in " + Path.GetTempPath()
                 + "\r\nCompare them with the actions in the form code.");
+        }
+
+        private void dgvSettingsDictionary_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            string thisGridDisplay = (string)dgvSettingsDictionary.Rows[e.RowIndex].Tag;
+            if (lastGridDisplay != thisGridDisplay)
+            {
+                this.txtXMLview.Text = "Can't find that SettingsDictionary object.. that's weird";
+                if (sdd.ContainsKey(thisGridDisplay)) this.txtXMLview.Text = sdd[thisGridDisplay].BuildSettingsXML();
+                lastGridDisplay = thisGridDisplay;
+            }
         }
     }
 }

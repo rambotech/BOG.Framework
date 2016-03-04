@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvSettingsDictionary = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtXMLview = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSettingsDictionary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,22 +41,26 @@
             this.dgvSettingsDictionary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSettingsDictionary.Location = new System.Drawing.Point(0, 0);
             this.dgvSettingsDictionary.Name = "dgvSettingsDictionary";
-            this.dgvSettingsDictionary.Size = new System.Drawing.Size(514, 179);
+            this.dgvSettingsDictionary.Size = new System.Drawing.Size(509, 179);
             this.dgvSettingsDictionary.TabIndex = 0;
+            this.dgvSettingsDictionary.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSettingsDictionary_RowEnter);
             // 
-            // textBox1
+            // txtXMLview
             // 
-            this.textBox1.Location = new System.Drawing.Point(299, 332);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtXMLview.Location = new System.Drawing.Point(12, 185);
+            this.txtXMLview.Multiline = true;
+            this.txtXMLview.Name = "txtXMLview";
+            this.txtXMLview.ReadOnly = true;
+            this.txtXMLview.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtXMLview.Size = new System.Drawing.Size(497, 292);
+            this.txtXMLview.TabIndex = 1;
             // 
             // frmSettingsDictionary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 478);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtXMLview);
             this.Controls.Add(this.dgvSettingsDictionary);
             this.Name = "frmSettingsDictionary";
             this.Text = "frmSettingsDictionary";
@@ -69,6 +73,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvSettingsDictionary;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtXMLview;
     }
 }
