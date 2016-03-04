@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace BOG.Framework_Test
+{
+    public partial class frmTestSelector : Form
+    {
+        public frmTestSelector()
+        {
+            InitializeComponent();
+        }
+
+        private void btnBabbleOn_Click(object sender, EventArgs e)
+        {
+            frmBabbleOn f = new frmBabbleOn();
+            f.ShowDialog(this);
+        }
+
+        private void btnFuse_Click(object sender, EventArgs e)
+        {
+            frmFuse f = new frmFuse();
+            f.ShowDialog(this);
+        }
+
+        private void btnFormatting_Click(object sender, EventArgs e)
+        {
+            frmFormatting f = new frmFormatting();
+            f.ShowDialog(this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmDetailedException f = new frmDetailedException();
+            f.ShowDialog(this);
+        }
+
+        private void btnSerializableDictionary_Click(object sender, EventArgs e)
+        {
+            frmSerializableDictionary f = new frmSerializableDictionary();
+            f.ShowDialog(this);
+        }
+
+        private void btnStringEx_Click(object sender, EventArgs e)
+        {
+            frmStringEx f = new frmStringEx();
+            f.ShowDialog(this);
+        }
+
+        private void btnScrape_Click(object sender, EventArgs e)
+        {
+            frmScrape f = new frmScrape();
+            f.ShowDialog(this);
+        }
+
+        private void btnSettingsDictionary_Click(object sender, EventArgs e)
+        {
+            frmSettingsDictionary f = new frmSettingsDictionary();
+            f.ShowDialog(this);
+        }
+    }
+}
