@@ -63,7 +63,8 @@ The classes are:
   A static class containing methods to serialize and deserialize between objects, strings and files.
   
 ###SettingsDictionary
-  A kind of Dictionary<string,object> with internal methods to load, save and merge.
+  A kind of Dictionary<string,object> with internal methods to load, save and merge.  Originally designed
+  as a class to store user settings for a desktop application, outside of the app.config architecture.
   
 ###StringEx
   Some useful string methods, like search and replace with wildcards.
