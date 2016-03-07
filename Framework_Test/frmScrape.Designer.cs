@@ -36,7 +36,13 @@
             this.btnTestHttpCaptureText = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.RegExChunk = new System.Windows.Forms.TabPage();
+            this.tabRegExChunk = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabSourceREC = new System.Windows.Forms.TabPage();
+            this.txtSourceTextREC = new System.Windows.Forms.TextBox();
+            this.tabResultREC = new System.Windows.Forms.TabPage();
+            this.lstMatchResultsREC = new System.Windows.Forms.ListBox();
+            this.txtMatchTextREC = new System.Windows.Forms.TextBox();
             this.nudMaxChunkLength = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -48,31 +54,42 @@
             this.nudStartIteration = new System.Windows.Forms.NumericUpDown();
             this.chkStartIgnoreCase = new System.Windows.Forms.CheckBox();
             this.txtRegExStart = new System.Windows.Forms.TextBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabSourceREC = new System.Windows.Forms.TabPage();
-            this.tabResultREC = new System.Windows.Forms.TabPage();
-            this.lstMatchResultsREC = new System.Windows.Forms.ListBox();
-            this.txtMatchTextREC = new System.Windows.Forms.TextBox();
-            this.txtSourceTextREC = new System.Windows.Forms.TextBox();
+            this.tabRegFind = new System.Windows.Forms.TabPage();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtCaptureTextRF = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lstRegExFindRF = new System.Windows.Forms.ListBox();
+            this.txtRegExFindResultsRF = new System.Windows.Forms.TextBox();
+            this.btnRegExFindRF = new System.Windows.Forms.Button();
+            this.nudIterationRF = new System.Windows.Forms.NumericUpDown();
+            this.chkIgnoreCaseRF = new System.Windows.Forms.CheckBox();
+            this.txtRegExFindRF = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabRetrieveURL.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.RegExChunk.SuspendLayout();
+            this.tabRegExChunk.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabSourceREC.SuspendLayout();
+            this.tabResultREC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxChunkLength)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEndIteration)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartIteration)).BeginInit();
-            this.tabControl2.SuspendLayout();
-            this.tabSourceREC.SuspendLayout();
-            this.tabResultREC.SuspendLayout();
+            this.tabRegFind.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIterationRF)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabRetrieveURL);
-            this.tabControl1.Controls.Add(this.RegExChunk);
+            this.tabControl1.Controls.Add(this.tabRegExChunk);
+            this.tabControl1.Controls.Add(this.tabRegFind);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -123,7 +140,8 @@
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(706, 20);
             this.txtURL.TabIndex = 6;
-            this.txtURL.Text = "http://www.google.com";
+            this.txtURL.Text = "http://www.palottery.state.pa.us/Games/Print-Past-Winning-Numbers.aspx?id=12&year" +
+    "=2016&print=1";
             // 
             // btnTestHttpCaptureText
             // 
@@ -153,20 +171,88 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // RegExChunk
+            // tabRegExChunk
             // 
-            this.RegExChunk.Controls.Add(this.tabControl2);
-            this.RegExChunk.Controls.Add(this.nudMaxChunkLength);
-            this.RegExChunk.Controls.Add(this.label1);
-            this.RegExChunk.Controls.Add(this.groupBox2);
-            this.RegExChunk.Controls.Add(this.btnRegExChunkTest);
-            this.RegExChunk.Controls.Add(this.groupBox3);
-            this.RegExChunk.Location = new System.Drawing.Point(4, 22);
-            this.RegExChunk.Name = "RegExChunk";
-            this.RegExChunk.Size = new System.Drawing.Size(829, 450);
-            this.RegExChunk.TabIndex = 1;
-            this.RegExChunk.Text = "RegExChunk";
-            this.RegExChunk.UseVisualStyleBackColor = true;
+            this.tabRegExChunk.Controls.Add(this.tabControl2);
+            this.tabRegExChunk.Controls.Add(this.nudMaxChunkLength);
+            this.tabRegExChunk.Controls.Add(this.label1);
+            this.tabRegExChunk.Controls.Add(this.groupBox2);
+            this.tabRegExChunk.Controls.Add(this.btnRegExChunkTest);
+            this.tabRegExChunk.Controls.Add(this.groupBox3);
+            this.tabRegExChunk.Location = new System.Drawing.Point(4, 22);
+            this.tabRegExChunk.Name = "tabRegExChunk";
+            this.tabRegExChunk.Size = new System.Drawing.Size(829, 450);
+            this.tabRegExChunk.TabIndex = 1;
+            this.tabRegExChunk.Text = "RegExChunk";
+            this.tabRegExChunk.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabSourceREC);
+            this.tabControl2.Controls.Add(this.tabResultREC);
+            this.tabControl2.Location = new System.Drawing.Point(8, 90);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(818, 357);
+            this.tabControl2.TabIndex = 25;
+            // 
+            // tabSourceREC
+            // 
+            this.tabSourceREC.Controls.Add(this.txtSourceTextREC);
+            this.tabSourceREC.Location = new System.Drawing.Point(4, 22);
+            this.tabSourceREC.Name = "tabSourceREC";
+            this.tabSourceREC.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSourceREC.Size = new System.Drawing.Size(810, 331);
+            this.tabSourceREC.TabIndex = 0;
+            this.tabSourceREC.Text = "Source Text (from RetrieveURL)";
+            this.tabSourceREC.UseVisualStyleBackColor = true;
+            // 
+            // txtSourceTextREC
+            // 
+            this.txtSourceTextREC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSourceTextREC.Location = new System.Drawing.Point(3, 3);
+            this.txtSourceTextREC.Multiline = true;
+            this.txtSourceTextREC.Name = "txtSourceTextREC";
+            this.txtSourceTextREC.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtSourceTextREC.Size = new System.Drawing.Size(804, 325);
+            this.txtSourceTextREC.TabIndex = 22;
+            this.txtSourceTextREC.DoubleClick += new System.EventHandler(this.txtSourceTextREC_DoubleClick);
+            // 
+            // tabResultREC
+            // 
+            this.tabResultREC.Controls.Add(this.lstMatchResultsREC);
+            this.tabResultREC.Controls.Add(this.txtMatchTextREC);
+            this.tabResultREC.Location = new System.Drawing.Point(4, 22);
+            this.tabResultREC.Name = "tabResultREC";
+            this.tabResultREC.Padding = new System.Windows.Forms.Padding(3);
+            this.tabResultREC.Size = new System.Drawing.Size(810, 331);
+            this.tabResultREC.TabIndex = 1;
+            this.tabResultREC.Text = "Result";
+            this.tabResultREC.UseVisualStyleBackColor = true;
+            // 
+            // lstMatchResultsREC
+            // 
+            this.lstMatchResultsREC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstMatchResultsREC.FormattingEnabled = true;
+            this.lstMatchResultsREC.Location = new System.Drawing.Point(6, 6);
+            this.lstMatchResultsREC.Name = "lstMatchResultsREC";
+            this.lstMatchResultsREC.Size = new System.Drawing.Size(798, 69);
+            this.lstMatchResultsREC.TabIndex = 23;
+            this.lstMatchResultsREC.SelectedIndexChanged += new System.EventHandler(this.lstMatchResultsREC_SelectedIndexChanged);
+            // 
+            // txtMatchTextREC
+            // 
+            this.txtMatchTextREC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMatchTextREC.Location = new System.Drawing.Point(6, 81);
+            this.txtMatchTextREC.Multiline = true;
+            this.txtMatchTextREC.Name = "txtMatchTextREC";
+            this.txtMatchTextREC.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtMatchTextREC.Size = new System.Drawing.Size(798, 244);
+            this.txtMatchTextREC.TabIndex = 22;
             // 
             // nudMaxChunkLength
             // 
@@ -179,12 +265,6 @@
             this.nudMaxChunkLength.Name = "nudMaxChunkLength";
             this.nudMaxChunkLength.Size = new System.Drawing.Size(94, 20);
             this.nudMaxChunkLength.TabIndex = 24;
-            this.nudMaxChunkLength.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudMaxChunkLength.ValueChanged += new System.EventHandler(this.nudMaxChunkLength_ValueChanged);
             // 
             // label1
             // 
@@ -194,7 +274,6 @@
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 23;
             this.label1.Text = "Max Chunk Length";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox2
             // 
@@ -215,7 +294,7 @@
             this.nudEndIteration.Size = new System.Drawing.Size(79, 20);
             this.nudEndIteration.TabIndex = 8;
             this.nudEndIteration.Value = new decimal(new int[] {
-            18,
+            1,
             0,
             0,
             0});
@@ -238,7 +317,7 @@
             this.txtRegExEnd.Name = "txtRegExEnd";
             this.txtRegExEnd.Size = new System.Drawing.Size(276, 20);
             this.txtRegExEnd.TabIndex = 6;
-            this.txtRegExEnd.Text = "</td>";
+            this.txtRegExEnd.Text = "<strong>PowerPlay:</strong>";
             // 
             // btnRegExChunkTest
             // 
@@ -289,75 +368,122 @@
             this.txtRegExStart.Name = "txtRegExStart";
             this.txtRegExStart.Size = new System.Drawing.Size(281, 20);
             this.txtRegExStart.TabIndex = 12;
-            this.txtRegExStart.Text = "(\\d[\\d]?/){2}\\d[\\d]";
+            this.txtRegExStart.Text = "<tr>\\s+<td>\\d\\d/\\d\\d/\\d\\d\\d\\d</td><td>\\s+\\d[\\d]?\\s+&nbsp;";
             // 
-            // tabControl2
+            // tabRegFind
             // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabRegFind.Controls.Add(this.tabControl3);
+            this.tabRegFind.Controls.Add(this.btnRegExFindRF);
+            this.tabRegFind.Controls.Add(this.nudIterationRF);
+            this.tabRegFind.Controls.Add(this.chkIgnoreCaseRF);
+            this.tabRegFind.Controls.Add(this.txtRegExFindRF);
+            this.tabRegFind.Location = new System.Drawing.Point(4, 22);
+            this.tabRegFind.Name = "tabRegFind";
+            this.tabRegFind.Size = new System.Drawing.Size(829, 450);
+            this.tabRegFind.TabIndex = 2;
+            this.tabRegFind.Text = "RegFind";
+            this.tabRegFind.UseVisualStyleBackColor = true;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.Controls.Add(this.tabSourceREC);
-            this.tabControl2.Controls.Add(this.tabResultREC);
-            this.tabControl2.Location = new System.Drawing.Point(8, 90);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(818, 357);
-            this.tabControl2.TabIndex = 25;
+            this.tabControl3.Controls.Add(this.tabPage1);
+            this.tabControl3.Controls.Add(this.tabPage2);
+            this.tabControl3.Location = new System.Drawing.Point(3, 85);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(818, 357);
+            this.tabControl3.TabIndex = 26;
             // 
-            // tabSourceREC
+            // tabPage1
             // 
-            this.tabSourceREC.Controls.Add(this.txtSourceTextREC);
-            this.tabSourceREC.Location = new System.Drawing.Point(4, 22);
-            this.tabSourceREC.Name = "tabSourceREC";
-            this.tabSourceREC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSourceREC.Size = new System.Drawing.Size(810, 331);
-            this.tabSourceREC.TabIndex = 0;
-            this.tabSourceREC.Text = "Source Text";
-            this.tabSourceREC.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.txtCaptureTextRF);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(810, 331);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Source Text";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabResultREC
+            // txtCaptureTextRF
             // 
-            this.tabResultREC.Controls.Add(this.lstMatchResultsREC);
-            this.tabResultREC.Controls.Add(this.txtMatchTextREC);
-            this.tabResultREC.Location = new System.Drawing.Point(4, 22);
-            this.tabResultREC.Name = "tabResultREC";
-            this.tabResultREC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResultREC.Size = new System.Drawing.Size(810, 331);
-            this.tabResultREC.TabIndex = 1;
-            this.tabResultREC.Text = "Result";
-            this.tabResultREC.UseVisualStyleBackColor = true;
+            this.txtCaptureTextRF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCaptureTextRF.Location = new System.Drawing.Point(3, 3);
+            this.txtCaptureTextRF.Multiline = true;
+            this.txtCaptureTextRF.Name = "txtCaptureTextRF";
+            this.txtCaptureTextRF.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtCaptureTextRF.Size = new System.Drawing.Size(804, 325);
+            this.txtCaptureTextRF.TabIndex = 22;
             // 
-            // lstMatchResultsREC
+            // tabPage2
             // 
-            this.lstMatchResultsREC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabPage2.Controls.Add(this.lstRegExFindRF);
+            this.tabPage2.Controls.Add(this.txtRegExFindResultsRF);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(810, 331);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Result";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lstRegExFindRF
+            // 
+            this.lstRegExFindRF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstMatchResultsREC.FormattingEnabled = true;
-            this.lstMatchResultsREC.Location = new System.Drawing.Point(6, 6);
-            this.lstMatchResultsREC.Name = "lstMatchResultsREC";
-            this.lstMatchResultsREC.Size = new System.Drawing.Size(798, 69);
-            this.lstMatchResultsREC.TabIndex = 23;
+            this.lstRegExFindRF.FormattingEnabled = true;
+            this.lstRegExFindRF.Location = new System.Drawing.Point(6, 6);
+            this.lstRegExFindRF.Name = "lstRegExFindRF";
+            this.lstRegExFindRF.Size = new System.Drawing.Size(798, 69);
+            this.lstRegExFindRF.TabIndex = 23;
+            this.lstRegExFindRF.SelectedIndexChanged += new System.EventHandler(this.lstRegExFindRF_SelectedIndexChanged);
             // 
-            // txtMatchTextREC
+            // txtRegExFindResultsRF
             // 
-            this.txtMatchTextREC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtRegExFindResultsRF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchTextREC.Location = new System.Drawing.Point(6, 81);
-            this.txtMatchTextREC.Multiline = true;
-            this.txtMatchTextREC.Name = "txtMatchTextREC";
-            this.txtMatchTextREC.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMatchTextREC.Size = new System.Drawing.Size(798, 244);
-            this.txtMatchTextREC.TabIndex = 22;
-            this.txtMatchTextREC.TextChanged += new System.EventHandler(this.txtMatchText_TextChanged);
+            this.txtRegExFindResultsRF.Location = new System.Drawing.Point(6, 81);
+            this.txtRegExFindResultsRF.Multiline = true;
+            this.txtRegExFindResultsRF.Name = "txtRegExFindResultsRF";
+            this.txtRegExFindResultsRF.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtRegExFindResultsRF.Size = new System.Drawing.Size(798, 244);
+            this.txtRegExFindResultsRF.TabIndex = 22;
             // 
-            // txtSourceTextREC
+            // btnRegExFindRF
             // 
-            this.txtSourceTextREC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSourceTextREC.Location = new System.Drawing.Point(3, 3);
-            this.txtSourceTextREC.Multiline = true;
-            this.txtSourceTextREC.Name = "txtSourceTextREC";
-            this.txtSourceTextREC.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtSourceTextREC.Size = new System.Drawing.Size(804, 325);
-            this.txtSourceTextREC.TabIndex = 22;
-            this.txtSourceTextREC.DoubleClick += new System.EventHandler(this.txtSourceTextREC_DoubleClick);
+            this.btnRegExFindRF.Location = new System.Drawing.Point(746, 10);
+            this.btnRegExFindRF.Name = "btnRegExFindRF";
+            this.btnRegExFindRF.Size = new System.Drawing.Size(75, 23);
+            this.btnRegExFindRF.TabIndex = 21;
+            this.btnRegExFindRF.Text = "Pattern Test";
+            this.btnRegExFindRF.UseVisualStyleBackColor = true;
+            this.btnRegExFindRF.Click += new System.EventHandler(this.btnRegExTestRF_Click);
+            // 
+            // nudIterationRF
+            // 
+            this.nudIterationRF.Location = new System.Drawing.Point(190, 38);
+            this.nudIterationRF.Name = "nudIterationRF";
+            this.nudIterationRF.Size = new System.Drawing.Size(62, 20);
+            this.nudIterationRF.TabIndex = 20;
+            // 
+            // chkIgnoreCaseRF
+            // 
+            this.chkIgnoreCaseRF.AutoSize = true;
+            this.chkIgnoreCaseRF.Location = new System.Drawing.Point(44, 38);
+            this.chkIgnoreCaseRF.Name = "chkIgnoreCaseRF";
+            this.chkIgnoreCaseRF.Size = new System.Drawing.Size(83, 17);
+            this.chkIgnoreCaseRF.TabIndex = 19;
+            this.chkIgnoreCaseRF.Text = "Ignore Case";
+            this.chkIgnoreCaseRF.UseVisualStyleBackColor = true;
+            // 
+            // txtRegExFindRF
+            // 
+            this.txtRegExFindRF.Location = new System.Drawing.Point(8, 12);
+            this.txtRegExFindRF.Name = "txtRegExFindRF";
+            this.txtRegExFindRF.Size = new System.Drawing.Size(732, 20);
+            this.txtRegExFindRF.TabIndex = 18;
             // 
             // frmScrape
             // 
@@ -374,8 +500,13 @@
             this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.RegExChunk.ResumeLayout(false);
-            this.RegExChunk.PerformLayout();
+            this.tabRegExChunk.ResumeLayout(false);
+            this.tabRegExChunk.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
+            this.tabSourceREC.ResumeLayout(false);
+            this.tabSourceREC.PerformLayout();
+            this.tabResultREC.ResumeLayout(false);
+            this.tabResultREC.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxChunkLength)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -383,11 +514,14 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartIteration)).EndInit();
-            this.tabControl2.ResumeLayout(false);
-            this.tabSourceREC.ResumeLayout(false);
-            this.tabSourceREC.PerformLayout();
-            this.tabResultREC.ResumeLayout(false);
-            this.tabResultREC.PerformLayout();
+            this.tabRegFind.ResumeLayout(false);
+            this.tabRegFind.PerformLayout();
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIterationRF)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -401,7 +535,7 @@
         private System.Windows.Forms.TextBox txtCaptureRURL;
         private System.Windows.Forms.TextBox txtURL;
         private System.Windows.Forms.Button btnTestHttpCaptureText;
-        private System.Windows.Forms.TabPage RegExChunk;
+        private System.Windows.Forms.TabPage tabRegExChunk;
         private System.Windows.Forms.NumericUpDown nudMaxChunkLength;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -419,5 +553,16 @@
         private System.Windows.Forms.TabPage tabResultREC;
         private System.Windows.Forms.ListBox lstMatchResultsREC;
         private System.Windows.Forms.TextBox txtMatchTextREC;
+        private System.Windows.Forms.TabPage tabRegFind;
+        private System.Windows.Forms.Button btnRegExFindRF;
+        private System.Windows.Forms.NumericUpDown nudIterationRF;
+        private System.Windows.Forms.CheckBox chkIgnoreCaseRF;
+        private System.Windows.Forms.TextBox txtRegExFindRF;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox txtCaptureTextRF;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListBox lstRegExFindRF;
+        private System.Windows.Forms.TextBox txtRegExFindResultsRF;
     }
 }
