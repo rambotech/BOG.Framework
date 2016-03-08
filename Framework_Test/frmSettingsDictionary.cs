@@ -55,8 +55,6 @@ namespace BOG.Framework_Test
                     dgvSettingsDictionary.Rows[dgvSettingsDictionary.Rows.Count - 2].Tag = dictKey;
                 }
             }
-            MessageBox.Show("Example files created in " + Path.GetTempPath()
-                + "\r\nCompare them with the actions in the form code.");
         }
 
         private void dgvSettingsDictionary_RowEnter(object sender, DataGridViewCellEventArgs e)
