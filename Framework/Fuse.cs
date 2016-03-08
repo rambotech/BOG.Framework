@@ -397,19 +397,19 @@ namespace BOG.Framework
             switch (_Fuse_Trigger_Rule)
             {
                 case FuseBehavior.Hits_Only:
-                    result = _Hits >= _Hit_Threshold ? FuseTrip.Hits : FuseTrip.None;
+                    result = _Hits > _Hit_Threshold ? FuseTrip.Hits : FuseTrip.None;
                     break;
                 case FuseBehavior.Volume_Only:
-                    result = _Volume >= _Volume_Threshold ? FuseTrip.Volume : FuseTrip.None;
+                    result = _Volume > _Volume_Threshold ? FuseTrip.Volume : FuseTrip.None;
                     break;
                 case FuseBehavior.Hits_OR_Volume:
-                    result = (_Hits >= _Hit_Threshold && _Volume >= _Volume_Threshold)
+                    result = (_Hits > _Hit_Threshold && _Volume > _Volume_Threshold)
                         ? FuseTrip.HitsAndVolume :
                         (_Hits > Hit_Threshold ? FuseTrip.Hits :
                         (_Volume >= _Volume_Threshold ? FuseTrip.Volume : FuseTrip.None));
                     break;
                 case FuseBehavior.Hits_AND_Volume:
-                    result = (_Hits >= _Hit_Threshold && _Volume >= _Volume_Threshold)
+                    result = (_Hits > _Hit_Threshold && _Volume > _Volume_Threshold)
                         ? FuseTrip.HitsAndVolume : FuseTrip.None;
                     break;
             }

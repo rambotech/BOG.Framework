@@ -67,10 +67,12 @@ namespace BOG.Framework_Test
             ActivityCount++;
             Fuse.FuseTrip result = f.RecordFuseEvent((float)this.nudVolumePerInterval.Value);
             this.lbxFuseStream.Items.Add(string.Format(
-                "Activity Count:{0:#,000} Result:{1:-10} HitPercentage:{2:#,000.00} VolumePercentage{3:#,000.00}",
+                "Activity Count:{0:#,000} Result:{1:-10} HitVal: {2:#,000} HitPct:{3:#,000.00} VolVal: {4:#,000} VolPct {5:#,000.00}",
                 ActivityCount,
                 Enum.GetName(typeof(Fuse.FuseTrip), result),
+                f.Hits,
                 f.HitPercentage * 100.0,
+                f.Volume,
                 f.VolumePercentage * 100.0));
             this.lbxFuseStream.SelectedIndex = this.lbxFuseStream.Items.Count - 1;
         }

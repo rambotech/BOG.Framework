@@ -12,7 +12,7 @@ namespace BOG.Framework
     /// </summary>
     public class Logger
     {
-        string _messageFilePath = IO.GetBestLocalTempStoragePath();
+        string _messageFilePath = Environment.GetEnvironmentVariable("TEMP"); 
         string _messageFilePattern = "Log_{0:yyyyMMdd_HHmmss}.txt";
         int _maxSecondsThreshold = 3600;
         long _maxSizeThreshold = 150L * 1024L;

@@ -115,8 +115,7 @@ namespace BOG.Framework
         }
 
         /// <summary>
-        /// Searches a string for a match, but allows question marks to act like a wildcard and match any
-        /// character.
+        /// Searches a string for a match, but allows question marks to act like a wildcard and match any character.
         /// </summary>
         /// <param name="core"></param>
         /// <param name="search"></param>

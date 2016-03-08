@@ -63,5 +63,11 @@ namespace BOG.Framework_Test
             frmSettingsDictionary f = new frmSettingsDictionary();
             f.ShowDialog(this);
         }
+
+        private void btnAssemblyInfo_Click(object sender, EventArgs e)
+        {
+            frmAssemblyInfo f = new frmAssemblyInfo();
+            f.ShowDialog(this);
+        }
     }
 }

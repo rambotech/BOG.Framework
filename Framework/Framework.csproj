@@ -77,7 +77,6 @@
     <Compile Include="DetailedException.cs" />
     <Compile Include="Formatting.cs" />
     <Compile Include="Fuse.cs" />
-    <Compile Include="IO.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MathEx.cs" />
