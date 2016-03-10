@@ -7,7 +7,7 @@ namespace BOG.Framework
 {
     /// <summary>
     /// A serializable dictionary which allows serialization to XML files. Use this as a replacement
-    /// for Dictionary<K,V>.  Credit: http://weblogs.asp.net/pwelter34/444961
+    /// for Dictionary&lt;K,V&gt;.  Credit: http://weblogs.asp.net/pwelter34/444961
     /// </summary>
     /// <typeparam name="TKey">The type of the key</typeparam>
     /// <typeparam name="TValue">The type of the value</typeparam>

@@ -90,8 +90,6 @@ namespace BOG.Framework
         bool _UniqueValues = true;
         bool _IgnoreCase = false;
 
-        int _ListCount = 0;
-
         /// <summary>
         /// Default instantiation
         /// </summary>

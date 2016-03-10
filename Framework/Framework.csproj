@@ -73,6 +73,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AssemblyVersion.cs" />
     <Compile Include="BabbleOn.cs" />
+    <Compile Include="CipherUtility.cs" />
     <Compile Include="ConsoleControl.cs" />
     <Compile Include="DetailedException.cs" />
     <Compile Include="Formatting.cs" />

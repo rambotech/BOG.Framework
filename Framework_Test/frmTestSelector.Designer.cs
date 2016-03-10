@@ -31,7 +31,7 @@
             this.btnBabbleOn = new System.Windows.Forms.Button();
             this.btnFuse = new System.Windows.Forms.Button();
             this.btnFormatting = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDetailedException = new System.Windows.Forms.Button();
             this.btnSerializableDictionary = new System.Windows.Forms.Button();
             this.btnStringEx = new System.Windows.Forms.Button();
             this.btnScrape = new System.Windows.Forms.Button();
@@ -39,15 +39,15 @@
             this.btnAssemblyInfo = new System.Windows.Forms.Button();
             this.gbxNote = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnCipherUtility = new System.Windows.Forms.Button();
             this.gbxNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBabbleOn
             // 
-            this.btnBabbleOn.Location = new System.Drawing.Point(13, 85);
-            this.btnBabbleOn.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBabbleOn.Location = new System.Drawing.Point(10, 69);
             this.btnBabbleOn.Name = "btnBabbleOn";
-            this.btnBabbleOn.Size = new System.Drawing.Size(328, 62);
+            this.btnBabbleOn.Size = new System.Drawing.Size(246, 50);
             this.btnBabbleOn.TabIndex = 1;
             this.btnBabbleOn.Text = "BabbleOn";
             this.btnBabbleOn.UseVisualStyleBackColor = true;
@@ -55,76 +55,69 @@
             // 
             // btnFuse
             // 
-            this.btnFuse.Location = new System.Drawing.Point(13, 154);
-            this.btnFuse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFuse.Location = new System.Drawing.Point(10, 294);
             this.btnFuse.Name = "btnFuse";
-            this.btnFuse.Size = new System.Drawing.Size(328, 62);
-            this.btnFuse.TabIndex = 2;
+            this.btnFuse.Size = new System.Drawing.Size(246, 50);
+            this.btnFuse.TabIndex = 5;
             this.btnFuse.Text = "Fuse";
             this.btnFuse.UseVisualStyleBackColor = true;
             this.btnFuse.Click += new System.EventHandler(this.btnFuse_Click);
             // 
             // btnFormatting
             // 
-            this.btnFormatting.Location = new System.Drawing.Point(12, 223);
-            this.btnFormatting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormatting.Location = new System.Drawing.Point(12, 238);
             this.btnFormatting.Name = "btnFormatting";
-            this.btnFormatting.Size = new System.Drawing.Size(328, 62);
-            this.btnFormatting.TabIndex = 3;
+            this.btnFormatting.Size = new System.Drawing.Size(246, 50);
+            this.btnFormatting.TabIndex = 4;
             this.btnFormatting.Text = "Formatting";
             this.btnFormatting.UseVisualStyleBackColor = true;
             this.btnFormatting.Click += new System.EventHandler(this.btnFormatting_Click);
             // 
-            // button1
+            // btnDetailedException
             // 
-            this.button1.Location = new System.Drawing.Point(13, 292);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(328, 62);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "DetailedException";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDetailedException.Location = new System.Drawing.Point(10, 181);
+            this.btnDetailedException.Name = "btnDetailedException";
+            this.btnDetailedException.Size = new System.Drawing.Size(246, 50);
+            this.btnDetailedException.TabIndex = 3;
+            this.btnDetailedException.Text = "DetailedException";
+            this.btnDetailedException.UseVisualStyleBackColor = true;
+            this.btnDetailedException.Click += new System.EventHandler(this.btnDetailedException_Click);
             // 
             // btnSerializableDictionary
             // 
-            this.btnSerializableDictionary.Location = new System.Drawing.Point(13, 362);
-            this.btnSerializableDictionary.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSerializableDictionary.Location = new System.Drawing.Point(260, 69);
             this.btnSerializableDictionary.Name = "btnSerializableDictionary";
-            this.btnSerializableDictionary.Size = new System.Drawing.Size(328, 62);
-            this.btnSerializableDictionary.TabIndex = 5;
+            this.btnSerializableDictionary.Size = new System.Drawing.Size(246, 50);
+            this.btnSerializableDictionary.TabIndex = 7;
             this.btnSerializableDictionary.Text = "SerializableDictionary";
             this.btnSerializableDictionary.UseVisualStyleBackColor = true;
             this.btnSerializableDictionary.Click += new System.EventHandler(this.btnSerializableDictionary_Click);
             // 
             // btnStringEx
             // 
-            this.btnStringEx.Location = new System.Drawing.Point(349, 16);
-            this.btnStringEx.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStringEx.Location = new System.Drawing.Point(262, 181);
             this.btnStringEx.Name = "btnStringEx";
-            this.btnStringEx.Size = new System.Drawing.Size(328, 62);
-            this.btnStringEx.TabIndex = 6;
+            this.btnStringEx.Size = new System.Drawing.Size(246, 50);
+            this.btnStringEx.TabIndex = 9;
             this.btnStringEx.Text = "StringEx";
             this.btnStringEx.UseVisualStyleBackColor = true;
             this.btnStringEx.Click += new System.EventHandler(this.btnStringEx_Click);
             // 
             // btnScrape
             // 
-            this.btnScrape.Location = new System.Drawing.Point(349, 85);
-            this.btnScrape.Margin = new System.Windows.Forms.Padding(4);
+            this.btnScrape.Location = new System.Drawing.Point(262, 13);
             this.btnScrape.Name = "btnScrape";
-            this.btnScrape.Size = new System.Drawing.Size(328, 62);
-            this.btnScrape.TabIndex = 7;
+            this.btnScrape.Size = new System.Drawing.Size(246, 50);
+            this.btnScrape.TabIndex = 6;
             this.btnScrape.Text = "Scrape";
             this.btnScrape.UseVisualStyleBackColor = true;
             this.btnScrape.Click += new System.EventHandler(this.btnScrape_Click);
             // 
             // btnSettingsDictionary
             // 
-            this.btnSettingsDictionary.Location = new System.Drawing.Point(349, 154);
-            this.btnSettingsDictionary.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSettingsDictionary.Location = new System.Drawing.Point(262, 125);
             this.btnSettingsDictionary.Name = "btnSettingsDictionary";
-            this.btnSettingsDictionary.Size = new System.Drawing.Size(328, 62);
+            this.btnSettingsDictionary.Size = new System.Drawing.Size(246, 50);
             this.btnSettingsDictionary.TabIndex = 8;
             this.btnSettingsDictionary.Text = "SettingsDictionary";
             this.btnSettingsDictionary.UseVisualStyleBackColor = true;
@@ -132,10 +125,9 @@
             // 
             // btnAssemblyInfo
             // 
-            this.btnAssemblyInfo.Location = new System.Drawing.Point(13, 16);
-            this.btnAssemblyInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAssemblyInfo.Location = new System.Drawing.Point(10, 13);
             this.btnAssemblyInfo.Name = "btnAssemblyInfo";
-            this.btnAssemblyInfo.Size = new System.Drawing.Size(328, 62);
+            this.btnAssemblyInfo.Size = new System.Drawing.Size(246, 50);
             this.btnAssemblyInfo.TabIndex = 0;
             this.btnAssemblyInfo.Text = "AssemblyInfo";
             this.btnAssemblyInfo.UseVisualStyleBackColor = true;
@@ -144,41 +136,57 @@
             // gbxNote
             // 
             this.gbxNote.Controls.Add(this.textBox1);
-            this.gbxNote.Location = new System.Drawing.Point(358, 223);
+            this.gbxNote.Location = new System.Drawing.Point(268, 237);
+            this.gbxNote.Margin = new System.Windows.Forms.Padding(2);
             this.gbxNote.Name = "gbxNote";
-            this.gbxNote.Size = new System.Drawing.Size(319, 201);
-            this.gbxNote.TabIndex = 9;
+            this.gbxNote.Padding = new System.Windows.Forms.Padding(2);
+            this.gbxNote.Size = new System.Drawing.Size(239, 107);
+            this.gbxNote.TabIndex = 10;
             this.gbxNote.TabStop = false;
             this.gbxNote.Text = "Note";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 22);
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(14, 18);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(279, 156);
+            this.textBox1.Size = new System.Drawing.Size(210, 72);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Not all classes/methods have an example here.  Only those which need an example b" +
     "eyond their method/class description are included. See the class documentation f" +
     "or full information.";
             // 
+            // btnCipherUtility
+            // 
+            this.btnCipherUtility.Location = new System.Drawing.Point(12, 125);
+            this.btnCipherUtility.Name = "btnCipherUtility";
+            this.btnCipherUtility.Size = new System.Drawing.Size(246, 50);
+            this.btnCipherUtility.TabIndex = 2;
+            this.btnCipherUtility.Text = "CipherUtility";
+            this.btnCipherUtility.UseVisualStyleBackColor = true;
+            this.btnCipherUtility.Click += new System.EventHandler(this.btnCipherUtility_Click);
+            // 
             // frmTestSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 437);
+            this.ClientSize = new System.Drawing.Size(518, 355);
+            this.Controls.Add(this.btnCipherUtility);
             this.Controls.Add(this.gbxNote);
             this.Controls.Add(this.btnAssemblyInfo);
             this.Controls.Add(this.btnSettingsDictionary);
             this.Controls.Add(this.btnScrape);
             this.Controls.Add(this.btnStringEx);
             this.Controls.Add(this.btnSerializableDictionary);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDetailedException);
             this.Controls.Add(this.btnFormatting);
             this.Controls.Add(this.btnFuse);
             this.Controls.Add(this.btnBabbleOn);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTestSelector";
             this.Text = "Test Selector";
             this.gbxNote.ResumeLayout(false);
@@ -192,7 +200,7 @@
         private System.Windows.Forms.Button btnBabbleOn;
         private System.Windows.Forms.Button btnFuse;
         private System.Windows.Forms.Button btnFormatting;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDetailedException;
         private System.Windows.Forms.Button btnSerializableDictionary;
         private System.Windows.Forms.Button btnStringEx;
         private System.Windows.Forms.Button btnScrape;
@@ -200,5 +208,6 @@
         private System.Windows.Forms.Button btnAssemblyInfo;
         private System.Windows.Forms.GroupBox gbxNote;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnCipherUtility;
     }
 }

@@ -72,6 +72,12 @@
     <Compile Include="frmAssemblyInfo.Designer.cs">
       <DependentUpon>frmAssemblyInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCipherUtility.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCipherUtility.Designer.cs">
+      <DependentUpon>frmCipherUtility.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDetailedException.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAssemblyInfo.resx">
       <DependentUpon>frmAssemblyInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCipherUtility.resx">
+      <DependentUpon>frmCipherUtility.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailedException.resx">
       <DependentUpon>frmDetailedException.cs</DependentUpon>

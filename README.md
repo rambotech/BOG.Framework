@@ -12,6 +12,9 @@ The classes are:
 
 ###BabbleOn:
   Allows real-time monitoring of a service or other headless operation from any TCP client.
+  
+###CipherUtility.cs
+  A nice static class for encryption from an external source.
 
 ###ConsoleControl:
   For console applications: a cleaner way to handle CTRL+BREAK.

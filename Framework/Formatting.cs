@@ -115,7 +115,6 @@ namespace BOG.Framework
         {
             string digits, temp;
             bool showThousands = false;
-            bool allZeros = true;
 
             // Use StringBuilder to build result
             StringBuilder builder = new StringBuilder();
@@ -173,7 +172,6 @@ namespace BOG.Framework
                                 " ");
                             }
                             // Indicate non-zero digit encountered
-                            allZeros = false;
                         }
                         builder.Insert(0, temp);
                         break;

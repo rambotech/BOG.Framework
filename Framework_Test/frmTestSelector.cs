@@ -34,7 +34,7 @@ namespace BOG.Framework_Test
             f.ShowDialog(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDetailedException_Click(object sender, EventArgs e)
         {
             frmDetailedException f = new frmDetailedException();
             f.ShowDialog(this);
@@ -67,6 +67,12 @@ namespace BOG.Framework_Test
         private void btnAssemblyInfo_Click(object sender, EventArgs e)
         {
             frmAssemblyInfo f = new frmAssemblyInfo();
+            f.ShowDialog(this);
+        }
+
+        private void btnCipherUtility_Click(object sender, EventArgs e)
+        {
+            frmCipherUtility f = new frmCipherUtility();
             f.ShowDialog(this);
         }
     }

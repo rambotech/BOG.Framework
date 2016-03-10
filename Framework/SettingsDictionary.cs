@@ -17,6 +17,8 @@ namespace BOG.Framework
     {
         private string _ConfigurationPath = string.Empty;
         private string _ConfigurationFile = string.Empty;
+        private string _RootNodeName = "settings";
+
         private Dictionary<string, object> AppSettings = new Dictionary<string, object>();
         private bool HasChanges = false;
 
@@ -31,6 +33,16 @@ namespace BOG.Framework
                 _ConfigurationFile = value;
                 _ConfigurationPath = Path.GetDirectoryName(_ConfigurationFile);
             }
+        }
+
+        /// <summary>
+        /// Allows the root node in the XML document to be customized.
+        /// It defaults to "settings" for backward compatability.
+        /// </summary>
+        public string RootNodeName
+        {
+            get { return _RootNodeName; }
+            set { _RootNodeName = value; }
         }
 
         /// <summary>
@@ -56,12 +68,35 @@ namespace BOG.Framework
         /// </summary>
         public void LoadSettings()
         {
-            if (File.Exists(_ConfigurationFile))
+            LoadSettings(string.Empty, false);
+        }
+
+        /// <summary>
+        /// Loads the settings from the XML string created by BuildSettingsXML() method.  
+        /// Existing settings are removed prior to load.
+        /// </summary>
+        public void LoadSettings(string xml)
+        {
+            LoadSettings(xml, true);
+        }
+
+        private void LoadSettings(string source, bool isXML)
+        {
+            if ((isXML && ! string.IsNullOrWhiteSpace(source)) || (! isXML && File.Exists(_ConfigurationFile)))
             {
                 AppSettings.Clear();
-                XPathDocument doc = new XPathDocument(new FileStream(_ConfigurationFile, FileMode.Open));
+                XPathDocument doc;
+                byte[] xmlSource = Encoding.UTF8.GetBytes(source);
+                if (!isXML)
+                {
+                    doc = new XPathDocument(new FileStream(_ConfigurationFile, FileMode.Open));
+                }
+                else
+                {
+                    doc = new XPathDocument(new MemoryStream(xmlSource));
+                }
                 XPathNavigator nav = ((IXPathNavigable)doc).CreateNavigator();
-                XPathNodeIterator iter = nav.Select("/settings");
+                XPathNodeIterator iter = nav.Select("/" + _RootNodeName);
                 while (iter.MoveNext())
                 {
                     XPathNodeIterator newIter = iter.Current.SelectDescendants(XPathNodeType.Element, false);
@@ -108,7 +143,7 @@ namespace BOG.Framework
             XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             doc.AppendChild(docNode);
 
-            XmlNode rootNode = doc.CreateElement("settings");
+            XmlNode rootNode = doc.CreateElement(_RootNodeName);
 
             foreach (string s in AppSettings.Keys)
             {

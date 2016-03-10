@@ -15,10 +15,10 @@ namespace BOG.Framework
     /// 
     /// t.MyProperty1 = this.txtTitle.Text;
     /// ....
-    /// string xmldoc = ObjectXMLSerializer<MyObject>.CreateDocumentFormat(t);
-    /// ObjectXMLSerializer<MyObject>.SaveDocumentFormat(t, filename);
-    /// string xmldoc = ObjectXMLSerializer<MyObject>.LoadDocumentFormat(filename);
-    /// t = ObjectXMLSerializer<MyObject>.CreateObjectFormat(xmldoc);
+    /// string xmldoc = ObjectXMLSerializer&lt;MyObject&gt;.CreateDocumentFormat(t);
+    /// ObjectXMLSerializer&lt;MyObject&gt;.SaveDocumentFormat(t, filename);
+    /// string xmldoc = ObjectXMLSerializer&lt;MyObject&gt;.LoadDocumentFormat(filename);
+    /// t = ObjectXMLSerializer&lt;MyObject&gt;.CreateObjectFormat(xmldoc);
     /// </summary>
     /// <typeparam name="T">Any serializable class</typeparam>
     public static class ObjectXMLSerializer<T> where T : class // Specify that T must be a class.

@@ -216,7 +216,7 @@ namespace BOG.Framework
         }
 
         /// <summary>
-        /// Takes a string which may have XML comments or &...; encoding inside it,
+        /// Takes a string which may have XML comments or &amp;...; encoding inside it,
         /// and return the InnerText (decoded) equivalent of it.  This is a quick way
         /// to take the raw text harvested in an HTML or XML tag, and do an Html decode
         /// on the text.
@@ -312,7 +312,7 @@ namespace BOG.Framework
                 {
                     if (Index != Offset && Index % 8 == 0)
                     {
-                        Result.Append("| ");
+                        Result.Append("|");
                     }
                     if (Index < source.Length)
                     {
