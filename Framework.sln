@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bin", "Bin", "{44A62652-B4BE-4F4E-AB2B-69D043374873}"
-	ProjectSection(SolutionItems) = preProject
-		Bin\nunit.framework.dll = Bin\nunit.framework.dll
-		Bin\nunit.framework.xml = Bin\nunit.framework.xml
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{A85610AC-F110-4080-AD10-5BBBDC3828C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework_NUnit", "Framework_NUnit\Framework_NUnit.csproj", "{CD5D8DFA-16AD-4275-B5B2-2A613A4C20F3}"
