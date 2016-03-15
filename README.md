@@ -63,7 +63,7 @@ The classes are:
   A replacement for the standard Dictionary<K,V> class, which does not allow serialization.
   
 ###Serializer
-  A static class containing methods to serialize and deserialize between objects, strings and files.
+  A static class containing methods to serialize and deserialize XML between objects, strings and files.
   
 ###SettingsDictionary
   A kind of Dictionary<string,object> with internal methods to load, save and merge.  Originally designed
