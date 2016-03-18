@@ -77,12 +77,27 @@ namespace BOG.Framework
         /// </summary>
         public enum MemoryListRetrieveSequence
         {
+			/// <summary>
+			/// No particular order.
+			/// </summary>
             Random,
-            Stack,
-            Queue,
-            LIFO,  // synonym for Stack
-            FIFO   // synonym for Queue
-        }
+			/// <summary>
+			/// Returns the last item added.
+			/// </summary>
+			Stack,
+			/// <summary>
+			/// Returns the first item added.
+			/// </summary>
+			Queue,
+			/// <summary>
+			/// synonym for Stack
+			/// </summary>
+			LIFO,
+			/// <summary>
+			/// synonym for Queue
+			/// </summary>
+			FIFO
+		}
 
         List<MemoryItem<T>> _l = new List<MemoryItem<T>>();
         MemoryListRetrieveSequence _sequence = MemoryListRetrieveSequence.Random;
@@ -111,7 +126,14 @@ namespace BOG.Framework
             _IgnoreCase = ignoreCase;
         }
 
-        public MemoryList(string name, bool uniqueValues, bool ignoreCase, MemoryListRetrieveSequence readSequence)
+		/// <summary>
+		/// Parameterized instantiation
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="uniqueValues"></param>
+		/// <param name="ignoreCase"></param>
+		/// <param name="readSequence"></param>
+		public MemoryList(string name, bool uniqueValues, bool ignoreCase, MemoryListRetrieveSequence readSequence)
         {
             _Name = name;
             _UniqueValues = uniqueValues;
@@ -119,37 +141,56 @@ namespace BOG.Framework
             _sequence = readSequence;
         }
 
-        public MemoryListRetrieveSequence Sequence
+		/// <summary>
+		/// Returns the sequence which items will be retrieved from the list.
+		/// </summary>
+		public MemoryListRetrieveSequence Sequence
         {
             get { return _sequence; }
             set { _sequence = value; }
         }
 
-        public string Name
+		/// <summary>
+		/// Returns the name assigned to the list.
+		/// </summary>
+		public string Name
         {
             get { return _Name; }
             set { _Name = value; }
         }
 
-        public bool UniqueValues
+		/// <summary>
+		/// Whether values added to the list must have not previously been added.
+		/// </summary>
+		public bool UniqueValues
         {
             get { return _UniqueValues; }
             set { _UniqueValues = value; }
         }
 
-        public bool IgnoreCase
+		/// <summary>
+		/// Whether to ignore case when comparing if an item already exists.
+		/// </summary>
+		public bool IgnoreCase
         {
             get { return _IgnoreCase; }
             set { _IgnoreCase = value; }
         }
 
-        public List<MemoryItem<T>> ListItem
+		/// <summary>
+		/// Returns all the items in the list, including consumed items.
+		/// </summary>
+		public List<MemoryItem<T>> ListItem
         {
             get { return _l; }
             set { _l = value; }
         }
 
-        public bool HasValues()
+		/// <summary>
+		/// Whether any unconsumed items exist.
+		/// </summary>
+		/// <returns></returns>
+		public bool HasValues()
         {
             int i;
             for (i = 0; i < _l.Count; i++)
@@ -171,22 +212,38 @@ namespace BOG.Framework
             return c;
         }
 
-        public int ConsumedCount()
+		/// <summary>
+		/// Returns the number of items already consumed from the list.
+		/// </summary>
+		/// <returns></returns>
+		public int ConsumedCount()
         {
             return Count(false);
         }
 
-        public int UnconsumedCount()
+		/// <summary>
+		/// Returns the number of items not yet consumed from the list.
+		/// </summary>
+		/// <returns></returns>
+		public int UnconsumedCount()
         {
             return Count(true);
         }
 
-        public int CountAll()
+		/// <summary>
+		/// Returns the number of consumed and unconsumed items from the list.
+		/// </summary>
+		/// <returns></returns>
+		public int CountAll()
         {
             return _l.Count;
         }
 
-        public void StoreValue(T value)
+		/// <summary>
+		/// Add an item to the list.  Note: if uniqueness would be violated, the item is quietly not added.
+		/// </summary>
+		/// <param name="value"></param>
+		public void StoreValue(T value)
         {
             bool isString = value.GetType() == Type.GetType("string");
             if (_UniqueValues)
@@ -216,7 +273,11 @@ namespace BOG.Framework
             _l.Add(new MemoryItem<T>(value));
         }
 
-        public T RecallValue()
+		/// <summary>
+		/// Consume an item from the list.
+		/// </summary>
+		/// <returns></returns>
+		public T RecallValue()
         {
             bool found = false;
             int i, UseIndex = -1;
@@ -260,7 +321,10 @@ namespace BOG.Framework
         }
     }
 
-    public class WebScrapeResponse
+	/// <summary>
+	/// Encapsulates the response from a scrape request.
+	/// </summary>
+	public class WebScrapeResponse
     {
         private string _StatusCode;
         private string _StatusText;
@@ -274,7 +338,10 @@ namespace BOG.Framework
         private CookieCollection _cookies;
         private string _ResponseURI;
 
-        public WebScrapeResponse()
+		/// <summary>
+		/// Instantiate
+		/// </summary>
+		public WebScrapeResponse()
         {
             _StatusCode = "-1";
             _StatusText = "";
@@ -289,78 +356,120 @@ namespace BOG.Framework
             _ResponseURI = string.Empty;
         }
 
-        public string StatusCode
+		/// <summary>
+		/// 
+		/// </summary>
+		public string StatusCode
         {
             get { return _StatusCode; }
             set { _StatusCode = value; }
         }
 
-        public string StatusText
+		/// <summary>
+		/// 
+		/// </summary>
+		public string StatusText
         {
             get { return _StatusText; }
             set { _StatusText = value; }
         }
 
-        public string ErrorMessage
+		/// <summary>
+		/// Will be empty if no error was encountered
+		/// </summary>
+		public string ErrorMessage
         {
             get { return _ErrorMessage; }
             set { _ErrorMessage = value; }
         }
 
-        public string Content
+		/// <summary>
+		/// The conent returned in the body
+		/// </summary>
+		public string Content
         {
             get { return _Content; }
             set { _Content = value; }
         }
 
-        public string ContentType
+		/// <summary>
+		/// The MIME descriptor for Content
+		/// </summary>
+		public string ContentType
         {
             get { return _ContentType; }
             set { _ContentType = value; }
         }
 
-        public string ContentEncoding
+		/// <summary>
+		/// The encoding descriptor for Content
+		/// </summary>
+		public string ContentEncoding
         {
             get { return _ContentEncoding; }
             set { _ContentEncoding = value; }
         }
 
-        public long ContentLength
+		/// <summary>
+		/// The reported length of the content.
+		/// </summary>
+		public long ContentLength
         {
             get { return _ContentLength; }
             set { _ContentLength = value; }
         }
 
-        public string CharacterSet
+		/// <summary>
+		/// The reported character set of the content.
+		/// </summary>
+		public string CharacterSet
         {
             get { return _CharacterSet; }
             set { _CharacterSet = value; }
         }
 
-        public WebHeaderCollection headers
+		/// <summary>
+		/// The response headers
+		/// </summary>
+		public WebHeaderCollection headers
         {
             get { return _headers; }
             set { _headers = value; }
         }
 
-        public CookieCollection cookies
+		/// <summary>
+		/// The cookies from the server.
+		/// </summary>
+		public CookieCollection cookies
         {
             get { return _cookies; }
             set { _cookies = value; }
         }
 
-        public string ResponseURI
+		/// <summary>
+		/// The URI which provided the response, which might be different from the request.
+		/// </summary>
+		public string ResponseURI
         {
             get { return _ResponseURI; }
             set { _ResponseURI = value; }
         }
     }
 
-    public class Scrape
+	/// <summary>
+	/// Simple scraping: for simple extracts of data from the HTML, not requiring form posting,
+	/// cookie preservation or session retention.
+	/// </summary>
+	public class Scrape
     {
-        // simple: for simple extracts of data from the HTML, not requiring form posting,
-        // cookie preservation or session retention.
-        public bool HttpTextToString(string url, string headers, ref string captured)
+		/// <summary>
+		/// Harvest the text response from a request.
+		/// </summary>
+		/// <param name="url">The point of request</param>
+		/// <param name="headers">the headers to send with the request.  A simple string, with values joined by semicolons.</param>
+		/// <param name="captured">ref: the captured text.</param>
+		/// <returns>True when successfully retrieved.</returns>
+		public bool HttpTextToString(string url, string headers, ref string captured)
         {
             try
             {
@@ -388,7 +497,15 @@ namespace BOG.Framework
             }
         }
 
-        public WebScrapeResponse HttpCapture(string url, string postdata, string headers, CookieCollection cookie)
+		/// <summary>
+		/// Allows post data, headers and cookies.  Returns a WebScrapeResponse object with full details.
+		/// </summary>
+		/// <param name="url"></param>
+		/// <param name="postdata"></param>
+		/// <param name="headers"></param>
+		/// <param name="cookie"></param>
+		/// <returns></returns>
+		public WebScrapeResponse HttpCapture(string url, string postdata, string headers, CookieCollection cookie)
         {
             WebScrapeResponse r = new WebScrapeResponse();
             try
@@ -458,17 +575,35 @@ namespace BOG.Framework
             return r;
         }
 
-        public StringCollection RegExChunk(string rawText,
+		/// <summary>
+		/// A powerful fragmenting approach to retrieving blocks of text from a harvested URL.  See the tester for examples of usage.
+		/// NOTE: Both startIteration and endIteration should not be 0.  For a single specific fragment, startIteration is the iteration
+		/// marking the actual targeted point (i.e. 3 for the 3rd iteration of "&lt;div", and endIteration is the iteration marking the
+		/// end point (i.e. 1 for the "&lt;/div&gt;" closing the 3rd "&lt;div&gt;" above).  It startIteration is 0, it will return a set of 
+		/// "&lt;div ...> ... &lt;div&gt;" fragments.
+		/// </summary>
+		/// <param name="rawText">the full text to search.</param>
+		/// <param name="startPattern">A pattern for the starting point</param>
+		/// <param name="ignoreStartCase"></param>
+		/// <param name="startIteration">0 to iterate on all matches, or the specific iteration of the startPattern to use.</param>
+		/// <param name="endPattern">A pattern for the ending point.</param>
+		/// <param name="ignoreEndCase"></param>
+		/// <param name="endIteration">0 to iterate</param>
+		/// <param name="MaximumMatches">0 for all matches, or the threshold at which further matching effort stops.</param>
+		/// <param name="MaxLengthCheck">0 searches the whole text block.  A non-zero value limits the search to the first MaxLengthCheck
+		/// characters.  This is sometimes useful when the targeted text block is known to exist early in a large text stream.</param>
+		/// <returns></returns>
+		public StringCollection RegExChunk(string rawText,
                 string startPattern, bool ignoreStartCase, int startIteration,
                 string endPattern, bool ignoreEndCase, int endIteration,
-                int MaxLengthCheck)
+				int MaximumMatches, int MaxLengthCheck)
         {
             int MatchCount = 0;
             StringCollection StringMatches = new StringCollection();
             Regex rStart = new Regex(startPattern, ignoreStartCase ? RegexOptions.IgnoreCase : RegexOptions.None);
             Regex rEnd = new Regex(endPattern, ignoreEndCase ? RegexOptions.IgnoreCase : RegexOptions.None);
             MatchCollection matchesStart = rStart.Matches(rawText);
-            for (int i = startIteration == 0 ? 0 : startIteration - 1; i < matchesStart.Count; i++)
+            for (int i = startIteration == 0 ? 0 : startIteration - 1; i < matchesStart.Count && MatchCount < MaximumMatches; i++)
             {
                 if (startIteration == 0 || i + 1 == startIteration)
                 {
@@ -484,7 +619,7 @@ namespace BOG.Framework
                         StartOffset = 0;
                         matchesEnd = rEnd.Matches(rawText.Substring(matchesStart[i].Index, MaxLengthCheck), matchesStart[i].Length);
                     }
-                    for (int j = endIteration == 0 ? 0 : endIteration - 1; j < matchesEnd.Count; j++)
+                    for (int j = endIteration == 0 ? 0 : endIteration - 1; j < matchesEnd.Count && MatchCount < MaximumMatches; j++)
                     {
                         if (endIteration == 0 || j + 1 == endIteration)
                         {
@@ -501,7 +636,15 @@ namespace BOG.Framework
             return StringMatches;
         }
 
-        public StringCollection RegExFind(string rawText, string pattern, bool ignoreCase, int iteration)
+		/// <summary>
+		/// Find one or more regular expression matches, and return all or a specific nth-position match.
+		/// </summary>
+		/// <param name="rawText"></param>
+		/// <param name="pattern"></param>
+		/// <param name="ignoreCase"></param>
+		/// <param name="iteration"></param>
+		/// <returns></returns>
+		public StringCollection RegExFind(string rawText, string pattern, bool ignoreCase, int iteration)
         {
             int MatchCount = 0;
             StringCollection StringMatches = new StringCollection();
@@ -519,21 +662,26 @@ namespace BOG.Framework
             return StringMatches;
         }
 
-        public string StripHTML(string htmlString)
+		/// <summary>
+		/// Matches everything found inside html tags.  Does not Html-decode any encodings.
+		/// </summary>
+		/// <param name="htmlString"></param>
+		/// <returns></returns>
+		public string StripHTML(string htmlString)
         {
-            //This pattern Matches everything found inside html tags;
-            //(.|\n) - > Look for any character or a new line
-            // *?  -> 0 or more occurences, and make a non-greedy search meaning
-            //That the match will stop at the first available '>' it sees, and not at the last one
-            //(if it stopped at the last one we could have overlooked
-            //nested HTML tags inside a bigger HTML tag..)
-            // Thanks to Oisin and Hugh Brown for helping on this one...
-            string pattern = @"<(.|\n)*?>";
+			string pattern = @"<(.|\n)*?>";
 
             return Regex.Replace(htmlString, pattern, string.Empty);
         }
 
-        public string ExtractText(string blob, string XPath, bool cleanAttributes)
+		/// <summary>
+		/// Extracts the text from within an xml fragment.
+		/// </summary>
+		/// <param name="blob">the xml fragment as the source.</param>
+		/// <param name="XPath">The xpath to extract the desired value.  from "text()" to anything.</param>
+		/// <param name="cleanAttributes">true to remove spaces from within tag delimiters. This can solve issues with badly formed HTML.</param>
+		/// <returns>the extracted result.  Note: html encodings are resolved.</returns>
+		public string ExtractText(string blob, string XPath, bool cleanAttributes)
         {
             StringBuilder Fragment = new StringBuilder();
             Fragment.Append("<?xml version='1.0' ?><root>");
@@ -576,7 +724,13 @@ namespace BOG.Framework
             return doc.SelectNodes("//root" + XPath)[0].InnerText;
         }
 
-        public string ExtractText(string blob, string XPath)
+		/// <summary>
+		/// Extracts the text from within an xml fragment.
+		/// </summary>
+		/// <param name="blob">the xml fragment as the source.</param>
+		/// <param name="XPath">The xpath to extract the desired value.  from "text()" to anything.</param>
+		/// <returns>the extracted result.  Note: html encodings are resolved.</returns>
+		public string ExtractText(string blob, string XPath)
         {
             return ExtractText(blob, XPath, false);
         }

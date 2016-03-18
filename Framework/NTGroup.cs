@@ -38,7 +38,7 @@ namespace BOG.Framework
                 Domain x = Domain.GetComputerDomain();
                 _MachineIsJoinedToDomain = true;
             }
-            catch (ActiveDirectoryObjectNotFoundException err)
+            catch (ActiveDirectoryObjectNotFoundException)
             {
                 _MachineIsJoinedToDomain = false;
             }

@@ -92,6 +92,7 @@ namespace BOG.Framework_Test
                     this.txtRegExEnd.Text,
                     this.chkEndIgnoreCase.Checked,
                     int.Parse(this.nudEndIteration.Value.ToString()),
+					int.Parse(this.nudMaximumMatches.Value.ToString()),
                     int.Parse(this.nudMaxChunkLength.Value.ToString()));
                 this.lstMatchResultsREC.Items.Clear();
                 foreach (string str in results)
@@ -221,7 +222,7 @@ namespace BOG.Framework_Test
                 this.lstFullExampleActivity.Items.Add("Extract informational rows...");
                 try
                 {
-                    StringCollection infoRows = s.RegExChunk(Captured, @"<tr>\s+<td>\d\d/\d\d/\d\d\d\d</td><td>\s+\d[\d]?\s+&nbsp;", true, 0, "</tr>", true, 1, 0);
+                    StringCollection infoRows = s.RegExChunk(Captured, @"<tr>\s+<td>\d\d/\d\d/\d\d\d\d</td><td>\s+\d[\d]?\s+&nbsp;", true, 0, "</tr>", true, 1, 0, 0);
                     if (infoRows.Count == 0)
                     {
                         throw new Exception("No informational rows encountered.");
@@ -229,7 +230,7 @@ namespace BOG.Framework_Test
                     int rowIndex = 0;
                     foreach (string infoRow in infoRows)
                     {
-                        StringCollection infoDraws = s.RegExChunk(infoRow, @"<td[>|\s]", true, 0, "</td>", true, 1, 0);
+                        StringCollection infoDraws = s.RegExChunk(infoRow, @"<td[>|\s]", true, 0, "</td>", true, 1, 0, 0);
                         if (infoDraws.Count != 3)
                         {
                             this.lstFullExampleActivity.Items.Add(string.Format("Can not read malformed row({0}): {1}", rowIndex, infoRow));

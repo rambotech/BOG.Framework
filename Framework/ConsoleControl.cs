@@ -29,7 +29,6 @@ namespace BOG.Framework
     ///           ...
     ///       }
     /// </summary>
-    /// <param name="ConsoleEvent"></param>
     public class ConsoleCtrl
     {
         /// <summary>
@@ -37,11 +36,26 @@ namespace BOG.Framework
         /// </summary>
         public enum ConsoleEvent
         {
-            CTRL_C = 0,           // From wincom.h
-            CTRL_BREAK = 1,
-            CTRL_CLOSE = 2,
-            CTRL_LOGOFF = 5,
-            CTRL_SHUTDOWN = 6
+			/// <summary>
+			/// From wincom.h
+			/// </summary>
+			CTRL_C = 0,
+			/// <summary>
+			/// From wincom.h
+			/// </summary>
+			CTRL_BREAK = 1,
+			/// <summary>
+			/// From wincom.h
+			/// </summary>
+			CTRL_CLOSE = 2,
+			/// <summary>
+			/// From wincom.h
+			/// </summary>
+			CTRL_LOGOFF = 5,
+			/// <summary>
+			/// From wincom.h
+			/// </summary>
+			CTRL_SHUTDOWN = 6
         }
 
         /// <summary>

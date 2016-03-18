@@ -19,9 +19,31 @@ namespace BOG.Framework
     /// </summary>
     public static class CipherUtility
     {
-        public enum ValueState : int { Encrypted, Decrypted };
+		/// <summary>
+		/// Direction or state of a cryptography action or item.
+		/// </summary>
+		public enum ValueState : int {
+			/// <summary>
+			/// 
+			/// </summary>
+			Encrypted,
+			/// <summary>
+			/// 
+			/// </summary>
+			Decrypted
+		};
 
-        public static string AutoCrypt<T>(string value, string password, string salt, ValueState returnState)
+		/// <summary>
+		/// Auto-detects the state of the value parameter as encrypted or decrypted, and performs the action for the desired
+		/// returnState.  This may result in returning the original value (e.g. value is decrypted, returnState requested is decrypted.
+		/// </summary>
+		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:AesManaged,TripleDESCryptoServiceProvider,RijndaelManaged</typeparam>
+		/// <param name="value">the payload requiring change</param>
+		/// <param name="password"></param>
+		/// <param name="salt"></param>
+		/// <param name="returnState">The state (encrypted or decrypted) desired for the return value.</param>
+		/// <returns></returns>
+		public static string AutoCrypt<T>(string value, string password, string salt, ValueState returnState)
              where T : SymmetricAlgorithm, new()
         {
             string result = string.Empty;
@@ -40,9 +62,17 @@ namespace BOG.Framework
                     result = Encrypt<T>(value, password, salt);
             }
             return result;
-        }
+		}
 
-        public static string Encrypt<T>(string value, string password, string salt)
+		/// <summary>
+		/// Encrypt a given string using specific password and salt values
+		/// </summary>
+		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:AesManaged,TripleDESCryptoServiceProvider,RijndaelManaged</typeparam>
+		/// <param name="value">string to encrypt</param>
+		/// <param name="password"></param>
+		/// <param name="salt"></param>
+		/// <returns>string containing protected content</returns>
+		public static string Encrypt<T>(string value, string password, string salt)
              where T : SymmetricAlgorithm, new()
         {
             if (string.IsNullOrEmpty(value)) return string.Empty;
@@ -70,10 +100,18 @@ namespace BOG.Framework
             }
         }
 
-        public static string Decrypt<T>(string text, string password, string salt)
+		/// <summary>
+		/// Decrypt a given protected string using specific password and salt values
+		/// </summary>
+		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:AesManaged,TripleDESCryptoServiceProvider,RijndaelManaged</typeparam>
+		/// <param name="protectedValue">protected string to decrypt</param>
+		/// <param name="password"></param>
+		/// <param name="salt"></param>
+		/// <returns>string with original content</returns>
+		public static string Decrypt<T>(string protectedValue, string password, string salt)
            where T : SymmetricAlgorithm, new()
         {
-            if (string.IsNullOrEmpty(text)) return string.Empty;
+            if (string.IsNullOrEmpty(protectedValue)) return string.Empty;
 
             DeriveBytes rgb = new Rfc2898DeriveBytes(password, Encoding.Unicode.GetBytes(salt));
 
@@ -84,7 +122,7 @@ namespace BOG.Framework
 
             ICryptoTransform transform = algorithm.CreateDecryptor(rgbKey, rgbIV);
 
-            using (MemoryStream buffer = new MemoryStream(Convert.FromBase64String(text)))
+            using (MemoryStream buffer = new MemoryStream(Convert.FromBase64String(protectedValue)))
             {
                 using (CryptoStream stream = new CryptoStream(buffer, transform, CryptoStreamMode.Read))
                 {

@@ -47,7 +47,10 @@ namespace BOG.Framework
             _maxSizeThreshold = maxSize;
         }
 
-        ~Logger()
+		/// <summary>
+		/// Ensures the stream is closed gracefully before dispose.
+		/// </summary>
+		~Logger()
         {
             if (sw != null)
             {

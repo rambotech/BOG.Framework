@@ -64,7 +64,7 @@ namespace BOG.Framework
             return sValue;
         }
 
-        public static string GetLocalIPAddresses(string formatString, string firstLine)
+        private static string GetLocalIPAddresses(string formatString, string firstLine)
         {
             StringBuilder result = new StringBuilder();
             if (myIpAddressInfoExpires < DateTime.Now)
@@ -137,7 +137,6 @@ namespace BOG.Framework
                     StripUidPwd(ReportException.ToString(), @";") + "\r\n\r\n" +
                     "----------- App/System Details --------------\r\n\r\n" +
                     "System Name:                " + System.Environment.MachineName + "\r\n" +
-                    //"IP Addr:                    " + GetLocalIPAddresses() + "\r\n" +
                     GetLocalIPAddresses("{0,-28}{1}\r\n", "IP Addr:")  +
                     "Processors:                 " + System.Environment.ProcessorCount.ToString() + "\r\n" +
                     "OS Version:                 " + System.Environment.OSVersion.ToString() + "\r\n" +

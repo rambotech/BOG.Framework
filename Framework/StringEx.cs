@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -69,13 +71,21 @@ namespace BOG.Framework
             return s.ToString();
         }
 
-        // Extends RegEx.Replace method.  Instead of replacing all matches with a static value,
-        // replaces the text of the individual matches, then replaces the original match in
-        // the content string.  E.g.
-        // RegExMatchReplace ("<x72> <y44> <D333> <d2> <d33>", "<[a-z](\d){2-3}>", "<d", "<f", true)
-        // ... returns "<x72> <y44> <f333> <d2> <f33>"
 
-        public static string RegExMatchReplace(string content, string pattern, string locate, string substitute, bool ignoreCase)
+		/// <summary>
+		/// Extends RegEx.Replace method.  Instead of replacing all matches with a static value,
+		/// replaces the text of the individual matches, then replaces the original match in
+		/// the content string.  E.g.
+		/// RegExMatchReplace (&quot;&lt;x72&gt; &lt;y44&gt; &lt;D333&gt; &lt;d2&gt; &lt;d33&gt;&quot;, &quot;&lt;[a-z](\d){2-3}&gt;&quot;, &quot;&lt;d&quot;, &quot;&lt;f&quot;, true)
+		/// ... returns &quot;&lt;x72&gt; &lt;y44&gt; &lt;f333&gt; &lt;d2&gt; &lt;f33&gt;&quot;
+		/// </summary>
+		/// <param name="content"></param>
+		/// <param name="pattern"></param>
+		/// <param name="locate"></param>
+		/// <param name="substitute"></param>
+		/// <param name="ignoreCase"></param>
+		/// <returns></returns>
+		public static string RegExMatchReplace(string content, string pattern, string locate, string substitute, bool ignoreCase)
         {
             Regex r = new Regex(pattern, ignoreCase ? System.Text.RegularExpressions.RegexOptions.IgnoreCase : 0);
             MatchCollection mc = r.Matches(content);
@@ -114,15 +124,16 @@ namespace BOG.Framework
             return startIndex;
         }
 
-        /// <summary>
-        /// Searches a string for a match, but allows question marks to act like a wildcard and match any character.
-        /// </summary>
-        /// <param name="core"></param>
-        /// <param name="search"></param>
-        /// <param name="startAt"></param>
-        /// <param name="ignoreCase"></param>
-        /// <returns></returns>
-        public static int WildcardIndexOfAnyString(string core, string search, int startAt, bool ignoreCase, char wildcard)
+		/// <summary>
+		/// Searches a string for a match, but allows question marks to act like a wildcard and match any character.
+		/// </summary>
+		/// <param name="core"></param>
+		/// <param name="search"></param>
+		/// <param name="startAt"></param>
+		/// <param name="ignoreCase"></param>
+		/// <param name="wildcard"></param>
+		/// <returns></returns>
+		public static int WildcardIndexOfAnyString(string core, string search, int startAt, bool ignoreCase, char wildcard)
         {
             int Result = -1;
             if (search.Length <= core.Length)
@@ -254,7 +265,13 @@ namespace BOG.Framework
             return (s.ToString());
         }
 
-        public static string Base64EncodeString(string inputStr, bool insertLineBreaks)
+		/// <summary>
+		/// Encodes a string into Base64
+		/// </summary>
+		/// <param name="inputStr">the string value to encode</param>
+		/// <param name="insertLineBreaks">Whether the resulting Base64 should be broken into separate lines.</param>
+		/// <returns>Base64</returns>
+		public static string Base64EncodeString(string inputStr, bool insertLineBreaks)
         {
             byte[] rawByteArray = new byte[inputStr.Length];
             char[] encodedArray = new char[inputStr.Length * 2];
@@ -276,12 +293,23 @@ namespace BOG.Framework
             return EncodedString.Substring(0, ActualLength + 1);
         }
 
-        public static string Base64EncodeString(string inputStr)
+		/// <summary>
+		/// Encodes a string into Base64
+		/// </summary>
+		/// <param name="inputStr">the string value to encode</param>
+		/// <returns>Base64</returns>
+		public static string Base64EncodeString(string inputStr)
         {
             return Base64EncodeString(inputStr, true);
         }
 
-        public static string ShowStringAsHex(string source)
+		/// <summary>
+		/// Shows a hex display of a source string similiar to:
+		/// 0000: 48 65 6c 6c 6f 20 57 6f 72 6c 64                 | Hello World     
+		/// </summary>
+		/// <param name="source">The string to examine</param>
+		/// <returns>As above.</returns>
+		public static string ShowStringAsHex(string source)
         {
             int Offset = 0;
             int Index = 0;
@@ -351,5 +379,32 @@ namespace BOG.Framework
             }
             return (Negative ? (double)-1.0 : (double)1.0) * double.Parse(sourceWork);
         }
-    }
+
+		/// <summary>
+		/// Looks for and replaces embedded environment variables (%...%) and special folders ([...]), and replaces them if found.
+		/// If placeholder can not be resolved, it remains unchanged.  Case is ignored for the placeholder.
+		/// </summary>
+		/// <param name="rawPath">The path string containing potential placeholders.</param>
+		/// <returns>The resolved path</returns>
+		public static string ResolvePathPlaceholders(string rawPath)
+		{
+			string result = rawPath;
+			// Locate and replace environment variable placeholders, e.g.  "%ALLUSERSPROFILE%"
+			foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
+			{
+				string searchFor = "%" + (string) env.Key + "%";
+				string replaceWith = (string) env.Value;
+				result = ReplaceNoCase(result, searchFor, replaceWith, true);
+			}
+
+			foreach (string specialFolderName in Enum.GetNames(typeof(Environment.SpecialFolder)))
+			{
+				Environment.SpecialFolder f = (Environment.SpecialFolder) Enum.Parse(typeof(Environment.SpecialFolder), specialFolderName);
+				string searchFor = "[" + specialFolderName + "]";
+				string replaceWith = Environment.GetFolderPath(f);
+				result = ReplaceNoCase(result, searchFor, replaceWith, true);
+			}
+			return result;
+		}
+	}
 }

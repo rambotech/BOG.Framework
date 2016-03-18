@@ -47,7 +47,10 @@ namespace BOG.Framework
         private bool Running = false;
         private bool Listening = false;
 
-        public int MaxListeners
+		/// <summary>
+		/// 
+		/// </summary>
+		public int MaxListeners
         {
             get { return _MaxListeners; }
         }
@@ -69,22 +72,36 @@ namespace BOG.Framework
             get { return _ListeningPort; }
         }
 
-        public int LowListenPort
+		/// <summary>
+		/// The lowest port number where a listener can be established
+		/// </summary>
+		public int LowListenPort
         {
             get { return _LowListenPort; }
         }
 
-        public int HighListenPort
+		/// <summary>
+		/// The highest port number where a listener can be established
+		/// </summary>
+		public int HighListenPort
         {
             get { return _HighListenPort; }
         }
 
-        public BabbleOn()
+		/// <summary>
+		/// Instantiate with defaults
+		/// </summary>
+		public BabbleOn()
         {
             LoadPortRange();
         }
 
-        public BabbleOn(int maxListeners, int timeoutSeconds)
+		/// <summary>
+		/// Instantiate with some overrides.
+		/// </summary>
+		/// <param name="maxListeners"></param>
+		/// <param name="timeoutSeconds"></param>
+		public BabbleOn(int maxListeners, int timeoutSeconds)
         {
             _MaxListeners = maxListeners;
             if (timeoutSeconds >= 0)
@@ -94,7 +111,10 @@ namespace BOG.Framework
             LoadPortRange();
         }
 
-        ~BabbleOn()
+		/// <summary>
+		/// Ensures the stop command is executed before dispose commences.
+		/// </summary>
+		~BabbleOn()
         {
             Stop();
         }
@@ -135,7 +155,10 @@ namespace BOG.Framework
             }
         }
 
-        public void Start()
+		/// <summary>
+		/// Establishes the listening port and accepts listener connections.
+		/// </summary>
+		public void Start()
         {
             if (Running == false)
             {
@@ -144,7 +167,10 @@ namespace BOG.Framework
             }
         }
 
-        public void Stop()
+		/// <summary>
+		/// Disconnects listeners, stops the listener and frees up the listening port.
+		/// </summary>
+		public void Stop()
         {
             if (Running)
             {
@@ -389,7 +415,11 @@ namespace BOG.Framework
             DropListener(myListener);
         }
 
-        public void Write(string message)
+		/// <summary>
+		/// Queues a message to pass to all listeners.  The message is sent verbatim.
+		/// </summary>
+		/// <param name="message"></param>
+		public void Write(string message)
         {
             if (this.Listeners.Count == 0) return;
 
@@ -412,26 +442,63 @@ namespace BOG.Framework
             }
         }
 
-        public void WriteLine(string message)
+		/// <summary>
+		/// Queues a message to pass to all listeners.  The message is appended with a line terminator.
+		/// </summary>
+		/// <param name="message"></param>
+		public void WriteLine(string message)
         {
             Write(message + "\r\n");
         }
     }
 
-    public class ScannedPort
+	/// <summary>
+	/// A structure to hold the results of a successful port scan which detected a BabbleOn() listener.
+	/// </summary>
+	public class ScannedPort
     {
-        public int Port = 0;
-        public bool Error = false;
-        public bool Found = false;
-        public string AppSignature = "*none*";
-        public int PID = 0;
-        public int BasePriority = 0;
-        public int MaxConnections = 0;
-        public int ActiveConnections = 0;
-        public DateTime StartTime = DateTime.MinValue;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int Port = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool Error = false;
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool Found = false;
+		/// <summary>
+		/// 
+		/// </summary>
+		public string AppSignature = "*none*";
+		/// <summary>
+		/// 
+		/// </summary>
+		public int PID = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int BasePriority = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int MaxConnections = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int ActiveConnections = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime StartTime = DateTime.MinValue;
     }
 
-    public class BabbleFinder
+	/// <summary>
+	/// A class which scans a range of ports for BabbleOn listeners, and provides a list of the listeners found.
+	/// </summary>
+	public class BabbleFinder
     {
         private static string _Host = "localhost";
         private int _LowListenPort = 65200;
@@ -439,22 +506,34 @@ namespace BOG.Framework
 
         private static Dictionary<int, ScannedPort> _Answers = new Dictionary<int, ScannedPort>();
 
-        public BabbleFinder()
+		/// <summary>
+		/// Instantiation with default localhost and default port range.
+		/// </summary>
+		public BabbleFinder()
         {
         }
 
-        public BabbleFinder(string host)
+		/// <summary>
+		/// Instantiation to scan a system other than the localhost on the default port range.
+		/// </summary>
+		public BabbleFinder(string host)
         {
             _Host = host;
         }
 
-        public BabbleFinder(int lowPort, int highPort)
+		/// <summary>
+		/// Instantiation to scan localhost on a specific port range.
+		/// </summary>
+		public BabbleFinder(int lowPort, int highPort)
         {
             _LowListenPort = lowPort;
             _HighListenPort = highPort;
         }
 
-        public BabbleFinder(string host, int lowPort, int highPort)
+		/// <summary>
+		/// Instantiation to scan a system other than the localhost on a specific port range.
+		/// </summary>
+		public BabbleFinder(string host, int lowPort, int highPort)
         {
             _Host = host;
             _LowListenPort = lowPort;
@@ -488,8 +567,8 @@ namespace BOG.Framework
             return result;
         }
 
-        // thread safe
-        public static void PollPort(object PortNumberObject)
+        // thread safe: internal use only.
+        private static void PollPort(object PortNumberObject)
         {
             int portNumber = (int)PortNumberObject;
             TcpClient c = new TcpClient();

@@ -82,7 +82,12 @@ namespace BOG.Framework
             set { _Volume = value; }
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
+		/// <summary>
+		/// For serialization only.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="context"></param>
+		[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
@@ -107,10 +112,22 @@ namespace BOG.Framework
         /// </summary>
         public enum FuseBehavior : byte
         {
-            Hits_Only = 0,
-            Volume_Only = 1,
-            Hits_OR_Volume = 2,
-            Hits_AND_Volume = 3
+			/// <summary>
+			/// 
+			/// </summary>
+			Hits_Only = 0,
+			/// <summary>
+			/// 
+			/// </summary>
+			Volume_Only = 1,
+			/// <summary>
+			/// 
+			/// </summary>
+			Hits_OR_Volume = 2,
+			/// <summary>
+			/// 
+			/// </summary>
+			Hits_AND_Volume = 3
         }
 
         /// <summary>
@@ -118,10 +135,22 @@ namespace BOG.Framework
         /// </summary>
         public enum FuseTrip : byte
         {
-            None = 0,
-            Hits = 1,
-            Volume = 2,
-            HitsAndVolume = 3
+			/// <summary>
+			/// 
+			/// </summary>
+			None = 0,
+			/// <summary>
+			/// 
+			/// </summary>
+			Hits = 1,
+			/// <summary>
+			/// 
+			/// </summary>
+			Volume = 2,
+			/// <summary>
+			/// 
+			/// </summary>
+			HitsAndVolume = 3
         }
 
         // properties
@@ -420,7 +449,12 @@ namespace BOG.Framework
             return result;
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
+		/// <summary>
+		/// For serialization only.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="context"></param>
+		[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)

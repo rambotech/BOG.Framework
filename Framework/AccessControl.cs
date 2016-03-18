@@ -7,14 +7,28 @@ using System.IO;
 
 namespace BOG.Framework
 {
-    public class AccessControl
+	/// <summary>
+	/// A wrapper class for manipulating ACL lists on files and folders.
+	/// </summary>
+	public class AccessControl
     {
-        public AccessControl()
+		/// <summary>
+		/// 
+		/// </summary>
+		public AccessControl()
         {
         }
 
-        // Adds an ACL entry on the specified directory for the specified account. 
-        public static void AddDirectorySecurity(string FileName, string Account, FileSystemRights Rights,
+		/// <summary>
+		/// Adds an ACL entry on the specified directory for the specified account. 
+		/// </summary>
+		/// <param name="FileName"></param>
+		/// <param name="Account"></param>
+		/// <param name="Rights"></param>
+		/// <param name="Inheritance"></param>
+		/// <param name="Propogation"></param>
+		/// <param name="ControlType"></param>
+		public static void AddDirectorySecurity(string FileName, string Account, FileSystemRights Rights,
                                                 InheritanceFlags Inheritance, PropagationFlags Propogation,
                                                 AccessControlType ControlType)
         {
@@ -33,8 +47,14 @@ namespace BOG.Framework
             dInfo.SetAccessControl(dSecurity);
         }
 
-        // Removes an ACL entry on the specified directory for the specified account. 
-        public static void RemoveDirectorySecurity(string FileName, string Account, FileSystemRights Rights,
+		/// <summary>
+		/// Removes an ACL entry on the specified directory for the specified account. 
+		/// </summary>
+		/// <param name="FileName"></param>
+		/// <param name="Account"></param>
+		/// <param name="Rights"></param>
+		/// <param name="ControlType"></param>
+		public static void RemoveDirectorySecurity(string FileName, string Account, FileSystemRights Rights,
                                                    AccessControlType ControlType)
         {
             // Create a new DirectoryInfo object. 
@@ -50,8 +70,11 @@ namespace BOG.Framework
             dInfo.SetAccessControl(dSecurity);
         }
 
-        // Removes an ACL entry on the specified directory for the specified account. 
-        public static void RemoveInheritablePermissons(string FileName)
+		/// <summary>
+		/// Removes an ACL entry on the specified directory for the specified account. 
+		/// </summary>
+		/// <param name="FileName"></param>
+		public static void RemoveInheritablePermissons(string FileName)
         {
             // Create a new DirectoryInfo object. 
             DirectoryInfo dInfo = new DirectoryInfo(FileName);

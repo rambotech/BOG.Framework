@@ -13,9 +13,15 @@ namespace BOG.Framework
         /// </summary>
         public enum Languages
         {
-            VB,
-            CSharp
-        }
+			/// <summary>
+			/// 
+			/// </summary>
+			VBnet,
+			/// <summary>
+			/// 
+			/// </summary>
+			CSharp
+		}
 
         /// <summary>
         /// Compile a script, using the source and reference assemblies specified.  The return value will have the executable object
@@ -33,7 +39,7 @@ namespace BOG.Framework
 
             switch (Language)
             {
-                case Languages.VB:
+                case Languages.VBnet:
                     provider = new Microsoft.VisualBasic.VBCodeProvider();
                     break;
                 case Languages.CSharp:

@@ -19,7 +19,8 @@ namespace BOG.Framework_Test
             this.cbxMethodStrStr.Items.Add("Base64Decode");
             this.cbxMethodStrStr.Items.Add("ShowStringAsHex");
             this.cbxMethodStrStr.Items.Add("TextAsInnerText");
-            this.cbxMethodStrStr.SelectedIndex = 0;
+			this.cbxMethodStrStr.Items.Add("ResolvePathPlaceholders");
+			this.cbxMethodStrStr.SelectedIndex = 0;
         }
 
         private void btnTestIt_Click(object sender, EventArgs e)
@@ -43,8 +44,11 @@ namespace BOG.Framework_Test
                     case 3:
                         this.txtOutputStrStr.Text = StringEx.TextAsInnerText(this.txtInputStrStr.Text);
                         break;
-                }
-            }
+					case 4:
+						this.txtOutputStrStr.Text = StringEx.ResolvePathPlaceholders(this.txtInputStrStr.Text);
+						break;
+				}
+			}
             catch (Exception err)
             {
                 MessageBox.Show(DetailedException.WithUserContent(ref err));
@@ -70,7 +74,11 @@ namespace BOG.Framework_Test
                 case 3:
                     this.txtInputStrStr.Text = "&#x24;43,&#55;56.42  which is $43,756.42   .. defeats web sites which try to stop scrapers with encoded characters.";
                     break;
-            }
-        }
+
+				case 4:
+					this.txtInputStrStr.Text = @"[cOMMONaPPLICATIONdATA]\[Unresolved]\%UseRnAMe%\%Unresolved%\MyApplication\MySubfolder";
+					break;
+			}
+		}
     }
 }
