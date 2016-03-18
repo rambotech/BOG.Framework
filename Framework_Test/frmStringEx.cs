@@ -12,7 +12,7 @@ namespace BOG.Framework_Test
 {
     public partial class frmStringEx : Form
     {
-        public frmStringEx()
+		public frmStringEx()
         {
             InitializeComponent();
             this.cbxMethodStrStr.Items.Add("Base64Encode");
@@ -20,6 +20,7 @@ namespace BOG.Framework_Test
             this.cbxMethodStrStr.Items.Add("ShowStringAsHex");
             this.cbxMethodStrStr.Items.Add("TextAsInnerText");
 			this.cbxMethodStrStr.Items.Add("ResolvePathPlaceholders");
+			this.cbxMethodStrStr.Items.Add("ResolvePlaceHolders");
 			this.cbxMethodStrStr.SelectedIndex = 0;
         }
 
@@ -46,6 +47,13 @@ namespace BOG.Framework_Test
                         break;
 					case 4:
 						this.txtOutputStrStr.Text = StringEx.ResolvePathPlaceholders(this.txtInputStrStr.Text);
+						break;
+					case 5:
+						Dictionary<string, string> lookup = new Dictionary<string, string>();
+						lookup.Add("Explicative", "shove it");
+						string startDelim = @"\/";
+						string endDelim = @"\/";
+						this.txtOutputStrStr.Text = StringEx.ResolvePlaceHolders(this.txtInputStrStr.Text, lookup, startDelim, endDelim);
 						break;
 				}
 			}
@@ -77,6 +85,10 @@ namespace BOG.Framework_Test
 
 				case 4:
 					this.txtInputStrStr.Text = @"[cOMMONaPPLICATIONdATA]\[Unresolved]\%UseRnAMe%\%Unresolved%\MyApplication\MySubfolder";
+					break;
+
+				case 5:
+					this.txtInputStrStr.Text = @"Take this job and \/EXPLICATIVE\/ !!  \/SoThere\/";
 					break;
 			}
 		}

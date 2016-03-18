@@ -381,6 +381,28 @@ namespace BOG.Framework
         }
 
 		/// <summary>
+		/// Takes a string with placeholders, and replaces the placeholders with lookup content from a dictionary.
+		/// E.g.: ResolvePlaceHolders(@"Take this job and \/explicative\/ !", {Dictionary}, @"\/", @"\/") might return...
+		/// Take this job and shove it !
+		/// </summary>
+		/// <param name="original"></param>
+		/// <param name="lookup"></param>
+		/// <param name="startDelimiter"></param>
+		/// <param name="endDelimiter"></param>
+		/// <returns></returns>
+		public static string ResolvePlaceHolders(string original, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
+		{
+			string result = original;
+			foreach (string key in lookup.Keys)
+			{
+				string searchFor = startDelimiter + key + endDelimiter;
+				string replaceWith = lookup[key];
+				result = ReplaceNoCase(result, searchFor, replaceWith, true);
+			}
+			return result;
+		}
+
+		/// <summary>
 		/// Looks for and replaces embedded environment variables (%...%) and special folders ([...]), and replaces them if found.
 		/// If placeholder can not be resolved, it remains unchanged.  Case is ignored for the placeholder.
 		/// </summary>
@@ -388,7 +410,25 @@ namespace BOG.Framework
 		/// <returns>The resolved path</returns>
 		public static string ResolvePathPlaceholders(string rawPath)
 		{
+			return ResolvePathPlaceholders(rawPath, new Dictionary<string, string>(), string.Empty, string.Empty);
+		}
+
+		/// <summary>
+		/// Looks for and replaces embedded environment variables (%...%) and special folders ([...]), and replaces them if found.
+		/// Also looks for user-defined placeholders to replace with a user defined dictionary
+		/// If placeholder can not be resolved, it remains unchanged.  Case is ignored for the placeholder.
+		/// </summary>
+		/// <param name="rawPath">The path string containing potential placeholders.</param>
+		/// <param name="lookup">A dictionary of placeholder (key) and value for substituting user placeholders</param>
+		/// <param name="startDelimiter">The starting delimiter for a user-placeholder.</param>
+		/// <param name="endDelimiter">The ending delimiter for a user-placeholder.</param>
+		/// <returns></returns>
+		public static string ResolvePathPlaceholders(string rawPath, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
+		{
 			string result = rawPath;
+			// Locate and replace user-defined placeholders, e.g.  "\/ALLUSERSPROFILE\/"
+			result = ResolvePlaceHolders(result, lookup, startDelimiter, endDelimiter);
+
 			// Locate and replace environment variable placeholders, e.g.  "%ALLUSERSPROFILE%"
 			foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
 			{
@@ -397,6 +437,7 @@ namespace BOG.Framework
 				result = ReplaceNoCase(result, searchFor, replaceWith, true);
 			}
 
+			// Locate and replace special folder placeholders, e.g.  "[CommonApplicationData]"
 			foreach (string specialFolderName in Enum.GetNames(typeof(Environment.SpecialFolder)))
 			{
 				Environment.SpecialFolder f = (Environment.SpecialFolder) Enum.Parse(typeof(Environment.SpecialFolder), specialFolderName);
