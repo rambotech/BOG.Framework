@@ -603,7 +603,7 @@ namespace BOG.Framework
             Regex rStart = new Regex(startPattern, ignoreStartCase ? RegexOptions.IgnoreCase : RegexOptions.None);
             Regex rEnd = new Regex(endPattern, ignoreEndCase ? RegexOptions.IgnoreCase : RegexOptions.None);
             MatchCollection matchesStart = rStart.Matches(rawText);
-            for (int i = startIteration == 0 ? 0 : startIteration - 1; i < matchesStart.Count && MatchCount < MaximumMatches; i++)
+            for (int i = startIteration == 0 ? 0 : startIteration - 1; i < matchesStart.Count && (MaximumMatches == 0 || MatchCount < MaximumMatches); i++)
             {
                 if (startIteration == 0 || i + 1 == startIteration)
                 {
@@ -619,7 +619,7 @@ namespace BOG.Framework
                         StartOffset = 0;
                         matchesEnd = rEnd.Matches(rawText.Substring(matchesStart[i].Index, MaxLengthCheck), matchesStart[i].Length);
                     }
-                    for (int j = endIteration == 0 ? 0 : endIteration - 1; j < matchesEnd.Count && MatchCount < MaximumMatches; j++)
+                    for (int j = endIteration == 0 ? 0 : endIteration - 1; j < matchesEnd.Count && (MaximumMatches == 0 || MatchCount < MaximumMatches); j++)
                     {
                         if (endIteration == 0 || j + 1 == endIteration)
                         {
