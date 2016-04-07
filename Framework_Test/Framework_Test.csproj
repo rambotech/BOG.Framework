@@ -90,6 +90,12 @@
     <Compile Include="frmFormatting.Designer.cs">
       <DependentUpon>frmFormatting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogger.Designer.cs">
+      <DependentUpon>frmLogger.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSettingsDictionary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     <EmbeddedResource Include="frmFormatting.resx">
       <DependentUpon>frmFormatting.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogger.resx">
+      <DependentUpon>frmLogger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettingsDictionary.resx">
       <DependentUpon>frmSettingsDictionary.cs</DependentUpon>

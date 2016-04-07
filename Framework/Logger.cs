@@ -22,6 +22,30 @@ namespace BOG.Framework
         DateTime CurrentFileCreated = DateTime.MinValue;
         StreamWriter sw = null;
 
+        public string MessageFilePath
+        {
+            get { return _messageFilePath; }
+            set { _messageFilePath = value; }
+        }
+
+        public string MessageFilePattern
+        {
+            get { return _messageFilePattern; }
+            set { _messageFilePattern = value; }
+        }
+
+        public int MaxSecondsThreshold
+        {
+            get { return _maxSecondsThreshold; }
+            set { _maxSecondsThreshold = value; }
+        }
+
+        public long MaxSizeThreshold
+        {
+            get { return _maxSizeThreshold; }
+            set { _maxSizeThreshold = value; }
+        }
+
         /// <summary>
         /// Initialize with defaults.
         /// </summary>
@@ -62,6 +86,11 @@ namespace BOG.Framework
             }
         }
 
+        public void CommitMessageLineToFile (string message)
+        {
+            CommitMessageToFile(message + "\r\n");
+        }
+
         /// <summary>
         /// Commit a message to the current log file.
         /// </summary>
@@ -79,6 +108,10 @@ namespace BOG.Framework
                 CurrentFileCreated = DateTime.Now;
                 CurrentFileSize = 0L;
                 CurrentFileName = Path.Combine(_messageFilePath, string.Format(_messageFilePattern, CurrentFileCreated));
+                if (! Directory.Exists(_messageFilePath))
+                {
+                    Directory.CreateDirectory(_messageFilePath);
+                }
                 sw = new StreamWriter(CurrentFileName, true);
             }
             CurrentFileSize += message.Length;

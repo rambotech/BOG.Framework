@@ -75,5 +75,11 @@ namespace BOG.Framework_Test
             frmCipherUtility f = new frmCipherUtility();
             f.ShowDialog(this);
         }
+
+        private void btnLogger_Click(object sender, EventArgs e)
+        {
+            frmLogger f = new frmLogger();
+            f.ShowDialog(this);
+        }
     }
 }
