@@ -79,7 +79,8 @@ namespace BOG.Framework
         }
 
         /// <summary>
-        /// Persists XML serialized from the object into a file.
+        /// Persists XML serialized from the object into a file.  This uses memory streams, so the serialized object
+        /// can not exceeed 2Gb.
         /// </summary>
         /// <param name="serializableObject">The object to serialize</param>
         /// <param name="filename">The file in which to store the serialized content.</param>
@@ -87,10 +88,8 @@ namespace BOG.Framework
         {
             using (StreamWriter sw = File.CreateText(filename))
             {
-                MemoryStream o = new MemoryStream();
                 XmlSerializer xmlSerializer = CreateXmlSerializer(null);
-                xmlSerializer.Serialize(o, serializableObject);
-                sw.Write(ByteToString(o.ToArray()));
+                xmlSerializer.Serialize(sw, serializableObject);
                 sw.Close();
             }
         }
@@ -103,10 +102,12 @@ namespace BOG.Framework
         public static T LoadDocumentFormat(string path)
         {
             T serializableObject = null;
-            StreamReader o = new StreamReader(path);
-            XmlSerializer xmlSerializer = CreateXmlSerializer(null);
-            serializableObject = (T)xmlSerializer.Deserialize(o);
-            o.Close();
+            using (StreamReader o = new StreamReader(path))
+            {
+                XmlSerializer xmlSerializer = CreateXmlSerializer(null);
+                serializableObject = (T)xmlSerializer.Deserialize(o);
+                o.Close();
+            }
             return serializableObject;
         }
     }

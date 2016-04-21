@@ -41,13 +41,14 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnCipherUtility = new System.Windows.Forms.Button();
             this.btnLogger = new System.Windows.Forms.Button();
+            this.btnSerializer = new System.Windows.Forms.Button();
             this.gbxNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBabbleOn
             // 
             this.btnBabbleOn.Location = new System.Drawing.Point(13, 85);
-            this.btnBabbleOn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBabbleOn.Margin = new System.Windows.Forms.Padding(4);
             this.btnBabbleOn.Name = "btnBabbleOn";
             this.btnBabbleOn.Size = new System.Drawing.Size(328, 62);
             this.btnBabbleOn.TabIndex = 1;
@@ -58,7 +59,7 @@
             // btnFuse
             // 
             this.btnFuse.Location = new System.Drawing.Point(13, 362);
-            this.btnFuse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFuse.Margin = new System.Windows.Forms.Padding(4);
             this.btnFuse.Name = "btnFuse";
             this.btnFuse.Size = new System.Drawing.Size(328, 62);
             this.btnFuse.TabIndex = 5;
@@ -68,8 +69,8 @@
             // 
             // btnFormatting
             // 
-            this.btnFormatting.Location = new System.Drawing.Point(16, 293);
-            this.btnFormatting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFormatting.Location = new System.Drawing.Point(13, 292);
+            this.btnFormatting.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormatting.Name = "btnFormatting";
             this.btnFormatting.Size = new System.Drawing.Size(328, 62);
             this.btnFormatting.TabIndex = 4;
@@ -80,7 +81,7 @@
             // btnDetailedException
             // 
             this.btnDetailedException.Location = new System.Drawing.Point(13, 223);
-            this.btnDetailedException.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailedException.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailedException.Name = "btnDetailedException";
             this.btnDetailedException.Size = new System.Drawing.Size(328, 62);
             this.btnDetailedException.TabIndex = 3;
@@ -91,7 +92,7 @@
             // btnSerializableDictionary
             // 
             this.btnSerializableDictionary.Location = new System.Drawing.Point(347, 85);
-            this.btnSerializableDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSerializableDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.btnSerializableDictionary.Name = "btnSerializableDictionary";
             this.btnSerializableDictionary.Size = new System.Drawing.Size(328, 62);
             this.btnSerializableDictionary.TabIndex = 8;
@@ -101,8 +102,8 @@
             // 
             // btnStringEx
             // 
-            this.btnStringEx.Location = new System.Drawing.Point(349, 223);
-            this.btnStringEx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStringEx.Location = new System.Drawing.Point(349, 293);
+            this.btnStringEx.Margin = new System.Windows.Forms.Padding(4);
             this.btnStringEx.Name = "btnStringEx";
             this.btnStringEx.Size = new System.Drawing.Size(328, 62);
             this.btnStringEx.TabIndex = 10;
@@ -113,7 +114,7 @@
             // btnScrape
             // 
             this.btnScrape.Location = new System.Drawing.Point(349, 16);
-            this.btnScrape.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnScrape.Margin = new System.Windows.Forms.Padding(4);
             this.btnScrape.Name = "btnScrape";
             this.btnScrape.Size = new System.Drawing.Size(328, 62);
             this.btnScrape.TabIndex = 7;
@@ -123,8 +124,8 @@
             // 
             // btnSettingsDictionary
             // 
-            this.btnSettingsDictionary.Location = new System.Drawing.Point(349, 154);
-            this.btnSettingsDictionary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSettingsDictionary.Location = new System.Drawing.Point(349, 223);
+            this.btnSettingsDictionary.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsDictionary.Name = "btnSettingsDictionary";
             this.btnSettingsDictionary.Size = new System.Drawing.Size(328, 62);
             this.btnSettingsDictionary.TabIndex = 9;
@@ -135,7 +136,7 @@
             // btnAssemblyInfo
             // 
             this.btnAssemblyInfo.Location = new System.Drawing.Point(13, 16);
-            this.btnAssemblyInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAssemblyInfo.Margin = new System.Windows.Forms.Padding(4);
             this.btnAssemblyInfo.Name = "btnAssemblyInfo";
             this.btnAssemblyInfo.Size = new System.Drawing.Size(328, 62);
             this.btnAssemblyInfo.TabIndex = 0;
@@ -173,8 +174,8 @@
             // 
             // btnCipherUtility
             // 
-            this.btnCipherUtility.Location = new System.Drawing.Point(16, 154);
-            this.btnCipherUtility.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCipherUtility.Location = new System.Drawing.Point(13, 153);
+            this.btnCipherUtility.Margin = new System.Windows.Forms.Padding(4);
             this.btnCipherUtility.Name = "btnCipherUtility";
             this.btnCipherUtility.Size = new System.Drawing.Size(328, 62);
             this.btnCipherUtility.TabIndex = 2;
@@ -184,7 +185,7 @@
             // 
             // btnLogger
             // 
-            this.btnLogger.Location = new System.Drawing.Point(16, 432);
+            this.btnLogger.Location = new System.Drawing.Point(13, 432);
             this.btnLogger.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogger.Name = "btnLogger";
             this.btnLogger.Size = new System.Drawing.Size(328, 62);
@@ -193,11 +194,23 @@
             this.btnLogger.UseVisualStyleBackColor = true;
             this.btnLogger.Click += new System.EventHandler(this.btnLogger_Click);
             // 
+            // btnSerializer
+            // 
+            this.btnSerializer.Location = new System.Drawing.Point(347, 153);
+            this.btnSerializer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSerializer.Name = "btnSerializer";
+            this.btnSerializer.Size = new System.Drawing.Size(328, 62);
+            this.btnSerializer.TabIndex = 12;
+            this.btnSerializer.Text = "Serializer";
+            this.btnSerializer.UseVisualStyleBackColor = true;
+            this.btnSerializer.Click += new System.EventHandler(this.btnSerializer_Click);
+            // 
             // frmTestSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 499);
+            this.Controls.Add(this.btnSerializer);
             this.Controls.Add(this.btnLogger);
             this.Controls.Add(this.btnCipherUtility);
             this.Controls.Add(this.gbxNote);
@@ -210,7 +223,7 @@
             this.Controls.Add(this.btnFormatting);
             this.Controls.Add(this.btnFuse);
             this.Controls.Add(this.btnBabbleOn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTestSelector";
             this.Text = "Test Selector";
             this.gbxNote.ResumeLayout(false);
@@ -234,5 +247,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnCipherUtility;
         private System.Windows.Forms.Button btnLogger;
+        private System.Windows.Forms.Button btnSerializer;
     }
 }

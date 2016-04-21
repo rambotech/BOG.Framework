@@ -81,5 +81,11 @@ namespace BOG.Framework_Test
             frmLogger f = new frmLogger();
             f.ShowDialog(this);
         }
+
+        private void btnSerializer_Click(object sender, EventArgs e)
+        {
+            frmSerializer f = new frmSerializer();
+            f.ShowDialog(this);
+        }
     }
 }

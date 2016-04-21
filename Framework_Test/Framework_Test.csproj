@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,7 +15,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +54,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -95,6 +97,12 @@
     </Compile>
     <Compile Include="frmLogger.Designer.cs">
       <DependentUpon>frmLogger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSerializer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSerializer.Designer.cs">
+      <DependentUpon>frmSerializer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSettingsDictionary.cs">
       <SubType>Form</SubType>
@@ -156,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogger.resx">
       <DependentUpon>frmLogger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSerializer.resx">
+      <DependentUpon>frmSerializer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettingsDictionary.resx">
       <DependentUpon>frmSettingsDictionary.cs</DependentUpon>
