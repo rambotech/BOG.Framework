@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -23,6 +24,9 @@ namespace BOG.Framework
     /// <typeparam name="T">Any serializable class</typeparam>
     public static class ObjectXMLSerializer<T> where T : class // Specify that T must be a class.
     {
+
+        private const int _16M = 16 * 1024 * 1024;
+
         private static XmlSerializer CreateXmlSerializer(System.Type[] extraTypes)
         {
             Type ObjectType = typeof(T);
@@ -95,9 +99,28 @@ namespace BOG.Framework
         }
 
         /// <summary>
-        /// Creates an object from a file containing serialized XML of an instance of an object of that class type.
+        /// Persists XML serialized from the object into a gzip file.  This uses memory streams, so the serialized object
+        /// can not exceeed 2Gb.
         /// </summary>
-        /// <param name="path">the file containing the serialized XML</param>
+        /// <param name="serializableObject">The object to serialize</param>
+        /// <param name="compressedFilename">The file in which to store the serialized content.</param>
+        public static void SaveCompressedDocumentFormat(T serializableObject, string compressedFilename)
+        {
+            using (System.IO.Compression.GZipStream outGZipStream = new GZipStream(File.OpenWrite(compressedFilename), CompressionMode.Compress))
+            {
+                using (StreamWriter sw = new StreamWriter(outGZipStream))
+                {
+                    XmlSerializer xmlSerializer = CreateXmlSerializer(null);
+                    xmlSerializer.Serialize(sw, serializableObject);
+                    sw.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Creates an object from a compressed file containing serialized XML of an instance of an object of that class type.
+        /// </summary>
+        /// <param name="filename">the file containing the serialized XML</param>
         /// <returns>An object with the deserialized content</returns>
         public static T LoadDocumentFormat(string path)
         {
@@ -107,6 +130,26 @@ namespace BOG.Framework
                 XmlSerializer xmlSerializer = CreateXmlSerializer(null);
                 serializableObject = (T)xmlSerializer.Deserialize(o);
                 o.Close();
+            }
+            return serializableObject;
+        }
+
+        /// <summary>
+        /// Creates an object from a gzip file, containing serialized XML of an instance of an object of that class type.
+        /// </summary>
+        /// <param name="compressedFilename">the gzip file containing the serialized XML</param>
+        /// <returns>An object with the deserialized content</returns>
+        public static T LoadCompressedDocumentFormat(string compressedFilename)
+        {
+            T serializableObject = null;
+            using (GZipStream inGZipStream = new GZipStream(File.OpenRead(compressedFilename), CompressionMode.Decompress))
+            {
+                using (StreamReader o = new StreamReader(inGZipStream))
+                {
+                    XmlSerializer xmlSerializer = CreateXmlSerializer(null);
+                    serializableObject = (T)xmlSerializer.Deserialize(o);
+                    o.Close();
+                }
             }
             return serializableObject;
         }
