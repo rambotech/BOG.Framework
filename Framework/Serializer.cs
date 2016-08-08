@@ -24,7 +24,6 @@ namespace BOG.Framework
     /// <typeparam name="T">Any serializable class</typeparam>
     public static class ObjectXMLSerializer<T> where T : class // Specify that T must be a class.
     {
-
         private const int _16M = 16 * 1024 * 1024;
 
         private static XmlSerializer CreateXmlSerializer(System.Type[] extraTypes)

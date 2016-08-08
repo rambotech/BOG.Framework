@@ -12,23 +12,42 @@ namespace BOG.Framework_Test
 {
     public partial class frmStringEx : Form
     {
+		Dictionary<string, string[]> FilterTestSet = new Dictionary<string, string[]>();
 		public frmStringEx()
         {
             InitializeComponent();
-            this.cbxMethodStrStr.Items.Add("Base64Encode");
-            this.cbxMethodStrStr.Items.Add("Base64Decode");
-            this.cbxMethodStrStr.Items.Add("ShowStringAsHex");
-            this.cbxMethodStrStr.Items.Add("TextAsInnerText");
-			this.cbxMethodStrStr.Items.Add("ResolvePathPlaceholders");
-			this.cbxMethodStrStr.Items.Add("ResolvePlaceHolders");
-			this.cbxMethodStrStr.SelectedIndex = 0;
-        }
+            this.cbxMethodStr.Items.Add("Base64Encode");
+            this.cbxMethodStr.Items.Add("Base64Decode");
+            this.cbxMethodStr.Items.Add("ShowStringAsHex");
+            this.cbxMethodStr.Items.Add("TextAsInnerText");
+			this.cbxMethodStr.Items.Add("ResolvePathPlaceholders");
+			this.cbxMethodStr.Items.Add("ResolvePlaceHolders");
+			this.cbxMethodStr.SelectedIndex = 0;
+			this.cbxFilterMethod.Items.Clear();
+			this.cbxFilterMethod.Items.Add("Filter-case insensitive");
+			this.cbxFilterMethod.Items.Add("Filter-case sensitive");
+			this.cbxFilterMethod.Items.Add("FilterOut-case insensitive");
+			this.cbxFilterMethod.Items.Add("FilterOut-case sensitive");
+			FilterTestSet.Add("Filter-case insensitive", new string[] {
+				"72.45.123.76xxxy", "0123456789.X"
+			});
+			FilterTestSet.Add("Filter-case sensitive", new string[] {
+				"72.45.123.76xxxy", "0123456789.X"
+			});
+			FilterTestSet.Add("FilterOut-case insensitive", new string[] {
+				"72.45.123.76xxxy", "0123456789.X"
+			});
+			FilterTestSet.Add("FilterOut-case sensitive", new string[] {
+				"72.45.123.76xxxy", "0123456789.X"
+			});
+			this.cbxFilterMethod.SelectedIndex = 0;
+		}
 
-        private void btnTestIt_Click(object sender, EventArgs e)
+		private void btnTestIt_Click(object sender, EventArgs e)
         {
             try
             {
-                switch (this.cbxMethodStrStr.SelectedIndex)
+                switch (this.cbxMethodStr.SelectedIndex)
                 {
                     case 0:
                         this.txtOutputStrStr.Text = StringEx.Base64EncodeString(this.txtInputStrStr.Text);
@@ -63,9 +82,9 @@ namespace BOG.Framework_Test
             }
         }
 
-        private void cbxMethodStrStr_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxMethodStr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (this.cbxMethodStrStr.SelectedIndex)
+            switch (this.cbxMethodStr.SelectedIndex)
             {
                 case 0:
                     this.txtInputStrStr.Text = "The quick brown fox jumped over the lazy dog's back: so there !!";
@@ -92,5 +111,32 @@ namespace BOG.Framework_Test
 					break;
 			}
 		}
-    }
+
+		private void btnTestFilter_Click(object sender, EventArgs e)
+		{
+			if ((string) this.cbxFilterMethod.SelectedItem == "Filter-case insensitive")
+			{
+				this.txtFiltered.Text = StringEx.Filter(this.txtOriginal.Text, this.txtFilterSet.Text, true);
+			}
+			if ((string) this.cbxFilterMethod.SelectedItem == "Filter-case sensitive")
+			{
+				this.txtFiltered.Text = StringEx.Filter(this.txtOriginal.Text, this.txtFilterSet.Text, false);
+			}
+			if ((string) this.cbxFilterMethod.SelectedItem == "FilterOut-case insensitive")
+			{
+				this.txtFiltered.Text = StringEx.FilterOut(this.txtOriginal.Text, this.txtFilterSet.Text, true);
+			}
+			if ((string) this.cbxFilterMethod.SelectedItem == "FilterOut-case sensitive")
+			{
+				this.txtFiltered.Text = StringEx.FilterOut(this.txtOriginal.Text, this.txtFilterSet.Text, false);
+			}
+		}
+
+		private void cbxFilterMethod_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			this.txtFiltered.Text = string.Empty;
+			this.txtOriginal.Text = FilterTestSet[(string) this.cbxFilterMethod.SelectedItem][0];
+			this.txtFilterSet.Text = FilterTestSet[(string) this.cbxFilterMethod.SelectedItem][1];
+		}
+	}
 }

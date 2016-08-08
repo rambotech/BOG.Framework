@@ -73,5 +73,41 @@ namespace BOG.Framework_NUnit
             string Result = StringEx.QuotedTrim(Test, new char[] { ' ', '\t' }, '\"');
             Assert.IsTrue(string.Compare("\"  X  \"", Result) == 0);
         }
-    }
+
+		[Test, Description("Filter(): case-insensitive")]
+		public void Filter_CaseInsensitive()
+		{
+			string Test = "76.34F.25.41C";
+			string Filter = "0123456789.c";
+			string Result = StringEx.Filter(Test, Filter, true);
+			Assert.IsTrue(string.Compare("76.34.25.41C", Result) == 0);
+		}
+
+		[Test, Description("Filter(): case-sensitive")]
+		public void Filter_CaseSensitive()
+		{
+			string Test = "76.34F.25.41C";
+			string Filter = "0123456789.c";
+			string Result = StringEx.Filter(Test, Filter, false);
+			Assert.IsTrue(string.Compare("76.34.25.41", Result) == 0);
+		}
+
+		[Test, Description("FilterOut(): case-insensitive")]
+		public void FilterOut_CaseInsensitive()
+		{
+			string Test = "76.34F.25.41C";
+			string Filter = "0123456789.c";
+			string Result = StringEx.FilterOut(Test, Filter, true);
+			Assert.IsTrue(string.Compare("F", Result) == 0);
+		}
+
+		[Test, Description("FilterOut(): case-sensitive")]
+		public void FilterOut_CaseSensitive()
+		{
+			string Test = "76.34F.25.41C";
+			string Filter = "0123456789.c";
+			string Result = StringEx.FilterOut(Test, Filter, false);
+			Assert.IsTrue(string.Compare("FC", Result) == 0);
+		}
+	}
 }

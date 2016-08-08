@@ -119,7 +119,8 @@ namespace BOG.Framework
 				{
 					startIndex = search.IndexOf(s);
 				}
-				if (startIndex >= 0 && !lastMatch) break;
+				if (startIndex >= 0 && !lastMatch)
+					break;
 			}
 			return startIndex;
 		}
@@ -260,7 +261,7 @@ namespace BOG.Framework
 			StringBuilder s = new StringBuilder();
 			for (int i = 0; i < decodedByteArray.Length; i++)
 			{
-				s.Append((char)decodedByteArray[i]);
+				s.Append((char) decodedByteArray[i]);
 			}
 			return (s.ToString());
 		}
@@ -277,7 +278,7 @@ namespace BOG.Framework
 			char[] encodedArray = new char[inputStr.Length * 2];
 
 			for (int i = 0; i < inputStr.Length; i++)
-				rawByteArray[i] = (byte)inputStr[i];
+				rawByteArray[i] = (byte) inputStr[i];
 
 			Convert.ToBase64CharArray(
 				rawByteArray,
@@ -289,7 +290,8 @@ namespace BOG.Framework
 					Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
 			string EncodedString = new string(encodedArray);
 			int ActualLength = EncodedString.Length;
-			while (ActualLength-- > 0 && EncodedString[ActualLength] == '\0') ;
+			while (ActualLength-- > 0 && EncodedString[ActualLength] == '\0')
+				;
 			return EncodedString.Substring(0, ActualLength + 1);
 		}
 
@@ -326,7 +328,7 @@ namespace BOG.Framework
 					}
 					if (Index < source.Length)
 					{
-						Result.Append(string.Format("{0:x2} ", (byte)source[Index]));
+						Result.Append(string.Format("{0:x2} ", (byte) source[Index]));
 					}
 					else
 					{
@@ -352,7 +354,8 @@ namespace BOG.Framework
 					}
 				}
 				Result.AppendLine();
-				if (Index >= source.Length) break;
+				if (Index >= source.Length)
+					break;
 				Offset += 16;
 			}
 			return Result.ToString();
@@ -377,7 +380,7 @@ namespace BOG.Framework
 				sourceWork = sourceWork.Substring(1, sourceWork.Length - 2);
 				Negative = true;
 			}
-			return (Negative ? (double)-1.0 : (double)1.0) * double.Parse(sourceWork);
+			return (Negative ? (double) -1.0 : (double) 1.0) * double.Parse(sourceWork);
 		}
 
 		/// <summary>
@@ -446,6 +449,73 @@ namespace BOG.Framework
 				result = ReplaceNoCase(result, searchFor, replaceWith, true);
 			}
 			return result;
+		}
+
+		/// <summary>
+		/// Only characters in filterCharacterSet will remain in original
+		/// </summary>
+		/// <param name="original">The string to examine.</param>
+		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
+		/// <returns>The original string void of characters not explicitly allowed.</returns>
+		public static string Filter(string original, string filterCharacterSet)
+		{
+			return Filtering(original, filterCharacterSet, false, false);
+		}
+
+		/// <summary>
+		/// Only characters in filterCharacterSet will remain in original
+		/// </summary>
+		/// <param name="original">The string to examine.</param>
+		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
+		/// <param name="ignoreCase">True to ignore case when comparing</param>
+		/// <returns></returns>
+		public static string Filter(string original, string filterCharacterSet, bool ignoreCase)
+		{
+			return Filtering(original, filterCharacterSet, ignoreCase, false);
+		}
+
+		/// <summary>
+		/// Any characters in filterCharacterSet will be removed from the original
+		/// </summary>
+		/// <param name="original">The string to examine.</param>
+		/// <param name="filterCharacterSet">The string of characters which are disallowed.</param>
+		/// <returns>The original string void of characters explicitly disallowed.</returns>
+		public static string FilterOut(string original, string filterCharacterSet)
+		{
+			return Filtering(original, filterCharacterSet, false, true);
+		}
+
+		/// <summary>
+		/// Only characters in filterCharacterSet will remain in original
+		/// </summary>
+		/// <param name="original">The string to examine.</param>
+		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
+		/// <param name="ignoreCase">True to ignore case when comparing</param>
+		/// <returns></returns>
+		public static string FilterOut(string original, string filterCharacterSet, bool ignoreCase)
+		{
+			return Filtering(original, filterCharacterSet, ignoreCase, true);
+		}
+
+		private static string Filtering(string original, string mustContain, bool ignoreCase, bool filterOut)
+		{
+			StringBuilder response = new StringBuilder();
+			string originalCompare = ignoreCase ? original.ToUpper() : original;
+			string mustContainCompare = ignoreCase ? mustContain.ToUpper() : mustContain;
+
+			for (int index = 0; index < original.Length; index++)
+			{
+				bool hasThisCharacter = (mustContainCompare.IndexOfAny(new char[] { originalCompare[index] }) >= 0);
+				if (hasThisCharacter && !filterOut)
+				{
+					response.Append(original[index]);
+				}
+				if (! hasThisCharacter && filterOut)
+				{
+					response.Append(original[index]);
+				}
+			}
+			return response.ToString();
 		}
 	}
 }
