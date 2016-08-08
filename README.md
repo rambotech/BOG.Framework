@@ -70,7 +70,7 @@ The classes are:
   as a class to store user settings for a desktop application, outside of the app.config architecture.
   
 ###StringEx
-  Some useful string methods, like search and replace with wildcards, currency formatting, and placeholder replacement.
+  Some useful string methods, like search and replace with wildcards, currency formatting, filtering (include and exclude), and placeholder replacement.
   
 
   
