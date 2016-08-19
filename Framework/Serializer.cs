@@ -121,10 +121,10 @@ namespace BOG.Framework
         /// </summary>
         /// <param name="filename">the file containing the serialized XML</param>
         /// <returns>An object with the deserialized content</returns>
-        public static T LoadDocumentFormat(string path)
+        public static T LoadDocumentFormat(string filename)
         {
             T serializableObject = null;
-            using (StreamReader o = new StreamReader(path))
+            using (StreamReader o = new StreamReader(filename))
             {
                 XmlSerializer xmlSerializer = CreateXmlSerializer(null);
                 serializableObject = (T)xmlSerializer.Deserialize(o);

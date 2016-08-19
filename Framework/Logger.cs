@@ -22,24 +22,41 @@ namespace BOG.Framework
 		DateTime CurrentFileCreated = DateTime.MinValue;
 		StreamWriter sw = null;
 
+		/// <summary>
+		/// The folder where log files are written.
+		/// </summary>
 		public string MessageFilePath
 		{
 			get { return _messageFilePath; }
 			set { _messageFilePath = value; }
 		}
 
+		/// <summary>
+		/// The filename pattern to use when creating a new log file name.  The filename is constructed using
+		/// string filename = string.Format (MessageFilePattern, DateTime.Now);
+		/// E.g.: for "Log_{0:yyyyMMdd_HHmmss}.txt" on 6/26/2016 14:51:16, the filename generated would be
+		/// Log_20160616_145116.txt
+		/// </summary>
 		public string MessageFilePattern
 		{
 			get { return _messageFilePattern; }
 			set { _messageFilePattern = value; }
 		}
 
+		/// <summary>
+		/// The maximum number of seconds to write to this log file, before rolling to a new file.
+		/// Set to zero for unlimited.
+		/// </summary>
 		public int MaxSecondsThreshold
 		{
 			get { return _maxSecondsThreshold; }
 			set { _maxSecondsThreshold = value; }
 		}
 
+		/// <summary>
+		/// The maximumnumber of bytes to write into a log file, before rolling to a new file.
+		/// Set to zero for unlimited.
+		/// </summary>
 		public long MaxSizeThreshold
 		{
 			get { return _maxSizeThreshold; }
@@ -86,6 +103,10 @@ namespace BOG.Framework
 			}
 		}
 
+		/// <summary>
+		/// Adds a line to the log file, and appends a newline character.
+		/// </summary>
+		/// <param name="message"></param>
 		public void CommitMessageLineToFile (string message)
 		{
 			CommitMessageToFile(message + "\r\n");

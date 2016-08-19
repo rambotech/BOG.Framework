@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Framework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Swiss Army knife of common utilities")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bits of Genius")]
 [assembly: AssemblyProduct("Framework")]
-[assembly: AssemblyCopyright("Open Source under the MIT License")]
+[assembly: AssemblyCopyright("Copyright (c) 2010-2016, John J Schultz, Open Source under the MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
