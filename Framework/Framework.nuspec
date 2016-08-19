@@ -3,16 +3,30 @@
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>BOG.Framework</title>
     <authors>$author$</authors>
-    <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <owners>John J Schultz</owners>
+    <licenseUrl>https://github.com/rambotech/BOG.Framework/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/rambotech/BOG.Framework</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <copyright>Copyright 2016</copyright>
-    <tags>Tag1 Tag2</tags>
+    <releaseNotes>Added as a nuget package.</releaseNotes>
+    <copyright>Copyright 2010-2016, John J Schultz, Open Source under the MIT License</copyright>
+    <tags>C# net40 net45 utility harvest monitor strings exception format formatting AD directory file scripting fuse logging password hash serialize serializing</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" />
+      <frameworkAssembly assemblyName="System.configuration" />
+      <frameworkAssembly assemblyName="System.Data" />
+      <frameworkAssembly assemblyName="System.DirectoryServices" />
+      <frameworkAssembly assemblyName="System.DirectoryServices.AccountManagement" />
+      <frameworkAssembly assemblyName="System.Drawing" />
+      <frameworkAssembly assemblyName="System.Web" />
+      <frameworkAssembly assemblyName="System.Windows.Forms" />
+      <frameworkAssembly assemblyName="System.Xml" />
+    </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net40\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net45\BOG.Framework.dll" />
+  </files>
 </package>
