@@ -147,9 +147,6 @@ namespace BOG.Framework_Test
             this.lblFileSize.Text = "Forcing garbage collection";
             this.lblFileSize.Refresh();
             MassiveRead = null;
-            GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
             this.lblFileSize.Text = "Idle";
             this.lblFileSize.Refresh();
         }
