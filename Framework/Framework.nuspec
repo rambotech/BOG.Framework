@@ -26,7 +26,10 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="obj\Release\BOG.Framework.dll" target="lib\net40\BOG.Framework.dll" />
     <file src="obj\Release\BOG.Framework.dll" target="lib\net45\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net451\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net452\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net46\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net461\BOG.Framework.dll" />
   </files>
 </package>

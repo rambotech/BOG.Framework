@@ -14,7 +14,7 @@ namespace BOG.Framework_Test
         public frmTestSelector()
         {
             InitializeComponent();
-        }
+		}
 
         private void btnBabbleOn_Click(object sender, EventArgs e)
         {
@@ -87,5 +87,11 @@ namespace BOG.Framework_Test
             frmSerializer f = new frmSerializer();
             f.ShowDialog(this);
         }
-    }
+
+		private void btnHasher_Click(object sender, EventArgs e)
+		{
+			frmHasher f = new frmHasher();
+			f.ShowDialog(this);
+		}
+	}
 }

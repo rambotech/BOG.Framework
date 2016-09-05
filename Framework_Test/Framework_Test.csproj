@@ -16,10 +16,6 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -92,6 +88,12 @@
     <Compile Include="frmFormatting.Designer.cs">
       <DependentUpon>frmFormatting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHasher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHasher.Designer.cs">
+      <DependentUpon>frmHasher.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +163,9 @@
     <EmbeddedResource Include="frmFormatting.resx">
       <DependentUpon>frmFormatting.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHasher.resx">
+      <DependentUpon>frmHasher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogger.resx">
       <DependentUpon>frmLogger.cs</DependentUpon>

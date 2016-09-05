@@ -12,7 +12,7 @@ EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
+		Manager = Git
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
