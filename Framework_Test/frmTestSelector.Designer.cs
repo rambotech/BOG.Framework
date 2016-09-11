@@ -43,6 +43,7 @@
 			this.btnLogger = new System.Windows.Forms.Button();
 			this.btnSerializer = new System.Windows.Forms.Button();
 			this.btnHasher = new System.Windows.Forms.Button();
+			this.btnMemoryList = new System.Windows.Forms.Button();
 			this.gbxNote.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -88,40 +89,40 @@
 			// 
 			// btnSerializableDictionary
 			// 
-			this.btnSerializableDictionary.Location = new System.Drawing.Point(260, 69);
+			this.btnSerializableDictionary.Location = new System.Drawing.Point(263, 125);
 			this.btnSerializableDictionary.Name = "btnSerializableDictionary";
 			this.btnSerializableDictionary.Size = new System.Drawing.Size(246, 50);
-			this.btnSerializableDictionary.TabIndex = 9;
+			this.btnSerializableDictionary.TabIndex = 10;
 			this.btnSerializableDictionary.Text = "SerializableDictionary";
 			this.btnSerializableDictionary.UseVisualStyleBackColor = true;
 			this.btnSerializableDictionary.Click += new System.EventHandler(this.btnSerializableDictionary_Click);
 			// 
 			// btnStringEx
 			// 
-			this.btnStringEx.Location = new System.Drawing.Point(262, 238);
+			this.btnStringEx.Location = new System.Drawing.Point(265, 294);
 			this.btnStringEx.Name = "btnStringEx";
 			this.btnStringEx.Size = new System.Drawing.Size(246, 50);
-			this.btnStringEx.TabIndex = 12;
+			this.btnStringEx.TabIndex = 13;
 			this.btnStringEx.Text = "StringEx";
 			this.btnStringEx.UseVisualStyleBackColor = true;
 			this.btnStringEx.Click += new System.EventHandler(this.btnStringEx_Click);
 			// 
 			// btnScrape
 			// 
-			this.btnScrape.Location = new System.Drawing.Point(262, 13);
+			this.btnScrape.Location = new System.Drawing.Point(265, 69);
 			this.btnScrape.Name = "btnScrape";
 			this.btnScrape.Size = new System.Drawing.Size(246, 50);
-			this.btnScrape.TabIndex = 8;
+			this.btnScrape.TabIndex = 9;
 			this.btnScrape.Text = "Scrape";
 			this.btnScrape.UseVisualStyleBackColor = true;
 			this.btnScrape.Click += new System.EventHandler(this.btnScrape_Click);
 			// 
 			// btnSettingsDictionary
 			// 
-			this.btnSettingsDictionary.Location = new System.Drawing.Point(262, 181);
+			this.btnSettingsDictionary.Location = new System.Drawing.Point(265, 237);
 			this.btnSettingsDictionary.Name = "btnSettingsDictionary";
 			this.btnSettingsDictionary.Size = new System.Drawing.Size(246, 50);
-			this.btnSettingsDictionary.TabIndex = 11;
+			this.btnSettingsDictionary.TabIndex = 12;
 			this.btnSettingsDictionary.Text = "SettingsDictionary";
 			this.btnSettingsDictionary.UseVisualStyleBackColor = true;
 			this.btnSettingsDictionary.Click += new System.EventHandler(this.btnSettingsDictionary_Click);
@@ -139,12 +140,12 @@
 			// gbxNote
 			// 
 			this.gbxNote.Controls.Add(this.textBox1);
-			this.gbxNote.Location = new System.Drawing.Point(265, 295);
-			this.gbxNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.gbxNote.Location = new System.Drawing.Point(265, 351);
+			this.gbxNote.Margin = new System.Windows.Forms.Padding(2);
 			this.gbxNote.Name = "gbxNote";
-			this.gbxNote.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.gbxNote.Size = new System.Drawing.Size(239, 162);
-			this.gbxNote.TabIndex = 13;
+			this.gbxNote.Padding = new System.Windows.Forms.Padding(2);
+			this.gbxNote.Size = new System.Drawing.Size(239, 106);
+			this.gbxNote.TabIndex = 14;
 			this.gbxNote.TabStop = false;
 			this.gbxNote.Text = "Note";
 			// 
@@ -154,11 +155,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(14, 18);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(210, 127);
+			this.textBox1.Size = new System.Drawing.Size(210, 79);
 			this.textBox1.TabIndex = 0;
 			this.textBox1.Text = "Not all classes/methods have an example here.  Only those which need an example b" +
     "eyond their method/class description are included. See the class documentation f" +
@@ -186,10 +187,10 @@
 			// 
 			// btnSerializer
 			// 
-			this.btnSerializer.Location = new System.Drawing.Point(260, 124);
+			this.btnSerializer.Location = new System.Drawing.Point(263, 180);
 			this.btnSerializer.Name = "btnSerializer";
 			this.btnSerializer.Size = new System.Drawing.Size(246, 50);
-			this.btnSerializer.TabIndex = 10;
+			this.btnSerializer.TabIndex = 11;
 			this.btnSerializer.Text = "Serializer";
 			this.btnSerializer.UseVisualStyleBackColor = true;
 			this.btnSerializer.Click += new System.EventHandler(this.btnSerializer_Click);
@@ -204,11 +205,22 @@
 			this.btnHasher.UseVisualStyleBackColor = true;
 			this.btnHasher.Click += new System.EventHandler(this.btnHasher_Click);
 			// 
+			// btnMemoryList
+			// 
+			this.btnMemoryList.Location = new System.Drawing.Point(264, 12);
+			this.btnMemoryList.Name = "btnMemoryList";
+			this.btnMemoryList.Size = new System.Drawing.Size(246, 50);
+			this.btnMemoryList.TabIndex = 8;
+			this.btnMemoryList.Text = "MemoryList";
+			this.btnMemoryList.UseVisualStyleBackColor = true;
+			this.btnMemoryList.Click += new System.EventHandler(this.btnMemoryList_Click);
+			// 
 			// frmTestSelector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 463);
+			this.Controls.Add(this.btnMemoryList);
 			this.Controls.Add(this.btnHasher);
 			this.Controls.Add(this.btnSerializer);
 			this.Controls.Add(this.btnLogger);
@@ -248,5 +260,6 @@
         private System.Windows.Forms.Button btnLogger;
         private System.Windows.Forms.Button btnSerializer;
 		private System.Windows.Forms.Button btnHasher;
+		private System.Windows.Forms.Button btnMemoryList;
 	}
 }

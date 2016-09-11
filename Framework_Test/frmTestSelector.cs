@@ -93,5 +93,11 @@ namespace BOG.Framework_Test
 			frmHasher f = new frmHasher();
 			f.ShowDialog(this);
 		}
+
+		private void btnMemoryList_Click(object sender, EventArgs e)
+		{
+			frmMemoryList f = new frmMemoryList();
+			f.ShowDialog(this);
+		}
 	}
 }

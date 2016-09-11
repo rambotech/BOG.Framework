@@ -85,6 +85,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="MemoryList.cs" />
     <Compile Include="NTGroup.cs" />
     <Compile Include="PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -102,6 +102,12 @@
     <Compile Include="frmLogger.Designer.cs">
       <DependentUpon>frmLogger.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMemoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMemoryList.Designer.cs">
+      <DependentUpon>frmMemoryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSerializer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogger.resx">
       <DependentUpon>frmLogger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMemoryList.resx">
+      <DependentUpon>frmMemoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSerializer.resx">
       <DependentUpon>frmSerializer.cs</DependentUpon>

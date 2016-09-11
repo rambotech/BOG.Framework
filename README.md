@@ -34,8 +34,7 @@ The classes are:
   as it would appear on a paper check.
 
 ###Fuse:
-  Similar to an electrical fuse: records hits(frequency) and volume, and reports when 
-  user-defined thresholds are exceeded.
+  Similar to an electrical fuse: records hits(frequency) and volume, and reports when thresholds are exceeded.
 
 ###Logger:
   Provides a method of logging to a file, using a timestamped filename and rollover to a new file when 
@@ -46,6 +45,11 @@ The classes are:
 
 ###MathEx:
   Holder for derived mathematical methods.
+  
+###MemoryList
+  A List<> type class, which can enforce unique entries (even if an item is removed), and allows the client
+  to specify the order in which items are recalled: FIFO, LIFO or random. Ideal for workflow processes,
+  which may receive may requests for the same item but restrict their action to once per item.
   
 ###NTGroup:
   Wrappers for working with NT Authentication.  Most useful for systems needing to determine access rights
@@ -71,6 +75,4 @@ The classes are:
   
 ###StringEx
   Some useful string methods, like search and replace with wildcards, currency formatting, filtering (include and exclude), and placeholder replacement.
-  
-
   
