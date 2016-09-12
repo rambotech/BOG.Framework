@@ -37,6 +37,8 @@ namespace BOG.Framework
 		/// Instantiates the object as a copy of an existing object, and keeps the recorded and consumed timestamps.
 		/// </summary>
 		/// <param name="value"></param>
+		/// <param name="recorded"></param>
+		/// <param name="consumed"></param>
 		public MemoryItem(T value, DateTime recorded, DateTime consumed)
 		{
 			_value = value;
