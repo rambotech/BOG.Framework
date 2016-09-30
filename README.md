@@ -49,7 +49,7 @@ The classes are:
 ###MemoryList
   A List<> type class, which can enforce unique entries (even if an item is removed), and allows the client
   to specify the order in which items are recalled: FIFO, LIFO or random. Ideal for workflow processes,
-  which may receive may requests for the same item but restrict their action to once per item.
+  which may receive many requests for the same item, but restrict their action to once per item.
   
 ###NTGroup:
   Wrappers for working with NT Authentication.  Most useful for systems needing to determine access rights
