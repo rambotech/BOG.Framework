@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoSets.cs" />
     <Compile Include="frmAssemblyInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +84,12 @@
     </Compile>
     <Compile Include="frmDetailedException.Designer.cs">
       <DependentUpon>frmDetailedException.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDynamicScripting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDynamicScripting.Designer.cs">
+      <DependentUpon>frmDynamicScripting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFormatting.cs">
       <SubType>Form</SubType>
@@ -156,6 +163,7 @@
     <Compile Include="frmTestSelector.Designer.cs">
       <DependentUpon>frmTestSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDemo.cs" />
     <Compile Include="PhraseGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailedException.resx">
       <DependentUpon>frmDetailedException.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDynamicScripting.resx">
+      <DependentUpon>frmDynamicScripting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFormatting.resx">
       <DependentUpon>frmFormatting.cs</DependentUpon>

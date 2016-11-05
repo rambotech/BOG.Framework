@@ -99,5 +99,11 @@ namespace BOG.Framework_Test
 			frmMemoryList f = new frmMemoryList();
 			f.ShowDialog(this);
 		}
+
+		private void btnDynamicScripting_Click(object sender, EventArgs e)
+		{
+			frmDynamicScripting f = new frmDynamicScripting();
+			f.ShowDialog(this);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 
 namespace BOG.Framework
 {
@@ -62,22 +63,45 @@ namespace BOG.Framework
             return results;
         }
 
-        /// <summary>
+		public static List<string> GetImplementersForInterface(System.Reflection.Assembly DLL, string InterfaceName)
+		{
+			List<string> Results = new List<string>();
+
+			foreach (Type t in DLL.GetTypes())
+			{
+				if (t.GetInterface(InterfaceName, true) != null)
+					Results.Add (t.FullName);
+			}
+			return Results;
+		}
+  
+		/// <summary>
         /// Locate an interface in an assembly, which is needed to execute the assembly.
         /// </summary>
         /// <param name="DLL"></param>
         /// <param name="InterfaceName"></param>
-        /// <returns></returns>
+        /// <returns>An instance of the first class implementing the interface</returns>
         public static object FindInterface(System.Reflection.Assembly DLL, string InterfaceName)
         {
-            // Loop through types looking for one that implements the given interface
-            foreach (Type t in DLL.GetTypes())
-            {
-                if (t.GetInterface(InterfaceName, true) != null)
-                    return DLL.CreateInstance(t.FullName);
-            }
-
-            return null;
+            return FindInterface(DLL, InterfaceName, string.Empty);
         }
-    }
+
+		/// <summary>
+		/// Locate an interface in an assembly, with a specific implenter name, which is needed to execute the assembly.
+		/// </summary>
+		/// <param name="DLL">The Assembly containing the implementer</param>
+		/// <param name="InterfaceName">The name of the interface</param>
+		/// <param name="ImplementerName">The specific name of the implementer: empty string for the first occurrence.</param>
+		/// <returns>An instance of the first class implementing the interface</returns>
+		public static object FindInterface(System.Reflection.Assembly DLL, string InterfaceName, string ImplementerName)
+		{
+			// Loop through types looking for one that implements the given interface
+			foreach (Type t in DLL.GetTypes())
+			{
+				if (t.GetInterface(InterfaceName, true) != null && (string.IsNullOrWhiteSpace(ImplementerName) || string.Compare(t.FullName, ImplementerName, false) == 0))
+					return DLL.CreateInstance(t.FullName);
+			}
+			return null;
+		}
+	}
 }

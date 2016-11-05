@@ -31,5 +31,6 @@
     <file src="obj\Release\BOG.Framework.dll" target="lib\net452\BOG.Framework.dll" />
     <file src="obj\Release\BOG.Framework.dll" target="lib\net46\BOG.Framework.dll" />
     <file src="obj\Release\BOG.Framework.dll" target="lib\net461\BOG.Framework.dll" />
+    <file src="obj\Release\BOG.Framework.dll" target="lib\net462\BOG.Framework.dll" />
   </files>
 </package>

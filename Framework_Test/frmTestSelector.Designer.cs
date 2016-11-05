@@ -44,6 +44,7 @@
 			this.btnSerializer = new System.Windows.Forms.Button();
 			this.btnHasher = new System.Windows.Forms.Button();
 			this.btnMemoryList = new System.Windows.Forms.Button();
+			this.btnDynamicScripting = new System.Windows.Forms.Button();
 			this.gbxNote.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -59,20 +60,20 @@
 			// 
 			// btnFuse
 			// 
-			this.btnFuse.Location = new System.Drawing.Point(10, 294);
+			this.btnFuse.Location = new System.Drawing.Point(10, 352);
 			this.btnFuse.Name = "btnFuse";
 			this.btnFuse.Size = new System.Drawing.Size(246, 50);
-			this.btnFuse.TabIndex = 5;
+			this.btnFuse.TabIndex = 6;
 			this.btnFuse.Text = "Fuse";
 			this.btnFuse.UseVisualStyleBackColor = true;
 			this.btnFuse.Click += new System.EventHandler(this.btnFuse_Click);
 			// 
 			// btnFormatting
 			// 
-			this.btnFormatting.Location = new System.Drawing.Point(10, 237);
+			this.btnFormatting.Location = new System.Drawing.Point(10, 295);
 			this.btnFormatting.Name = "btnFormatting";
 			this.btnFormatting.Size = new System.Drawing.Size(246, 50);
-			this.btnFormatting.TabIndex = 4;
+			this.btnFormatting.TabIndex = 5;
 			this.btnFormatting.Text = "Formatting";
 			this.btnFormatting.UseVisualStyleBackColor = true;
 			this.btnFormatting.Click += new System.EventHandler(this.btnFormatting_Click);
@@ -89,40 +90,40 @@
 			// 
 			// btnSerializableDictionary
 			// 
-			this.btnSerializableDictionary.Location = new System.Drawing.Point(263, 125);
+			this.btnSerializableDictionary.Location = new System.Drawing.Point(263, 238);
 			this.btnSerializableDictionary.Name = "btnSerializableDictionary";
 			this.btnSerializableDictionary.Size = new System.Drawing.Size(246, 50);
-			this.btnSerializableDictionary.TabIndex = 10;
+			this.btnSerializableDictionary.TabIndex = 11;
 			this.btnSerializableDictionary.Text = "SerializableDictionary";
 			this.btnSerializableDictionary.UseVisualStyleBackColor = true;
 			this.btnSerializableDictionary.Click += new System.EventHandler(this.btnSerializableDictionary_Click);
 			// 
 			// btnStringEx
 			// 
-			this.btnStringEx.Location = new System.Drawing.Point(265, 294);
+			this.btnStringEx.Location = new System.Drawing.Point(514, 13);
 			this.btnStringEx.Name = "btnStringEx";
 			this.btnStringEx.Size = new System.Drawing.Size(246, 50);
-			this.btnStringEx.TabIndex = 13;
+			this.btnStringEx.TabIndex = 14;
 			this.btnStringEx.Text = "StringEx";
 			this.btnStringEx.UseVisualStyleBackColor = true;
 			this.btnStringEx.Click += new System.EventHandler(this.btnStringEx_Click);
 			// 
 			// btnScrape
 			// 
-			this.btnScrape.Location = new System.Drawing.Point(265, 69);
+			this.btnScrape.Location = new System.Drawing.Point(263, 181);
 			this.btnScrape.Name = "btnScrape";
 			this.btnScrape.Size = new System.Drawing.Size(246, 50);
-			this.btnScrape.TabIndex = 9;
+			this.btnScrape.TabIndex = 10;
 			this.btnScrape.Text = "Scrape";
 			this.btnScrape.UseVisualStyleBackColor = true;
 			this.btnScrape.Click += new System.EventHandler(this.btnScrape_Click);
 			// 
 			// btnSettingsDictionary
 			// 
-			this.btnSettingsDictionary.Location = new System.Drawing.Point(265, 237);
+			this.btnSettingsDictionary.Location = new System.Drawing.Point(264, 352);
 			this.btnSettingsDictionary.Name = "btnSettingsDictionary";
 			this.btnSettingsDictionary.Size = new System.Drawing.Size(246, 50);
-			this.btnSettingsDictionary.TabIndex = 12;
+			this.btnSettingsDictionary.TabIndex = 13;
 			this.btnSettingsDictionary.Text = "SettingsDictionary";
 			this.btnSettingsDictionary.UseVisualStyleBackColor = true;
 			this.btnSettingsDictionary.Click += new System.EventHandler(this.btnSettingsDictionary_Click);
@@ -140,12 +141,12 @@
 			// gbxNote
 			// 
 			this.gbxNote.Controls.Add(this.textBox1);
-			this.gbxNote.Location = new System.Drawing.Point(265, 351);
+			this.gbxNote.Location = new System.Drawing.Point(521, 294);
 			this.gbxNote.Margin = new System.Windows.Forms.Padding(2);
 			this.gbxNote.Name = "gbxNote";
 			this.gbxNote.Padding = new System.Windows.Forms.Padding(2);
 			this.gbxNote.Size = new System.Drawing.Size(239, 106);
-			this.gbxNote.TabIndex = 14;
+			this.gbxNote.TabIndex = 15;
 			this.gbxNote.TabStop = false;
 			this.gbxNote.Text = "Note";
 			// 
@@ -177,7 +178,7 @@
 			// 
 			// btnLogger
 			// 
-			this.btnLogger.Location = new System.Drawing.Point(11, 407);
+			this.btnLogger.Location = new System.Drawing.Point(263, 13);
 			this.btnLogger.Name = "btnLogger";
 			this.btnLogger.Size = new System.Drawing.Size(246, 50);
 			this.btnLogger.TabIndex = 7;
@@ -187,39 +188,50 @@
 			// 
 			// btnSerializer
 			// 
-			this.btnSerializer.Location = new System.Drawing.Point(263, 180);
+			this.btnSerializer.Location = new System.Drawing.Point(264, 295);
 			this.btnSerializer.Name = "btnSerializer";
 			this.btnSerializer.Size = new System.Drawing.Size(246, 50);
-			this.btnSerializer.TabIndex = 11;
+			this.btnSerializer.TabIndex = 12;
 			this.btnSerializer.Text = "Serializer";
 			this.btnSerializer.UseVisualStyleBackColor = true;
 			this.btnSerializer.Click += new System.EventHandler(this.btnSerializer_Click);
 			// 
 			// btnHasher
 			// 
-			this.btnHasher.Location = new System.Drawing.Point(10, 351);
+			this.btnHasher.Location = new System.Drawing.Point(263, 69);
 			this.btnHasher.Name = "btnHasher";
 			this.btnHasher.Size = new System.Drawing.Size(246, 50);
-			this.btnHasher.TabIndex = 6;
+			this.btnHasher.TabIndex = 8;
 			this.btnHasher.Text = "Hasher";
 			this.btnHasher.UseVisualStyleBackColor = true;
 			this.btnHasher.Click += new System.EventHandler(this.btnHasher_Click);
 			// 
 			// btnMemoryList
 			// 
-			this.btnMemoryList.Location = new System.Drawing.Point(264, 12);
+			this.btnMemoryList.Location = new System.Drawing.Point(263, 124);
 			this.btnMemoryList.Name = "btnMemoryList";
 			this.btnMemoryList.Size = new System.Drawing.Size(246, 50);
-			this.btnMemoryList.TabIndex = 8;
+			this.btnMemoryList.TabIndex = 9;
 			this.btnMemoryList.Text = "MemoryList";
 			this.btnMemoryList.UseVisualStyleBackColor = true;
 			this.btnMemoryList.Click += new System.EventHandler(this.btnMemoryList_Click);
+			// 
+			// btnDynamicScripting
+			// 
+			this.btnDynamicScripting.Location = new System.Drawing.Point(10, 238);
+			this.btnDynamicScripting.Name = "btnDynamicScripting";
+			this.btnDynamicScripting.Size = new System.Drawing.Size(246, 50);
+			this.btnDynamicScripting.TabIndex = 4;
+			this.btnDynamicScripting.Text = "DynamicScripting";
+			this.btnDynamicScripting.UseVisualStyleBackColor = true;
+			this.btnDynamicScripting.Click += new System.EventHandler(this.btnDynamicScripting_Click);
 			// 
 			// frmTestSelector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(517, 463);
+			this.ClientSize = new System.Drawing.Size(779, 413);
+			this.Controls.Add(this.btnDynamicScripting);
 			this.Controls.Add(this.btnMemoryList);
 			this.Controls.Add(this.btnHasher);
 			this.Controls.Add(this.btnSerializer);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.Button btnSerializer;
 		private System.Windows.Forms.Button btnHasher;
 		private System.Windows.Forms.Button btnMemoryList;
+		private System.Windows.Forms.Button btnDynamicScripting;
 	}
 }

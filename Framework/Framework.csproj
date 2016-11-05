@@ -10,7 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BOG.Framework</RootNamespace>
     <AssemblyName>BOG.Framework</AssemblyName>
-    <ApplicationIcon>BOG_Framework_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -95,9 +96,6 @@
     <Compile Include="Serializer.cs" />
     <Compile Include="SettingsDictionary.cs" />
     <Compile Include="StringEx.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BOG_Framework_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
