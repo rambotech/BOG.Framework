@@ -67,5 +67,5 @@ namespace BOG.Framework_Test
                 lastGridDisplay = thisGridDisplay;
             }
         }
-    }
+	}
 }

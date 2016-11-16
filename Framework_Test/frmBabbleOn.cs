@@ -45,6 +45,7 @@ namespace BOG.Framework_Test
             btnStopBabbling.Enabled = true;
             tmrMessageSender.Enabled = true;
             tmrMessageSender.Start();
+			this.gbxHelp.Visible = true;
         }
 
         private void btnStopBabbling_Click(object sender, EventArgs e)
@@ -58,9 +59,10 @@ namespace BOG.Framework_Test
                 _BabbleOn[listenerIndex].Stop();
             btnStartBabbling.Enabled = true;
             _Messages.Clear();
-        }
+			this.gbxHelp.Visible = false;
+		}
 
-        private void btnFindBabblers_Click(object sender, EventArgs e)
+		private void btnFindBabblers_Click(object sender, EventArgs e)
         {
             this.lbxListeners.Items.Clear();
             this.btnFindBabblers.Enabled = false;

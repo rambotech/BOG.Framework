@@ -61,6 +61,10 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -68,6 +72,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -83,6 +88,7 @@
     <Compile Include="Formatting.cs" />
     <Compile Include="Fuse.cs" />
     <Compile Include="Hasher.cs" />
+    <Compile Include="SerializerJSON.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MathEx.cs" />
@@ -93,7 +99,7 @@
     <Compile Include="Scrape.cs" />
     <Compile Include="DynamicScripting.cs" />
     <Compile Include="SerializableDictionary.cs" />
-    <Compile Include="Serializer.cs" />
+    <Compile Include="SerializerXML.cs" />
     <Compile Include="SettingsDictionary.cs" />
     <Compile Include="StringEx.cs" />
   </ItemGroup>
@@ -128,6 +134,7 @@
     <None Include="Framework.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

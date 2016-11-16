@@ -76,8 +76,16 @@ namespace BOG.Framework
              where T : SymmetricAlgorithm, new()
         {
             if (string.IsNullOrEmpty(value)) return string.Empty;
+			if (string.IsNullOrEmpty(password))
+			{
+				throw new ArgumentException("password can not be blank");
+			}
+			if (string.IsNullOrEmpty(salt))
+			{
+				throw new ArgumentException("salt can not be blank");
+			}
 
-            DeriveBytes rgb = new Rfc2898DeriveBytes(password, Encoding.Unicode.GetBytes(salt));
+			DeriveBytes rgb = new Rfc2898DeriveBytes(password, Encoding.Unicode.GetBytes(salt));
 
             SymmetricAlgorithm algorithm = new T();
 

@@ -120,4 +120,15 @@
   <metadata name="tmrMessageSender.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>While the application is babbling, you can connect one or more telnet clients to any of the ports with a listener, e.g.
+
+telnet localhost 65200
+
+Click on the Who's Babbling tab to see what ports are being monitored for connections, and what telnet clients are listening.
+
+The up/down counter to the right of the button Start Babbling sets the number of ports to listen on.  While each port will receive the same information in this demo, and most applications only need one port, multiple ports can be used to tailor output to the subscriber's needs.
+
+This class was designed with Windows Services in mind, to allow the activity to be monitored real-time instead of via event logs.</value>
+  </data>
 </root>

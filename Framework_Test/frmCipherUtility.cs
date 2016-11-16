@@ -58,73 +58,94 @@ namespace BOG.Framework_Test
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            switch (this.cbxEncryptionMethod.SelectedIndex)
-            {
-                case 0:
-                    this.txtResult.Text = CipherUtility.Encrypt<AesManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                case 1:
-                    this.txtResult.Text = CipherUtility.Encrypt<TripleDESCryptoServiceProvider>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                case 2:
-                    this.txtResult.Text = CipherUtility.Encrypt<RijndaelManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                default:
-                    MessageBox.Show("Unsupported encryption type in selection list.");
-                    break;
-            }
+			try
+			{
+				switch (this.cbxEncryptionMethod.SelectedIndex)
+				{
+					case 0:
+						this.txtResult.Text = CipherUtility.Encrypt<AesManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					case 1:
+						this.txtResult.Text = CipherUtility.Encrypt<TripleDESCryptoServiceProvider>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					case 2:
+						this.txtResult.Text = CipherUtility.Encrypt<RijndaelManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					default:
+						MessageBox.Show("Unsupported encryption type in selection list.");
+						break;
+				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(BOG.Framework.DetailedException.WithUserContent(ref err), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
         }
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            switch (this.cbxEncryptionMethod.SelectedIndex)
-            {
-                case 0:
-                    this.txtResult.Text = CipherUtility.Decrypt<AesManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                case 1:
-                    this.txtResult.Text = CipherUtility.Decrypt<TripleDESCryptoServiceProvider>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                case 2:
-                    this.txtResult.Text = CipherUtility.Decrypt<RijndaelManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-                    break;
-                default:
-                    MessageBox.Show("Unsupported encryption type in selection list.");
-                    break;
-            }
-        }
+			try
+			{
+				switch (this.cbxEncryptionMethod.SelectedIndex)
+				{
+					case 0:
+						this.txtResult.Text = CipherUtility.Decrypt<AesManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					case 1:
+						this.txtResult.Text = CipherUtility.Decrypt<TripleDESCryptoServiceProvider>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					case 2:
+						this.txtResult.Text = CipherUtility.Decrypt<RijndaelManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+						break;
+					default:
+						MessageBox.Show("Unsupported encryption type in selection list.");
+						break;
+				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(BOG.Framework.DetailedException.WithUserContent(ref err), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        private void AutoCrypt(bool asEncrypted)
+		private void AutoCrypt(bool asEncrypted)
         {
-            CipherUtility.ValueState target = asEncrypted
-                ? CipherUtility.ValueState.Encrypted : CipherUtility.ValueState.Decrypted;
-            switch (this.cbxEncryptionMethod.SelectedIndex)
-            {
-                case 0:
-                    this.txtResult.Text = CipherUtility.AutoCrypt<AesManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-                    break;
-                case 1:
-                    this.txtResult.Text = CipherUtility.AutoCrypt<TripleDESCryptoServiceProvider>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-                    break;
-                case 2:
-                    this.txtResult.Text = CipherUtility.AutoCrypt<RijndaelManaged>(
-                        this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-                    break;
-                default:
-                    MessageBox.Show("Unsupported encryption type in selection list.");
-                    break;
-            }
-        }
+			try
+			{
+				CipherUtility.ValueState target = asEncrypted
+					? CipherUtility.ValueState.Encrypted : CipherUtility.ValueState.Decrypted;
+				switch (this.cbxEncryptionMethod.SelectedIndex)
+				{
+					case 0:
+						this.txtResult.Text = CipherUtility.AutoCrypt<AesManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
+						break;
+					case 1:
+						this.txtResult.Text = CipherUtility.AutoCrypt<TripleDESCryptoServiceProvider>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
+						break;
+					case 2:
+						this.txtResult.Text = CipherUtility.AutoCrypt<RijndaelManaged>(
+							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
+						break;
+					default:
+						MessageBox.Show("Unsupported encryption type in selection list.");
+						break;
+				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(BOG.Framework.DetailedException.WithUserContent(ref err), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        private void btnAutoToDecrypted_Click(object sender, EventArgs e)
+		private void btnAutoToDecrypted_Click(object sender, EventArgs e)
         {
             AutoCrypt(false);
         }

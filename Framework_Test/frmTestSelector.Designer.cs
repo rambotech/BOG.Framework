@@ -230,7 +230,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(779, 413);
+			this.ClientSize = new System.Drawing.Size(769, 413);
 			this.Controls.Add(this.btnDynamicScripting);
 			this.Controls.Add(this.btnMemoryList);
 			this.Controls.Add(this.btnHasher);
