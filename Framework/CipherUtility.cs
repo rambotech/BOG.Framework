@@ -37,7 +37,10 @@ namespace BOG.Framework
 		/// Auto-detects the state of the value parameter as encrypted or decrypted, and performs the action for the desired
 		/// returnState.  This may result in returning the original value (e.g. value is decrypted, returnState requested is decrypted.
 		/// </summary>
-		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:AesManaged,TripleDESCryptoServiceProvider,RijndaelManaged</typeparam>
+		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:
+		/// AesManaged 
+		/// TripleDESCryptoServiceProvider
+		/// RijndaelManaged</typeparam>
 		/// <param name="value">the payload requiring change</param>
 		/// <param name="password"></param>
 		/// <param name="salt"></param>

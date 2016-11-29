@@ -25,8 +25,12 @@ namespace BOG.Framework_Test
 		public frmSerializer()
 		{
 			InitializeComponent();
-			this.lblFileNameXML.Text = Path.Combine(Environment.GetEnvironmentVariable("TEMP"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".xml");
-			this.lblFileNameJSON.Text = Path.Combine(Environment.GetEnvironmentVariable("TEMP"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".json");
+			this.lblFileNameXML.Text = Path.GetTempFileName();
+			File.Delete(this.lblFileNameXML.Text);
+			this.lblFileNameXML.Text = this.lblFileNameXML.Text.Replace(".tmp", ".xml");
+			this.lblFileNameJSON.Text = Path.GetTempFileName();
+			File.Delete(this.lblFileNameJSON.Text);
+			this.lblFileNameJSON.Text = this.lblFileNameJSON.Text.Replace(".tmp", ".json");
 			ObjectEnabling(true);
 		}
 
@@ -146,13 +150,13 @@ namespace BOG.Framework_Test
 				this.lblFileSizeXML.Text = string.Format("{0} bytes..Saving XML GZ file", Formatting.KiloToYotta(TotalSize));
 				this.lblFileSizeXML.Refresh();
 				ObjectXMLSerializer<SerializableDictionary<int, SerializableDictionary<int, string>>>.SaveCompressedDocumentFormat(MassiveXML, this.lblFileNameXML.Text + ".gz");
-				//string rawSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameXML.Text).Length);
-				//string gzSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameXML.Text + ".gz").Length);
+				string rawSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameXML.Text).Length);
+				string gzSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameXML.Text + ".gz").Length);
 
 				this.lblFileSizeXML.Text = string.Format("Save Complete: Memory = {0}, XML = {1}, XML/GZ = {2}",
-					TotalSize,
-					new FileInfo(this.lblFileNameXML.Text).Length,
-					new FileInfo(this.lblFileNameXML.Text + ".gz").Length);
+					TotalSize, rawSize, gzSize);
+					//new FileInfo(this.lblFileNameXML.Text).Length,
+					//new FileInfo(this.lblFileNameXML.Text + ".gz").Length);
 			}
 			else
 			{
@@ -230,13 +234,13 @@ namespace BOG.Framework_Test
 				this.lblFileSizeJSON.Text = string.Format("{0} bytes..Saving JSON GZ file", Formatting.KiloToYotta(TotalSize));
 				this.lblFileSizeJSON.Refresh();
 				ObjectJsonSerializer<SerializableDictionary<int, SerializableDictionary<int, string>>>.SaveCompressedDocumentFormat(MassiveJSON, this.lblFileNameJSON.Text + ".gz");
-				//string rawSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameJSON.Text).Length);
-				//string gzSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameJSON.Text + ".gz").Length);
+				string rawSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameJSON.Text).Length);
+				string gzSize = Formatting.KiloToYotta((double) new FileInfo(this.lblFileNameJSON.Text + ".gz").Length);
 
 				this.lblFileSizeJSON.Text = string.Format("Save Complete: Memory = {0}, JSON = {1}, JSON.GZ = {2}",
-					TotalSize,
-					new FileInfo(this.lblFileNameJSON.Text).Length,
-					new FileInfo(this.lblFileNameJSON.Text + ".gz").Length);
+					TotalSize, rawSize, gzSize);
+					//new FileInfo(this.lblFileNameJSON.Text).Length,
+					//new FileInfo(this.lblFileNameJSON.Text + ".gz").Length);
 				this.lblFileSizeJSON.Refresh();
 			}
 			else

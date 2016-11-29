@@ -14,6 +14,8 @@ namespace BOG.Framework
 	/// </summary>
 	public static class StringEx
 	{
+		private const string HexCharacters = "0123456789ABCDEF";
+
 		/// <summary>
 		/// ReplaceNoCase: Allows a string Replace without a sensivitiy to case
 		/// Same as the string replace() function, but allows optional case insensitivity when
@@ -306,6 +308,70 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
+		/// turns 
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="spacer"></param>
+		/// <param name="charsPerLine"></param>
+		/// <returns></returns>
+		public static string ToHex(string source, bool useUpperCase, string spacer, int charsPerLine)
+		{
+			if (spacer.Length > 1 || (spacer.Length == 1 && HexCharacters.ToUpper().IndexOf(spacer.ToUpper()) >= 0))
+			{
+				throw new Exception("A spacer can not be a hexidecimal character.");
+			}
+			StringBuilder result = new StringBuilder();
+
+			string formatter = useUpperCase ? "{0:X2}{1}" : "{0:x2}{1}";
+			int index = 0;
+			while (index < source.Length)
+			{
+				result.Append(string.Format(formatter, (byte) source[index], spacer));
+				index++;
+				if (charsPerLine > 0 && (index % charsPerLine == 0))
+					result.AppendLine();
+			}
+
+			return result.ToString();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="source"></param>
+		/// <returns></returns>
+		public static string FromHex(string source)
+		{
+			StringBuilder result = new StringBuilder();
+
+			int index = 0;
+			byte hexIndex = 0;
+			byte hexValue = 0;
+			while (index < source.Length)
+			{
+				string thisChar = source.Substring(index, 1).ToUpper();
+				int HexCharLocation = (int) HexCharacters.IndexOf(thisChar);
+				if (HexCharLocation >= 0)
+				{
+					hexValue *= 16;
+					hexValue += (byte) HexCharLocation;
+					hexIndex = (byte) ((hexIndex + 1) % 2);
+					if (hexIndex == 0)
+					{
+						result.Append((char) hexValue);
+						hexValue = 0;
+					}
+				}
+				index++;
+			}
+			if (hexIndex != 0)
+			{
+				throw new ArgumentException("The source string is invalid: it has an odd number of hex digits.");
+			}
+			return result.ToString();
+		}
+
+		/// <summary>
 		/// Shows a hex display of a source string similiar to:
 		/// 0000: 48 65 6c 6c 6f 20 57 6f 72 6c 64                 | Hello World     
 		/// </summary>
@@ -510,7 +576,7 @@ namespace BOG.Framework
 				{
 					response.Append(original[index]);
 				}
-				if (! hasThisCharacter && filterOut)
+				if (!hasThisCharacter && filterOut)
 				{
 					response.Append(original[index]);
 				}

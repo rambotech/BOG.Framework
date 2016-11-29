@@ -10,18 +10,21 @@ using BOG.Framework;
 
 namespace BOG.Framework_Test
 {
-    public partial class frmStringEx : Form
-    {
+	public partial class frmStringEx : Form
+	{
 		Dictionary<string, string[]> FilterTestSet = new Dictionary<string, string[]>();
 		public frmStringEx()
-        {
-            InitializeComponent();
-            this.cbxMethodStr.Items.Add("Base64Encode");
-            this.cbxMethodStr.Items.Add("Base64Decode");
-            this.cbxMethodStr.Items.Add("ShowStringAsHex");
-            this.cbxMethodStr.Items.Add("TextAsInnerText");
+		{
+			InitializeComponent();
+			this.cbxMethodStr.Items.Add("Base64Encode");
+			this.cbxMethodStr.Items.Add("Base64Decode");
+			this.cbxMethodStr.Items.Add("ShowStringAsHex");
+			this.cbxMethodStr.Items.Add("TextAsInnerText");
 			this.cbxMethodStr.Items.Add("ResolvePathPlaceholders");
 			this.cbxMethodStr.Items.Add("ResolvePlaceHolders");
+			this.cbxMethodStr.Items.Add("ToHex()");
+			this.cbxMethodStr.Items.Add("FromHex()");
+			this.cbxMethodStr.Items.Add("FromHex() - Invalid");
 			this.cbxMethodStr.SelectedIndex = 0;
 			this.cbxFilterMethod.Items.Clear();
 			this.cbxFilterMethod.Items.Add("Filter-case insensitive");
@@ -44,26 +47,26 @@ namespace BOG.Framework_Test
 		}
 
 		private void btnTestIt_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                switch (this.cbxMethodStr.SelectedIndex)
-                {
-                    case 0:
-                        this.txtOutputStrStr.Text = StringEx.Base64EncodeString(this.txtInputStrStr.Text);
-                        break;
+		{
+			try
+			{
+				switch (this.cbxMethodStr.SelectedIndex)
+				{
+					case 0:
+						this.txtOutputStrStr.Text = StringEx.Base64EncodeString(this.txtInputStrStr.Text);
+						break;
 
-                    case 1:
-                        this.txtOutputStrStr.Text = StringEx.Base64DecodeString(this.txtInputStrStr.Text);
-                        break;
+					case 1:
+						this.txtOutputStrStr.Text = StringEx.Base64DecodeString(this.txtInputStrStr.Text);
+						break;
 
-                    case 2:
-                        this.txtOutputStrStr.Text = StringEx.ShowStringAsHex(this.txtInputStrStr.Text);
-                        break;
+					case 2:
+						this.txtOutputStrStr.Text = StringEx.ShowStringAsHex(this.txtInputStrStr.Text);
+						break;
 
-                    case 3:
-                        this.txtOutputStrStr.Text = StringEx.TextAsInnerText(this.txtInputStrStr.Text);
-                        break;
+					case 3:
+						this.txtOutputStrStr.Text = StringEx.TextAsInnerText(this.txtInputStrStr.Text);
+						break;
 					case 4:
 						this.txtOutputStrStr.Text = StringEx.ResolvePathPlaceholders(this.txtInputStrStr.Text);
 						break;
@@ -74,33 +77,42 @@ namespace BOG.Framework_Test
 						string endDelim = @"\/";
 						this.txtOutputStrStr.Text = StringEx.ResolvePlaceHolders(this.txtInputStrStr.Text, lookup, startDelim, endDelim);
 						break;
+					case 6:
+						this.txtOutputStrStr.Text = StringEx.ToHex(this.txtInputStrStr.Text, false, string.Empty, 80);
+						break;
+					case 7:
+						this.txtOutputStrStr.Text = StringEx.FromHex(this.txtInputStrStr.Text);
+						break;
+					case 8:
+						this.txtOutputStrStr.Text = StringEx.FromHex(this.txtInputStrStr.Text);
+						break;
 				}
 			}
-            catch (Exception err)
-            {
-                MessageBox.Show(DetailedException.WithUserContent(ref err));
-            }
-        }
+			catch (Exception err)
+			{
+				MessageBox.Show(DetailedException.WithUserContent(ref err));
+			}
+		}
 
-        private void cbxMethodStr_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (this.cbxMethodStr.SelectedIndex)
-            {
-                case 0:
-                    this.txtInputStrStr.Text = "The quick brown fox jumped over the lazy dog's back: so there !!";
-                    break;
+		private void cbxMethodStr_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			switch (this.cbxMethodStr.SelectedIndex)
+			{
+				case 0:
+					this.txtInputStrStr.Text = "The quick brown fox jumped over the lazy dog's back: so there !!";
+					break;
 
-                case 1:
-                    this.txtInputStrStr.Text = "VGhhbmtzLi4uIG5vdyBJIGFtIGV4cG9zZWQgdG8gdGhlIHdvcmxkIQ==";
-                    break;
+				case 1:
+					this.txtInputStrStr.Text = "VGhhbmtzLi4uIG5vdyBJIGFtIGV4cG9zZWQgdG8gdGhlIHdvcmxkIQ==";
+					break;
 
-                case 2:
-                    this.txtInputStrStr.Text = "ABCDEFGHIJKLMNOP\r\nQRSTUVWXYZ\t0123456789";
-                    break;
+				case 2:
+					this.txtInputStrStr.Text = "ABCDEFGHIJKLMNOP\r\nQRSTUVWXYZ\t0123456789";
+					break;
 
-                case 3:
-                    this.txtInputStrStr.Text = "&#x24;43,&#55;56.42  which is $43,756.42   .. defeats web sites which try to stop scrapers with encoded characters.";
-                    break;
+				case 3:
+					this.txtInputStrStr.Text = "&#x24;43,&#55;56.42  which is $43,756.42   .. defeats web sites which try to stop scrapers with encoded characters.";
+					break;
 
 				case 4:
 					this.txtInputStrStr.Text = @"[cOMMONaPPLICATIONdATA]\[Unresolved]\%UseRnAMe%\%Unresolved%\MyApplication\MySubfolder";
@@ -108,6 +120,18 @@ namespace BOG.Framework_Test
 
 				case 5:
 					this.txtInputStrStr.Text = @"Take this job and \/EXPLICATIVE\/ !!  \/SoThere\/";
+					break;
+
+				case 6:
+					this.txtInputStrStr.Text = "The quick brown \"fox\" jumped over the lazy dog";
+					break;
+
+				case 7:
+					this.txtInputStrStr.Text = "5 46=86+52071}  7  5g69636b2062726f776e2022666f7822206a756d706564206f76657220746865206c617a7920646f67";
+					break;
+
+				case 8:
+					this.txtInputStrStr.Text = "54-68==6*97,320g6";
 					break;
 			}
 		}

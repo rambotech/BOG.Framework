@@ -164,6 +164,7 @@
       <DependentUpon>frmTestSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="IDemo.cs" />
+    <Compile Include="IMyContract.cs" />
     <Compile Include="PhraseGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

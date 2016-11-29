@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace BOG.Framework
 {
 	/// <summary>
-	/// Provides JSON serialization/deserialization functionality, equivalent to its Json counterpart.
+	/// Provides JSON serialization/deserialization functionality, equivalent to its XML counterpart.
 	///
 	/// example usage:
 	/// MyObject t = new MyObject();

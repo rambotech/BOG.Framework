@@ -22,7 +22,7 @@ namespace BOG.Framework
     /// t = ObjectXMLSerializer&lt;MyObject&gt;.CreateObjectFormat(xmldoc);
     /// </summary>
     /// <typeparam name="T">Any serializable class</typeparam>
-    public static class ObjectXMLSerializer<T> where T : class // Specify that T must be a class.
+    public static class ObjectXMLSerializer<T> where T : class
     {
         private const int _16M = 16 * 1024 * 1024;
 
