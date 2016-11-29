@@ -77,7 +77,7 @@ namespace BOG.Framework
 			return GetHash(encoding.GetBytes(content), method);
 		}
 
-		private static string GetHash(byte[] content, HashMethod method)
+		public static string GetHash(byte[] content, HashMethod method)
 		{
 			HashAlgorithm hashString = new SHA1Managed();
 			switch (method)
@@ -99,6 +99,8 @@ namespace BOG.Framework
 				case HashMethod.RIPEMD:
 					hashString = new RIPEMD160Managed();
 					break;
+				default:
+					throw new ArgumentException("Unrecognized hash encoding: " + method.ToString());
 			}
 			return ByteArrayToHex(hashString.ComputeHash(content));
 		}
