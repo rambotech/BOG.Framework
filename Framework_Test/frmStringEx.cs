@@ -25,6 +25,8 @@ namespace BOG.Framework_Test
 			this.cbxMethodStr.Items.Add("ToHex()");
 			this.cbxMethodStr.Items.Add("FromHex()");
 			this.cbxMethodStr.Items.Add("FromHex() - Invalid");
+			this.cbxMethodStr.Items.Add("ToHex() - From byte[]");
+			this.cbxMethodStr.Items.Add("FromHexToByteArray()");
 			this.cbxMethodStr.SelectedIndex = 0;
 			this.cbxFilterMethod.Items.Clear();
 			this.cbxFilterMethod.Items.Add("Filter-case insensitive");
@@ -86,6 +88,12 @@ namespace BOG.Framework_Test
 					case 8:
 						this.txtOutputStrStr.Text = StringEx.FromHex(this.txtInputStrStr.Text);
 						break;
+					case 9:
+						this.txtOutputStrStr.Text = StringEx.ToHex(Encoding.ASCII.GetBytes(this.txtInputStrStr.Text), false, string.Empty, 80);
+						break;
+					case 10:
+						this.txtOutputStrStr.Text = Encoding.ASCII.GetString(StringEx.FromHexToByteArray(this.txtInputStrStr.Text));
+						break;
 				}
 			}
 			catch (Exception err)
@@ -123,10 +131,12 @@ namespace BOG.Framework_Test
 					break;
 
 				case 6:
+				case 9:
 					this.txtInputStrStr.Text = "The quick brown \"fox\" jumped over the lazy dog";
 					break;
 
 				case 7:
+				case 10:
 					this.txtInputStrStr.Text = "5 46=86+52071}  7  5g69636b2062726f776e2022666f7822206a756d706564206f76657220746865206c617a7920646f67";
 					break;
 

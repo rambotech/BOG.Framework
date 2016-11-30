@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -308,12 +309,12 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
-		/// turns 
+		/// Turns the characters of a string into hex digits.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="spacer"></param>
-		/// <param name="charsPerLine"></param>
-		/// <returns></returns>
+		/// <param name="source">The content to build as hex</param>
+		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
+		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
+		/// <returns>a string with the hex digits</returns>
 		public static string ToHex(string source, bool useUpperCase, string spacer, int charsPerLine)
 		{
 			if (spacer.Length > 1 || (spacer.Length == 1 && HexCharacters.ToUpper().IndexOf(spacer.ToUpper()) >= 0))
@@ -336,10 +337,9 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
-		/// 
+		/// <param name="source">The hex string for building the content</param>
 		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+		/// <returns>the string represented by the hex digits</returns>
 		public static string FromHex(string source)
 		{
 			StringBuilder result = new StringBuilder();
@@ -369,6 +369,74 @@ namespace BOG.Framework
 				throw new ArgumentException("The source string is invalid: it has an odd number of hex digits.");
 			}
 			return result.ToString();
+		}
+
+		// -------------------
+
+		/// <summary>
+		/// Turns the characters of a string into hex digits.
+		/// </summary>
+		/// <param name="source">The content to build as hex</param>
+		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
+		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
+		/// <returns>a string with the hex digits</returns>
+		public static string ToHex(byte[] source, bool useUpperCase, string spacer, int charsPerLine)
+		{
+			if (spacer.Length > 1 || (spacer.Length == 1 && HexCharacters.ToUpper().IndexOf(spacer.ToUpper()) >= 0))
+			{
+				throw new Exception("A spacer can not be a hexidecimal character.");
+			}
+			StringBuilder result = new StringBuilder();
+
+			string formatter = useUpperCase ? "{0:X2}{1}" : "{0:x2}{1}";
+			int index = 0;
+			while (index < source.Length)
+			{
+				result.Append(string.Format(formatter, source[index], spacer));
+				index++;
+				if (charsPerLine > 0 && (index % charsPerLine == 0))
+					result.AppendLine();
+			}
+
+			return result.ToString();
+		}
+
+		/// <summary>
+		/// <param name="source">The hex string for building the content</param>
+		/// </summary>
+		/// <returns>the string represented by the hex digits</returns>
+		public static byte[] FromHexToByteArray(string source)
+		{
+			byte[] buffer = new byte[source.Length / 2];
+
+			int index = 0;
+			int hexIndex = 0;
+			byte hexToggle = 0;
+			byte hexValue = 0;
+			while (index < source.Length)
+			{
+				string thisChar = source.Substring(index, 1).ToUpper();
+				int HexCharLocation = (int) HexCharacters.IndexOf(thisChar);
+				if (HexCharLocation >= 0)
+				{
+					hexValue *= 16;
+					hexValue += (byte) HexCharLocation;
+					hexToggle = (byte) ((hexToggle + 1) % 2);
+					if (hexToggle == 0)
+					{
+						buffer[hexIndex++] = hexValue;
+						hexValue = 0;
+					}
+				}
+				index++;
+			}
+			if (hexToggle != 0)
+			{
+				throw new ArgumentException("The source string is invalid: it has an odd number of hex digits.");
+			}
+			MemoryStream m = new MemoryStream(hexIndex);
+			m.Write(buffer, 0, hexIndex);
+			return m.ToArray();
 		}
 
 		/// <summary>

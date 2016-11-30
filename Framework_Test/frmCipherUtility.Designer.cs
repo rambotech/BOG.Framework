@@ -45,6 +45,8 @@
 			this.btnDecrypt = new System.Windows.Forms.Button();
 			this.btnAutoToDecrypted = new System.Windows.Forms.Button();
 			this.btnAutoToEncrypted = new System.Windows.Forms.Button();
+			this.rbString = new System.Windows.Forms.RadioButton();
+			this.rbByteArray = new System.Windows.Forms.RadioButton();
 			this.SuspendLayout();
 			// 
 			// lblEncryptionMethod
@@ -156,9 +158,9 @@
 			// 
 			// btnSwitchSourceAndResult
 			// 
-			this.btnSwitchSourceAndResult.Location = new System.Drawing.Point(59, 201);
+			this.btnSwitchSourceAndResult.Location = new System.Drawing.Point(189, 201);
 			this.btnSwitchSourceAndResult.Name = "btnSwitchSourceAndResult";
-			this.btnSwitchSourceAndResult.Size = new System.Drawing.Size(90, 23);
+			this.btnSwitchSourceAndResult.Size = new System.Drawing.Size(67, 23);
 			this.btnSwitchSourceAndResult.TabIndex = 12;
 			this.btnSwitchSourceAndResult.Text = "Switch";
 			this.btnSwitchSourceAndResult.UseVisualStyleBackColor = true;
@@ -166,9 +168,9 @@
 			// 
 			// btnEncrypt
 			// 
-			this.btnEncrypt.Location = new System.Drawing.Point(155, 201);
+			this.btnEncrypt.Location = new System.Drawing.Point(258, 201);
 			this.btnEncrypt.Name = "btnEncrypt";
-			this.btnEncrypt.Size = new System.Drawing.Size(90, 23);
+			this.btnEncrypt.Size = new System.Drawing.Size(60, 23);
 			this.btnEncrypt.TabIndex = 13;
 			this.btnEncrypt.Text = "Encrypt";
 			this.btnEncrypt.UseVisualStyleBackColor = true;
@@ -176,9 +178,9 @@
 			// 
 			// btnDecrypt
 			// 
-			this.btnDecrypt.Location = new System.Drawing.Point(251, 201);
+			this.btnDecrypt.Location = new System.Drawing.Point(320, 201);
 			this.btnDecrypt.Name = "btnDecrypt";
-			this.btnDecrypt.Size = new System.Drawing.Size(90, 23);
+			this.btnDecrypt.Size = new System.Drawing.Size(60, 23);
 			this.btnDecrypt.TabIndex = 14;
 			this.btnDecrypt.Text = "Decrypt";
 			this.btnDecrypt.UseVisualStyleBackColor = true;
@@ -186,9 +188,9 @@
 			// 
 			// btnAutoToDecrypted
 			// 
-			this.btnAutoToDecrypted.Location = new System.Drawing.Point(347, 201);
+			this.btnAutoToDecrypted.Location = new System.Drawing.Point(382, 201);
 			this.btnAutoToDecrypted.Name = "btnAutoToDecrypted";
-			this.btnAutoToDecrypted.Size = new System.Drawing.Size(123, 23);
+			this.btnAutoToDecrypted.Size = new System.Drawing.Size(108, 23);
 			this.btnAutoToDecrypted.TabIndex = 15;
 			this.btnAutoToDecrypted.Text = "Auto To Decrypted";
 			this.btnAutoToDecrypted.UseVisualStyleBackColor = true;
@@ -196,19 +198,46 @@
 			// 
 			// btnAutoToEncrypted
 			// 
-			this.btnAutoToEncrypted.Location = new System.Drawing.Point(476, 201);
+			this.btnAutoToEncrypted.Location = new System.Drawing.Point(491, 201);
 			this.btnAutoToEncrypted.Name = "btnAutoToEncrypted";
-			this.btnAutoToEncrypted.Size = new System.Drawing.Size(123, 23);
+			this.btnAutoToEncrypted.Size = new System.Drawing.Size(108, 23);
 			this.btnAutoToEncrypted.TabIndex = 16;
 			this.btnAutoToEncrypted.Text = "Auto To Encrypted";
 			this.btnAutoToEncrypted.UseVisualStyleBackColor = true;
 			this.btnAutoToEncrypted.Click += new System.EventHandler(this.btnAutoToEncrypted_Click);
+			// 
+			// rbString
+			// 
+			this.rbString.AutoSize = true;
+			this.rbString.Checked = true;
+			this.rbString.Location = new System.Drawing.Point(16, 203);
+			this.rbString.Name = "rbString";
+			this.rbString.Size = new System.Drawing.Size(52, 17);
+			this.rbString.TabIndex = 17;
+			this.rbString.TabStop = true;
+			this.rbString.Text = "String";
+			this.rbString.UseVisualStyleBackColor = true;
+			this.rbString.CheckedChanged += new System.EventHandler(this.rbString_CheckedChanged);
+			// 
+			// rbByteArray
+			// 
+			this.rbByteArray.AutoSize = true;
+			this.rbByteArray.Location = new System.Drawing.Point(69, 203);
+			this.rbByteArray.Name = "rbByteArray";
+			this.rbByteArray.Size = new System.Drawing.Size(51, 17);
+			this.rbByteArray.TabIndex = 18;
+			this.rbByteArray.TabStop = true;
+			this.rbByteArray.Text = "byte[]";
+			this.rbByteArray.UseVisualStyleBackColor = true;
+			this.rbByteArray.CheckedChanged += new System.EventHandler(this.rbByteArray_CheckedChanged);
 			// 
 			// frmCipherUtility
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(615, 350);
+			this.Controls.Add(this.rbByteArray);
+			this.Controls.Add(this.rbString);
 			this.Controls.Add(this.btnAutoToEncrypted);
 			this.Controls.Add(this.btnAutoToDecrypted);
 			this.Controls.Add(this.btnDecrypt);
@@ -252,5 +281,7 @@
         private System.Windows.Forms.Button btnDecrypt;
         private System.Windows.Forms.Button btnAutoToDecrypted;
         private System.Windows.Forms.Button btnAutoToEncrypted;
-    }
+		private System.Windows.Forms.RadioButton rbString;
+		private System.Windows.Forms.RadioButton rbByteArray;
+	}
 }
