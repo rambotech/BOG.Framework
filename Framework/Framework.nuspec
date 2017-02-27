@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Added as a nuget package.</releaseNotes>
-    <copyright>Copyright 2010-2016, John J Schultz, Open Source under the MIT License</copyright>
+    <copyright>Copyright 2010-2017, John J Schultz, Open Source under the MIT License</copyright>
     <tags>C# net40 net45 utility harvest monitor strings exception format formatting AD directory file scripting fuse logging password hash serialize serializing</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" />

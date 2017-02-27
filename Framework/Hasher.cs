@@ -77,6 +77,12 @@ namespace BOG.Framework
 			return GetHash(encoding.GetBytes(content), method);
 		}
 
+		/// <summary>
+		/// Create a hash value from a byte array's content.
+		/// </summary>
+		/// <param name="content">the literal content to evaluate for the hash.</param>
+		/// <param name="method">The HashMethod enumeration for the evaluation</param>
+		/// <returns>A hex-encoded value of the hash value</returns>
 		public static string GetHash(byte[] content, HashMethod method)
 		{
 			HashAlgorithm hashString = new SHA1Managed();

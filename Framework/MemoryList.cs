@@ -249,6 +249,9 @@ namespace BOG.Framework
 			return _l.Count;
 		}
 
+		/// <summary>
+		/// Erase the existing list.
+		/// </summary>
 		public void Clear()
 		{
 			_l.Clear();

@@ -312,6 +312,7 @@ namespace BOG.Framework.Extensions
 		/// Turns the characters of a string into hex digits.
 		/// </summary>
 		/// <param name="source">The content to build as hex</param>
+		/// <param name="useUpperCase">A-F digits are uppercase when true.</param>
 		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
 		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
 		/// <returns>a string with the hex digits</returns>
@@ -377,6 +378,7 @@ namespace BOG.Framework.Extensions
 		/// Turns the characters of a string into hex digits.
 		/// </summary>
 		/// <param name="source">The content to build as hex</param>
+		/// <param name="useUpperCase">A-F digits are uppercase when true.</param>
 		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
 		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
 		/// <returns>a string with the hex digits</returns>

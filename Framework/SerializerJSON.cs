@@ -50,7 +50,7 @@ namespace BOG.Framework
 		/// <summary>
 		/// Creates an object from a string containing serialized Json of an instance of an object of that class type.
 		/// </summary>
-		/// <param name="Json">the string containing the serialized Json</param>
+		/// <param name="json">the string containing the serialized Json</param>
 		/// <returns>An object with the deserialized content</returns>
 		public static T CreateObjectFormat(string json)
 		{

@@ -63,6 +63,12 @@ namespace BOG.Framework
             return results;
         }
 
+		/// <summary>
+		/// Returns a list of methods in a DLL which implement a specified interface.
+		/// </summary>
+		/// <param name="DLL">The assemly to search</param>
+		/// <param name="InterfaceName">The name of the interface which is implemented.</param>
+		/// <returns></returns>
 		public static List<string> GetImplementersForInterface(System.Reflection.Assembly DLL, string InterfaceName)
 		{
 			List<string> Results = new List<string>();
