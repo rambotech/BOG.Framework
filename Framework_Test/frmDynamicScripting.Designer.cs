@@ -37,12 +37,8 @@
 			this.txtResults.Location = new System.Drawing.Point(0, 0);
 			this.txtResults.Multiline = true;
 			this.txtResults.Name = "txtResults";
-			this.txtResults.ReadOnly = true;
-			this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtResults.Size = new System.Drawing.Size(624, 357);
-			this.txtResults.TabIndex = 1;
-			this.txtResults.Text = "using System;\r\n\r\npublic class DemoSet3\r\n{\r\n  string Process\r\n\r\n}";
-			this.txtResults.WordWrap = false;
+			this.txtResults.TabIndex = 0;
 			// 
 			// frmDynamicScripting
 			// 

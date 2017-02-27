@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BOG.Framework;
+using BOG.Framework.Extensions;
 
 namespace BOG.Framework_Test
 {
@@ -55,44 +56,44 @@ namespace BOG.Framework_Test
 				switch (this.cbxMethodStr.SelectedIndex)
 				{
 					case 0:
-						this.txtOutputStrStr.Text = StringEx.Base64EncodeString(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.Base64EncodeString();
 						break;
 
 					case 1:
-						this.txtOutputStrStr.Text = StringEx.Base64DecodeString(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.Base64DecodeString();
 						break;
 
 					case 2:
-						this.txtOutputStrStr.Text = StringEx.ShowStringAsHex(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.ShowStringAsHex();
 						break;
 
 					case 3:
-						this.txtOutputStrStr.Text = StringEx.TextAsInnerText(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.TextAsInnerText();
 						break;
 					case 4:
-						this.txtOutputStrStr.Text = StringEx.ResolvePathPlaceholders(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.ResolvePathPlaceholders();
 						break;
 					case 5:
 						Dictionary<string, string> lookup = new Dictionary<string, string>();
 						lookup.Add("Explicative", "shove it");
 						string startDelim = @"\/";
 						string endDelim = @"\/";
-						this.txtOutputStrStr.Text = StringEx.ResolvePlaceHolders(this.txtInputStrStr.Text, lookup, startDelim, endDelim);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.ResolvePlaceHolders(lookup, startDelim, endDelim);
 						break;
 					case 6:
-						this.txtOutputStrStr.Text = StringEx.ToHex(this.txtInputStrStr.Text, false, string.Empty, 80);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.ToHex(false, string.Empty, 80);
 						break;
 					case 7:
-						this.txtOutputStrStr.Text = StringEx.FromHex(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.FromHex();
 						break;
 					case 8:
-						this.txtOutputStrStr.Text = StringEx.FromHex(this.txtInputStrStr.Text);
+						this.txtOutputStrStr.Text = this.txtInputStrStr.Text.FromHex();
 						break;
 					case 9:
-						this.txtOutputStrStr.Text = StringEx.ToHex(Encoding.ASCII.GetBytes(this.txtInputStrStr.Text), false, string.Empty, 80);
+						this.txtOutputStrStr.Text = Encoding.ASCII.GetBytes(this.txtInputStrStr.Text).ToHex(false, string.Empty, 80);
 						break;
 					case 10:
-						this.txtOutputStrStr.Text = Encoding.ASCII.GetString(StringEx.FromHexToByteArray(this.txtInputStrStr.Text));
+						this.txtOutputStrStr.Text = Encoding.ASCII.GetString(this.txtInputStrStr.Text.FromHexToByteArray());
 						break;
 				}
 			}
@@ -150,19 +151,19 @@ namespace BOG.Framework_Test
 		{
 			if ((string) this.cbxFilterMethod.SelectedItem == "Filter-case insensitive")
 			{
-				this.txtFiltered.Text = StringEx.Filter(this.txtOriginal.Text, this.txtFilterSet.Text, true);
+				this.txtFiltered.Text = this.txtOriginal.Text.Filter(this.txtFilterSet.Text, true);
 			}
 			if ((string) this.cbxFilterMethod.SelectedItem == "Filter-case sensitive")
 			{
-				this.txtFiltered.Text = StringEx.Filter(this.txtOriginal.Text, this.txtFilterSet.Text, false);
+				this.txtFiltered.Text = this.txtOriginal.Text.Filter(this.txtFilterSet.Text, false);
 			}
 			if ((string) this.cbxFilterMethod.SelectedItem == "FilterOut-case insensitive")
 			{
-				this.txtFiltered.Text = StringEx.FilterOut(this.txtOriginal.Text, this.txtFilterSet.Text, true);
+				this.txtFiltered.Text = this.txtOriginal.Text.FilterOut(this.txtFilterSet.Text, true);
 			}
 			if ((string) this.cbxFilterMethod.SelectedItem == "FilterOut-case sensitive")
 			{
-				this.txtFiltered.Text = StringEx.FilterOut(this.txtOriginal.Text, this.txtFilterSet.Text, false);
+				this.txtFiltered.Text = this.txtOriginal.Text.FilterOut(this.txtFilterSet.Text, false);
 			}
 		}
 

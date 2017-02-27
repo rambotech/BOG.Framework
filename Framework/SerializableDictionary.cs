@@ -12,7 +12,7 @@ namespace BOG.Framework
     /// <typeparam name="TKey">The type of the key</typeparam>
     /// <typeparam name="TValue">The type of the value</typeparam>
     [XmlRoot("dictionary")]
-    public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IXmlSerializable
+    public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IXmlSerializable, IDictionary<TKey,TValue>
     {
         #region IXmlSerializable Members
         /// <summary>

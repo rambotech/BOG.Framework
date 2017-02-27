@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.XPath;
 
-namespace BOG.Framework
+namespace BOG.Framework.Extensions
 {
 	/// <summary>
 	/// Provides enhanced string functionality
@@ -31,7 +31,7 @@ namespace BOG.Framework
 		/// <param name="substitute">The string to replace what was found</param>
 		/// <param name="ignoreCase">true to ignore case.  false here has the same behavior as .Replace()</param>
 		/// <returns></returns>
-		public static string ReplaceNoCase(string original, string pattern, string substitute, bool ignoreCase)
+		public static string ReplaceNoCase(this string original, string pattern, string substitute, bool ignoreCase)
 		{
 			int Index = 0;
 			int BaseIndex = 0;
@@ -88,7 +88,7 @@ namespace BOG.Framework
 		/// <param name="substitute"></param>
 		/// <param name="ignoreCase"></param>
 		/// <returns></returns>
-		public static string RegExMatchReplace(string content, string pattern, string locate, string substitute, bool ignoreCase)
+		public static string RegExMatchReplace(this string content, string pattern, string locate, string substitute, bool ignoreCase)
 		{
 			Regex r = new Regex(pattern, ignoreCase ? System.Text.RegularExpressions.RegexOptions.IgnoreCase : 0);
 			MatchCollection mc = r.Matches(content);
@@ -109,7 +109,7 @@ namespace BOG.Framework
 		/// <param name="ignoreCase">case insensitive matching when true.</param>
 		/// <param name="lastMatch">When true, returns the index of the last match instead of the first.</param>
 		/// <returns>-1 if not found, or the index of the first character in the search parameter.</returns>
-		public static int IndexOfAnyString(string search, string[] keywords, bool ignoreCase, bool lastMatch)
+		public static int IndexOfAnyString(this string search, string[] keywords, bool ignoreCase, bool lastMatch)
 		{
 			int startIndex = -1;
 			foreach (string s in keywords)
@@ -137,7 +137,7 @@ namespace BOG.Framework
 		/// <param name="ignoreCase"></param>
 		/// <param name="wildcard"></param>
 		/// <returns></returns>
-		public static int WildcardIndexOfAnyString(string core, string search, int startAt, bool ignoreCase, char wildcard)
+		public static int WildcardIndexOfAnyString(this string core, string search, int startAt, bool ignoreCase, char wildcard)
 		{
 			int Result = -1;
 			if (search.Length <= core.Length)
@@ -183,7 +183,7 @@ namespace BOG.Framework
 		/// <param name="whitespace">array of characters defining whitespace characters</param>
 		/// <param name="quote">The character to treat as a quotation.</param>
 		/// <returns></returns>
-		public static string QuotedTrim(string search, char[] whitespace, char quote)
+		public static string QuotedTrim(this string search, char[] whitespace, char quote)
 		{
 			string s = string.Empty;
 
@@ -239,7 +239,7 @@ namespace BOG.Framework
 		/// <param name="raw">The string to parse</param>
 		/// <returns>the decoded string.  If an exception is thrown in the processing
 		/// the original raw string </returns>
-		public static string TextAsInnerText(string raw)
+		public static string TextAsInnerText(this string raw)
 		{
 			XmlDocument xml = new XmlDocument();
 			try
@@ -258,7 +258,7 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="inputStr">Base64 compliant string</param>
 		/// <returns></returns>
-		public static string Base64DecodeString(string inputStr)
+		public static string Base64DecodeString(this string inputStr)
 		{
 			byte[] decodedByteArray = Convert.FromBase64CharArray(inputStr.ToCharArray(), 0, inputStr.Length);
 			StringBuilder s = new StringBuilder();
@@ -275,7 +275,7 @@ namespace BOG.Framework
 		/// <param name="inputStr">the string value to encode</param>
 		/// <param name="insertLineBreaks">Whether the resulting Base64 should be broken into separate lines.</param>
 		/// <returns>Base64</returns>
-		public static string Base64EncodeString(string inputStr, bool insertLineBreaks)
+		public static string Base64EncodeString(this string inputStr, bool insertLineBreaks)
 		{
 			byte[] rawByteArray = new byte[inputStr.Length];
 			char[] encodedArray = new char[inputStr.Length * 2];
@@ -303,7 +303,7 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="inputStr">the string value to encode</param>
 		/// <returns>Base64</returns>
-		public static string Base64EncodeString(string inputStr)
+		public static string Base64EncodeString(this string inputStr)
 		{
 			return Base64EncodeString(inputStr, true);
 		}
@@ -315,7 +315,7 @@ namespace BOG.Framework
 		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
 		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
 		/// <returns>a string with the hex digits</returns>
-		public static string ToHex(string source, bool useUpperCase, string spacer, int charsPerLine)
+		public static string ToHex(this string source, bool useUpperCase, string spacer, int charsPerLine)
 		{
 			if (spacer.Length > 1 || (spacer.Length == 1 && HexCharacters.ToUpper().IndexOf(spacer.ToUpper()) >= 0))
 			{
@@ -340,7 +340,7 @@ namespace BOG.Framework
 		/// <param name="source">The hex string for building the content</param>
 		/// </summary>
 		/// <returns>the string represented by the hex digits</returns>
-		public static string FromHex(string source)
+		public static string FromHex(this string source)
 		{
 			StringBuilder result = new StringBuilder();
 
@@ -380,7 +380,7 @@ namespace BOG.Framework
 		/// <param name="spacer">A single character to use as hex-pair separator, or string.Empty for a continous sequence.</param>
 		/// <param name="charsPerLine">The number of characters per line, or 0 for a single line.</param>
 		/// <returns>a string with the hex digits</returns>
-		public static string ToHex(byte[] source, bool useUpperCase, string spacer, int charsPerLine)
+		public static string ToHex(this byte[] source, bool useUpperCase, string spacer, int charsPerLine)
 		{
 			if (spacer.Length > 1 || (spacer.Length == 1 && HexCharacters.ToUpper().IndexOf(spacer.ToUpper()) >= 0))
 			{
@@ -405,7 +405,7 @@ namespace BOG.Framework
 		/// <param name="source">The hex string for building the content</param>
 		/// </summary>
 		/// <returns>the string represented by the hex digits</returns>
-		public static byte[] FromHexToByteArray(string source)
+		public static byte[] FromHexToByteArray(this string source)
 		{
 			byte[] buffer = new byte[source.Length / 2];
 
@@ -445,7 +445,7 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="source">The string to examine</param>
 		/// <returns>As above.</returns>
-		public static string ShowStringAsHex(string source)
+		public static string ShowStringAsHex(this string source)
 		{
 			int Offset = 0;
 			int Index = 0;
@@ -503,7 +503,7 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="source"></param>
 		/// <returns>The value as a double</returns>
-		public static double FinancialDoubleParse(string source)
+		public static double FinancialDoubleParse(this string source)
 		{
 			bool Negative = false;
 			string sourceWork = source;
@@ -519,7 +519,7 @@ namespace BOG.Framework
 
 		/// <summary>
 		/// Takes a string with placeholders, and replaces the placeholders with lookup content from a dictionary.
-		/// E.g.: ResolvePlaceHolders(@"Take this job and \/explicative\/ !", {Dictionary}, @"\/", @"\/") might return...
+		/// E.g.: @"Take this job and \/explicative\/ !".ResolvePlaceHolders({Dictionary}, @"\/", @"\/") might return...
 		/// Take this job and shove it !
 		/// </summary>
 		/// <param name="original"></param>
@@ -527,7 +527,7 @@ namespace BOG.Framework
 		/// <param name="startDelimiter"></param>
 		/// <param name="endDelimiter"></param>
 		/// <returns></returns>
-		public static string ResolvePlaceHolders(string original, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
+		public static string ResolvePlaceHolders(this string original, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
 		{
 			string result = original;
 			foreach (string key in lookup.Keys)
@@ -545,7 +545,7 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="rawPath">The path string containing potential placeholders.</param>
 		/// <returns>The resolved path</returns>
-		public static string ResolvePathPlaceholders(string rawPath)
+		public static string ResolvePathPlaceholders(this string rawPath)
 		{
 			return ResolvePathPlaceholders(rawPath, new Dictionary<string, string>(), string.Empty, string.Empty);
 		}
@@ -560,7 +560,7 @@ namespace BOG.Framework
 		/// <param name="startDelimiter">The starting delimiter for a user-placeholder.</param>
 		/// <param name="endDelimiter">The ending delimiter for a user-placeholder.</param>
 		/// <returns></returns>
-		public static string ResolvePathPlaceholders(string rawPath, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
+		public static string ResolvePathPlaceholders(this string rawPath, Dictionary<string, string> lookup, string startDelimiter, string endDelimiter)
 		{
 			string result = rawPath;
 			// Locate and replace user-defined placeholders, e.g.  "\/ALLUSERSPROFILE\/"
@@ -591,7 +591,7 @@ namespace BOG.Framework
 		/// <param name="original">The string to examine.</param>
 		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
 		/// <returns>The original string void of characters not explicitly allowed.</returns>
-		public static string Filter(string original, string filterCharacterSet)
+		public static string Filter(this string original, string filterCharacterSet)
 		{
 			return Filtering(original, filterCharacterSet, false, false);
 		}
@@ -603,7 +603,7 @@ namespace BOG.Framework
 		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
 		/// <param name="ignoreCase">True to ignore case when comparing</param>
 		/// <returns></returns>
-		public static string Filter(string original, string filterCharacterSet, bool ignoreCase)
+		public static string Filter(this string original, string filterCharacterSet, bool ignoreCase)
 		{
 			return Filtering(original, filterCharacterSet, ignoreCase, false);
 		}
@@ -614,7 +614,7 @@ namespace BOG.Framework
 		/// <param name="original">The string to examine.</param>
 		/// <param name="filterCharacterSet">The string of characters which are disallowed.</param>
 		/// <returns>The original string void of characters explicitly disallowed.</returns>
-		public static string FilterOut(string original, string filterCharacterSet)
+		public static string FilterOut(this string original, string filterCharacterSet)
 		{
 			return Filtering(original, filterCharacterSet, false, true);
 		}
@@ -626,7 +626,7 @@ namespace BOG.Framework
 		/// <param name="filterCharacterSet">The string of characters which are allowed.</param>
 		/// <param name="ignoreCase">True to ignore case when comparing</param>
 		/// <returns></returns>
-		public static string FilterOut(string original, string filterCharacterSet, bool ignoreCase)
+		public static string FilterOut(this string original, string filterCharacterSet, bool ignoreCase)
 		{
 			return Filtering(original, filterCharacterSet, ignoreCase, true);
 		}
