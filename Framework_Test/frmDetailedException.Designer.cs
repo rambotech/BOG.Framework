@@ -1,33 +1,33 @@
 ﻿namespace BOG.Framework_Test
 {
-    partial class frmDetailedException
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmDetailedException
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.btnTestIt = new System.Windows.Forms.Button();
 			this.txtResultError = new System.Windows.Forms.TextBox();
 			this.txtErrorMessage = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
 			// 
 			// txtResultError
 			// 
-			this.txtResultError.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtResultError.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
 			this.txtResultError.Location = new System.Drawing.Point(12, 154);
 			this.txtResultError.Multiline = true;
 			this.txtResultError.Name = "txtResultError";
@@ -84,9 +84,9 @@
 			this.cbxDetailLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbxDetailLevel.FormattingEnabled = true;
 			this.cbxDetailLevel.Items.AddRange(new object[] {
-            "WithUserContent",
-            "WithMachineContent",
-            "WithEnterpriseContent"});
+			"WithUserContent",
+			"WithMachineContent",
+			"WithEnterpriseContent"});
 			this.cbxDetailLevel.Location = new System.Drawing.Point(90, 101);
 			this.cbxDetailLevel.Name = "cbxDetailLevel";
 			this.cbxDetailLevel.Size = new System.Drawing.Size(181, 21);
@@ -155,19 +155,19 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Button btnTestIt;
-        private System.Windows.Forms.TextBox txtResultError;
-        private System.Windows.Forms.TextBox txtErrorMessage;
-        private System.Windows.Forms.Label lblErrorMessage;
-        private System.Windows.Forms.ComboBox cbxDetailLevel;
-        private System.Windows.Forms.Label lblDetailLevel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtHeader;
-        private System.Windows.Forms.TextBox txtFooter;
-    }
+		private System.Windows.Forms.Button btnTestIt;
+		private System.Windows.Forms.TextBox txtResultError;
+		private System.Windows.Forms.TextBox txtErrorMessage;
+		private System.Windows.Forms.Label lblErrorMessage;
+		private System.Windows.Forms.ComboBox cbxDetailLevel;
+		private System.Windows.Forms.Label lblDetailLevel;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox txtHeader;
+		private System.Windows.Forms.TextBox txtFooter;
+	}
 }

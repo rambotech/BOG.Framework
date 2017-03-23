@@ -1,33 +1,33 @@
 ﻿namespace BOG.Framework_Test
 {
-    partial class frmBabbleOn
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmBabbleOn
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBabbleOn));
 			this.tmrMessageSender = new System.Windows.Forms.Timer(this.components);
@@ -49,7 +49,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudListenerCount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize) (this.nudListenerCount)).BeginInit();
 			this.tabPage2.SuspendLayout();
 			this.gbxBabbleFind.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -98,9 +98,9 @@
 			// 
 			// lbxMessages
 			// 
-			this.lbxMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbxMessages.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.lbxMessages.FormattingEnabled = true;
 			this.lbxMessages.Location = new System.Drawing.Point(251, 17);
 			this.lbxMessages.Name = "lbxMessages";
@@ -111,18 +111,18 @@
 			// 
 			this.nudListenerCount.Location = new System.Drawing.Point(178, 25);
 			this.nudListenerCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+			1,
+			0,
+			0,
+			0});
 			this.nudListenerCount.Name = "nudListenerCount";
 			this.nudListenerCount.Size = new System.Drawing.Size(53, 20);
 			this.nudListenerCount.TabIndex = 7;
 			this.nudListenerCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+			1,
+			0,
+			0,
+			0});
 			// 
 			// btnStopBabbling
 			// 
@@ -160,9 +160,9 @@
 			// 
 			// gbxBabbleFind
 			// 
-			this.gbxBabbleFind.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbxBabbleFind.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.gbxBabbleFind.Controls.Add(this.label1);
 			this.gbxBabbleFind.Controls.Add(this.lbxListeners);
 			this.gbxBabbleFind.Location = new System.Drawing.Point(226, 12);
@@ -182,9 +182,9 @@
 			// 
 			// lbxListeners
 			// 
-			this.lbxListeners.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbxListeners.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.lbxListeners.FormattingEnabled = true;
 			this.lbxListeners.Location = new System.Drawing.Point(6, 19);
 			this.lbxListeners.Name = "lbxListeners";
@@ -204,7 +204,7 @@
 			// 
 			// txtHostToSearch
 			// 
-			this.txtHostToSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtHostToSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
 			this.txtHostToSearch.Location = new System.Drawing.Point(6, 19);
 			this.txtHostToSearch.Name = "txtHostToSearch";
 			this.txtHostToSearch.Size = new System.Drawing.Size(200, 23);
@@ -255,7 +255,7 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudListenerCount)).EndInit();
+			((System.ComponentModel.ISupportInitialize) (this.nudListenerCount)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			this.gbxBabbleFind.ResumeLayout(false);
 			this.gbxBabbleFind.PerformLayout();
@@ -265,25 +265,25 @@
 			this.gbxHelp.PerformLayout();
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Timer tmrMessageSender;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button btnStartBabbling;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btnStopBabbling;
-        private System.Windows.Forms.Button btnFindBabblers;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtHostToSearch;
-        private System.Windows.Forms.NumericUpDown nudListenerCount;
-        private System.Windows.Forms.ListBox lbxMessages;
-        private System.Windows.Forms.GroupBox gbxBabbleFind;
-        private System.Windows.Forms.ListBox lbxListeners;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Timer tmrMessageSender;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Button btnStartBabbling;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Button btnStopBabbling;
+		private System.Windows.Forms.Button btnFindBabblers;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.TextBox txtHostToSearch;
+		private System.Windows.Forms.NumericUpDown nudListenerCount;
+		private System.Windows.Forms.ListBox lbxMessages;
+		private System.Windows.Forms.GroupBox gbxBabbleFind;
+		private System.Windows.Forms.ListBox lbxListeners;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.GroupBox gbxHelp;
 		private System.Windows.Forms.TextBox textBox1;
 	}

@@ -12,7 +12,7 @@ namespace BOG.Framework
 	/// </summary>
 	public class Logger
 	{
-		string _messageFilePath = Environment.GetEnvironmentVariable("TEMP"); 
+		string _messageFilePath = Environment.GetEnvironmentVariable("TEMP");
 		string _messageFilePattern = "Log_{0:yyyyMMdd_HHmmss}.txt";
 		int _maxSecondsThreshold = 3600;
 		long _maxSizeThreshold = 150L * 1024L;
@@ -107,7 +107,7 @@ namespace BOG.Framework
 		/// Adds a line to the log file, and appends a newline character.
 		/// </summary>
 		/// <param name="message"></param>
-		public void CommitMessageLineToFile (string message)
+		public void CommitMessageLineToFile(string message)
 		{
 			CommitMessageToFile(message + "\r\n");
 		}
@@ -129,7 +129,7 @@ namespace BOG.Framework
 				CurrentFileCreated = DateTime.Now;
 				CurrentFileSize = 0L;
 				CurrentFileName = Path.Combine(_messageFilePath, string.Format(_messageFilePattern, CurrentFileCreated));
-				if (! Directory.Exists(_messageFilePath))
+				if (!Directory.Exists(_messageFilePath))
 				{
 					Directory.CreateDirectory(_messageFilePath);
 				}

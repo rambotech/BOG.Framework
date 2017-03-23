@@ -39,7 +39,7 @@
 			this.cbxEncoding = new System.Windows.Forms.ComboBox();
 			this.gbxSourceText = new System.Windows.Forms.GroupBox();
 			this.txtSourceText = new System.Windows.Forms.TextBox();
-			((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
+			((System.ComponentModel.ISupportInitialize) (this.scMain)).BeginInit();
 			this.scMain.Panel1.SuspendLayout();
 			this.scMain.Panel2.SuspendLayout();
 			this.scMain.SuspendLayout();
@@ -148,9 +148,9 @@
 			// 
 			// gbxSourceText
 			// 
-			this.gbxSourceText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbxSourceText.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.gbxSourceText.Controls.Add(this.txtSourceText);
 			this.gbxSourceText.Location = new System.Drawing.Point(6, 7);
 			this.gbxSourceText.Name = "gbxSourceText";
@@ -184,7 +184,7 @@
 			this.scMain.Panel1.ResumeLayout(false);
 			this.scMain.Panel1.PerformLayout();
 			this.scMain.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
+			((System.ComponentModel.ISupportInitialize) (this.scMain)).EndInit();
 			this.scMain.ResumeLayout(false);
 			this.gbxSourceText.ResumeLayout(false);
 			this.gbxSourceText.PerformLayout();

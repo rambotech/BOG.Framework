@@ -1,33 +1,33 @@
 ﻿namespace BOG.Framework_Test
 {
-    partial class frmCipherUtility
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmCipherUtility
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.lblEncryptionMethod = new System.Windows.Forms.Label();
 			this.cbxEncryptionMethod = new System.Windows.Forms.ComboBox();
 			this.lblPassword = new System.Windows.Forms.Label();
@@ -260,27 +260,27 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Label lblEncryptionMethod;
-        private System.Windows.Forms.ComboBox cbxEncryptionMethod;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblSalt;
-        private System.Windows.Forms.Label lblSource;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button btnRndPassword;
-        private System.Windows.Forms.TextBox txtSalt;
-        private System.Windows.Forms.Button btnRndSalt;
-        private System.Windows.Forms.TextBox txtSource;
-        private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Button btnSwitchSourceAndResult;
-        private System.Windows.Forms.Button btnEncrypt;
-        private System.Windows.Forms.Button btnDecrypt;
-        private System.Windows.Forms.Button btnAutoToDecrypted;
-        private System.Windows.Forms.Button btnAutoToEncrypted;
+		private System.Windows.Forms.Label lblEncryptionMethod;
+		private System.Windows.Forms.ComboBox cbxEncryptionMethod;
+		private System.Windows.Forms.Label lblPassword;
+		private System.Windows.Forms.Label lblSalt;
+		private System.Windows.Forms.Label lblSource;
+		private System.Windows.Forms.TextBox txtPassword;
+		private System.Windows.Forms.Button btnRndPassword;
+		private System.Windows.Forms.TextBox txtSalt;
+		private System.Windows.Forms.Button btnRndSalt;
+		private System.Windows.Forms.TextBox txtSource;
+		private System.Windows.Forms.TextBox txtResult;
+		private System.Windows.Forms.Label lblResult;
+		private System.Windows.Forms.Button btnSwitchSourceAndResult;
+		private System.Windows.Forms.Button btnEncrypt;
+		private System.Windows.Forms.Button btnDecrypt;
+		private System.Windows.Forms.Button btnAutoToDecrypted;
+		private System.Windows.Forms.Button btnAutoToEncrypted;
 		private System.Windows.Forms.RadioButton rbString;
 		private System.Windows.Forms.RadioButton rbByteArray;
 	}

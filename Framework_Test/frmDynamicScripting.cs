@@ -31,12 +31,12 @@ namespace BOG.Framework_Test
 
 			this.txtResults.Text = "---- <code>  -----\r\n" + SimpleCode + "---- </code> -----\r\n";
 			CompilerResults r = DynamicScripting.CompileScript(
-				SimpleCode, 
+				SimpleCode,
 				new string[] {
 					System.Reflection.Assembly.GetExecutingAssembly().Location,
 					"System.dll"
 					},
-				DynamicScripting.Languages.CSharp, 
+				DynamicScripting.Languages.CSharp,
 				true);
 			if (r.Errors.Count == 0)
 			{

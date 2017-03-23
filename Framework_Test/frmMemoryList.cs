@@ -41,7 +41,8 @@ namespace BOG.Framework_Test
 			{
 				MasterList.StoreValue(item);
 			}
-			while (MasterList.HasValues()) this.lbxFiltered.Items.Add(MasterList.RecallValue());
+			while (MasterList.HasValues())
+				this.lbxFiltered.Items.Add(MasterList.RecallValue());
 		}
 	}
 }

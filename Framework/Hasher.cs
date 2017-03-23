@@ -16,7 +16,8 @@ namespace BOG.Framework
 		/// <summary>
 		/// The hash method to use
 		/// </summary>
-		public enum HashMethod : int {
+		public enum HashMethod : int
+		{
 			/// <summary>
 			/// SHA1
 			/// </summary>

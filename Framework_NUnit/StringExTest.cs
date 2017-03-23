@@ -80,7 +80,7 @@ namespace BOG.Framework_NUnit
 		public void Filter_CaseSensitive()
 		{
 			string Filter = "0123456789.c";
-			string Result = "76.34F.25.41C".Filter( Filter, false);
+			string Result = "76.34F.25.41C".Filter(Filter, false);
 			Assert.IsTrue(string.Compare("76.34.25.41", Result) == 0);
 		}
 

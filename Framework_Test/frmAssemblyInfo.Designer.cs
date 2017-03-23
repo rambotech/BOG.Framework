@@ -1,35 +1,35 @@
 ﻿namespace BOG.Framework_Test
 {
-    partial class frmAssemblyInfo
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmAssemblyInfo
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.dgvAssemblyInfo = new System.Windows.Forms.DataGridView();
-			((System.ComponentModel.ISupportInitialize)(this.dgvAssemblyInfo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize) (this.dgvAssemblyInfo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dgvAssemblyInfo
@@ -53,13 +53,13 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "frmAssemblyInfo";
 			this.Text = "AssemblyInfo";
-			((System.ComponentModel.ISupportInitialize)(this.dgvAssemblyInfo)).EndInit();
+			((System.ComponentModel.ISupportInitialize) (this.dgvAssemblyInfo)).EndInit();
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.DataGridView dgvAssemblyInfo;
-    }
+		private System.Windows.Forms.DataGridView dgvAssemblyInfo;
+	}
 }

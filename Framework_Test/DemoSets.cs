@@ -22,7 +22,7 @@ namespace BOG.Framework_Test
 		}
 	}
 
-	public class DemoSetX: IDemo
+	public class DemoSetX : IDemo
 	{
 		public string PerformFunction()
 		{
