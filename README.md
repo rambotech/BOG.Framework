@@ -63,6 +63,10 @@ The classes are:
   capability.  Also contains classes MemoryItem and MemoryList, which extend the capabilties of the core
   generic List<> class.
 
+### SecuredGram
+  Creates an encrypted container which can be sent over a TCP/UDP connection between apps.  Supports automatic
+  internal compression for large content.
+
 ### SerializableDictionary
   A replacement for the standard Dictionary<K,V> class, which does not allow serialization.
   
@@ -75,4 +79,3 @@ The classes are:
   
 ### StringEx
   Some useful string methods, like search and replace with wildcards, currency formatting, filtering (include and exclude), and placeholder replacement.
-  

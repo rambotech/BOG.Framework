@@ -13,17 +13,35 @@ namespace BOG.Framework_Test
 {
 	public partial class frmCipherUtility : Form
 	{
-		private string ValidCharacters =
+		const string ValidCharacters =
 			"0123456789ABCDEFGHIJKLMNOPQURSTUVWXYZabcdefghijklmnopqurstuvwxyz" +
 			"\"':;<,>./?{[}]=+-_\\!@#$%^&*()";
 
 		public frmCipherUtility()
 		{
 			InitializeComponent();
+			//HydrateSymmetricAlgorithmClasses();
+
 			this.cbxEncryptionMethod.Items.Add("AesManaged");
 			this.cbxEncryptionMethod.Items.Add("TripleDESCryptoServiceProvider");
 			this.cbxEncryptionMethod.Items.Add("RijndaelManaged");
 			this.cbxEncryptionMethod.SelectedIndex = 0;
+		}
+
+		private void HydrateSymmetricAlgorithmClasses()
+		{
+			var type = typeof(SymmetricAlgorithm);
+			foreach (Type thisType in AppDomain.CurrentDomain.GetAssemblies()
+				.SelectMany(s => s.GetTypes())
+				.Where(p => type.IsAssignableFrom(p)))
+			{
+				foreach (Type usableType in AppDomain.CurrentDomain.GetAssemblies()
+					.SelectMany(s => s.GetTypes())
+					.Where(p => type.IsAssignableFrom(thisType)).Where(t => type.IsAbstract == false))
+				{
+					this.cbxEncryptionMethod.Items.Add(usableType.ToString());
+				}
+			}
 		}
 
 		private string RandomString()
@@ -33,7 +51,7 @@ namespace BOG.Framework_Test
 			Random r = new Random(
 				now.Millisecond + now.Second * 1000 + now.Minute * 60000 + now.Hour * 3600000
 				+ (now.DayOfYear % 25) * 86400000);
-			int length = r.Next(33) + 18;
+			int length = r.Next(18, 50);
 			for (int index = 0; index < length; index++)
 				result.Append(ValidCharacters.Substring(r.Next(ValidCharacters.Length), 1));
 			return result.ToString();
@@ -66,15 +84,24 @@ namespace BOG.Framework_Test
 					{
 						case 0:
 							this.txtResult.Text = CipherUtility.Encrypt<AesManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+								this.txtSource.Text,
+								this.txtPassword.Text,
+								this.txtSalt.Text,
+								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
 							break;
 						case 1:
 							this.txtResult.Text = CipherUtility.Encrypt<TripleDESCryptoServiceProvider>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+								this.txtSource.Text,
+								this.txtPassword.Text,
+								this.txtSalt.Text,
+								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
 							break;
 						case 2:
 							this.txtResult.Text = CipherUtility.Encrypt<RijndaelManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
+								this.txtSource.Text,
+								this.txtPassword.Text,
+								this.txtSalt.Text,
+								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
 							break;
 						default:
 							MessageBox.Show("Unsupported encryption type in selection list.");
@@ -207,12 +234,19 @@ namespace BOG.Framework_Test
 		{
 			this.btnAutoToDecrypted.Enabled = true;
 			this.btnAutoToEncrypted.Enabled = true;
+			this.chkBase64LineBreaks.Enabled = true;
 		}
 
 		private void rbByteArray_CheckedChanged(object sender, EventArgs e)
 		{
 			this.btnAutoToDecrypted.Enabled = false;
 			this.btnAutoToEncrypted.Enabled = false;
+			this.chkBase64LineBreaks.Enabled = false;
+		}
+
+		private void chkBase64LineBreaks_CheckedChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

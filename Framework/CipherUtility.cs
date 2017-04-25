@@ -36,7 +36,7 @@ namespace BOG.Framework
 
 		/// <summary>
 		/// Auto-detects the state of the value parameter as encrypted or decrypted, and performs the action for the desired
-		/// returnState.  This may result in returning the original value (e.g. value is decrypted, returnState requested is decrypted.
+		/// returnState.  This may result in returning the original value (e.g. value is decrypted, returnState requested is decrypted).
 		/// </summary>
 		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:
 		/// AesManaged 
@@ -50,6 +50,30 @@ namespace BOG.Framework
 		public static string AutoCrypt<T>(string value, string password, string salt, ValueState returnState)
 			 where T : SymmetricAlgorithm, new()
 		{
+			return AutoCrypt<T>(value, password, salt, returnState, Base64FormattingOptions.InsertLineBreaks);
+		}
+
+		/// <summary>
+		/// Auto-detects the state of the value parameter as encrypted or decrypted, and performs the action for the desired
+		/// returnState.  This may result in returning the original value (e.g. value is decrypted, returnState requested is decrypted.
+		/// </summary>
+		/// <typeparam name="T">Specifies the cryptography algorithm class to use. Some suggestions:
+		/// AesManaged 
+		/// TripleDESCryptoServiceProvider
+		/// RijndaelManaged</typeparam>
+		/// <param name="value">the payload requiring change</param>
+		/// <param name="password"></param>
+		/// <param name="salt"></param>
+		/// <param name="returnState">The state (encrypted or decrypted) desired for the return value.</param>
+		/// <param name="base64Options">Specifies whether or not line breaks appear in the resulting Base64 output.</param>
+		/// <returns></returns>
+		public static string AutoCrypt<T>(string value, string password, string salt, ValueState returnState, Base64FormattingOptions base64Options)
+			 where T : SymmetricAlgorithm, new()
+		{
+			if (string.IsNullOrEmpty(value))
+			{
+				return string.Empty;
+			}
 			string result = string.Empty;
 			if (value.Length >= 2 && value.Substring(0, 1) == "\x02" && value.Substring(0, 1) == "\x03")
 			{
@@ -63,7 +87,7 @@ namespace BOG.Framework
 				if (returnState == ValueState.Decrypted)
 					result = value;
 				else
-					result = Encrypt<T>(value, password, salt);
+					result = Encrypt<T>(value, password, salt, base64Options);
 			}
 			return result;
 		}
@@ -75,12 +99,16 @@ namespace BOG.Framework
 		/// <param name="value">string to encrypt</param>
 		/// <param name="password"></param>
 		/// <param name="salt"></param>
+		/// <param name="base64Options">whether or not line breaks are added to the resulting Base64 result.</param>
 		/// <returns>string containing protected content</returns>
-		public static string Encrypt<T>(string value, string password, string salt)
+		public static string Encrypt<T>(string value, string password, string salt, Base64FormattingOptions base64Options)
 			 where T : SymmetricAlgorithm, new()
 		{
 			if (string.IsNullOrEmpty(value))
+			{
 				return string.Empty;
+			}
+
 			if (string.IsNullOrEmpty(password))
 			{
 				throw new ArgumentException("password can not be blank");
@@ -108,8 +136,7 @@ namespace BOG.Framework
 						writer.Write(value);
 					}
 				}
-
-				return Convert.ToBase64String(buffer.ToArray());
+				return Convert.ToBase64String(buffer.ToArray(), base64Options);
 			}
 		}
 

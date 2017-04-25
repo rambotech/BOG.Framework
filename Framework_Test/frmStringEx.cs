@@ -28,6 +28,7 @@ namespace BOG.Framework_Test
 			this.cbxMethodStr.Items.Add("FromHex() - Invalid");
 			this.cbxMethodStr.Items.Add("ToHex() - From byte[]");
 			this.cbxMethodStr.Items.Add("FromHexToByteArray()");
+			this.cbxMethodStr.Items.Add("BeautifyJSON()");
 			this.cbxMethodStr.SelectedIndex = 0;
 			this.cbxFilterMethod.Items.Clear();
 			this.cbxFilterMethod.Items.Add("Filter-case insensitive");

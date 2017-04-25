@@ -124,5 +124,109 @@ namespace BOG.Framework
 			}
 			return serializableObject;
 		}
+
+		/// <summary>
+		/// BeautifyJSON :: make a JSON stream more human readable in a text editor.
+		/// Adds line breaks after comma (,) right square bracket (]) and right squiggly bracket (}), and corrects indentation.
+		/// Cleans out all unprotected white space and tabs.
+		/// </summary>
+		/// <param name="jsonSource">the ugly JSon, usually as one line.</param>
+		/// <returns>text that's easy on the eyes.</returns>
+		public static string BeautifyJSON(string jsonSource)
+		{
+			StringBuilder result = new StringBuilder();
+
+			if (jsonSource.Length > 0)
+			{
+				bool inQuote = false;
+				bool nextIsEscaped = false;
+				int escapeBypass = 0;
+				int indentLevel = 0;
+				char prevChar = '\x00';
+
+				for (int index = 0; index < jsonSource.Length; index++)
+				{
+					char thisChar = jsonSource[index];
+					string prefix = string.Empty;
+					string suffix = string.Empty;
+
+					if (result.Length == 0 && (thisChar == ' ' || thisChar == '\t'))
+					{
+						continue;
+					}
+					else if (!inQuote && (thisChar == ' ' || thisChar == '\t'))
+					{
+						continue;
+					}
+					else if (!inQuote && (thisChar == '\r' || thisChar == '\n'))
+					{
+						continue;
+					}
+
+					if (!inQuote && thisChar == ':')
+					{
+						suffix = " ";  // put a space after the colon separator, which makes readability a bit better.
+					}
+
+					if (escapeBypass > 0)
+					{
+						if ("0123456789ABCDEF".IndexOf(char.ToUpper(thisChar)) < 0)
+						{
+							throw new ArgumentException("Invalid hex character in \\u##### escape sequence");
+						}
+						escapeBypass--;
+					}
+					else if (inQuote && !nextIsEscaped && thisChar == '\\')
+					{
+						// JSON encoding character is either "\uHHHH" or "\c", where HHHH is 4-digits of hex and c is a single character other than 'u'
+						// Ref: https://tools.ietf.org/html/rfc7159#section-7
+						nextIsEscaped = true;
+					}
+					else if (nextIsEscaped)
+					{
+						nextIsEscaped = false;
+						if (thisChar == 'u')
+						{
+							escapeBypass = 4;
+						}
+						else
+						{
+							escapeBypass = 0;
+							if ("\"\\/bfnrt".IndexOf(char.ToUpper(thisChar)) < 0)
+							{
+								throw new ArgumentException("Invalid character in single character escape (\\) sequence: must be one of { \" \\ / b f n r t }");
+							}
+						}
+					}
+					else if (thisChar == '"')
+					{
+						inQuote = !inQuote;
+					}
+					else if (!inQuote && (thisChar == '[' || thisChar == '{'))
+					{
+						prefix = (prevChar == ']' || prevChar == '}') ? "\r\n" : string.Empty;
+						indentLevel++;
+						suffix = "\r\n" + new string(' ', indentLevel * 2);
+					}
+					else if (!inQuote && thisChar == ',')
+					{
+						suffix = "\r\n" + new string(' ', indentLevel * 2);
+					}
+					else if (!inQuote && (thisChar == ']' || thisChar == '}'))
+					{
+						indentLevel--;
+						prefix = (result.ToString().Length == 0 ? string.Empty : "\r\n") + new string(' ', indentLevel * 2);
+					}
+					if (inQuote || thisChar != ' ')
+					{
+						prevChar = thisChar;
+					}
+					result.Append(prefix);
+					result.Append(thisChar);
+					result.Append(suffix);
+				}
+			}
+			return result.ToString();
+		}
 	}
 }
