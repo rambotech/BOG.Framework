@@ -9,7 +9,7 @@ namespace BOG.Framework
 	public class ScrapeTest
 	{
 		[Test, Description("Check for 3 items, in any order")]
-		public void RandomNonUniqueIgnoreCase()
+		public void MemoryList_RandomNonUniqueIgnoreCase()
 		{
 			MemoryList<string> t = new MemoryList<string>("testlist", false, true, MemoryList<string>.MemoryListRetrieveSequence.Random);
 

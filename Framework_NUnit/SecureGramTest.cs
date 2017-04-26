@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace BOG.Framework_NUnit
 {
 	[TestFixture]
-	public class SecuredGramTest
+	public class SecureGramTest
 	{
 		const string ValidCharacters =
 			"0123456789ABCDEFGHIJKLMNOPQURSTUVWXYZabcdefghijklmnopqurstuvwxyz" +
@@ -19,8 +19,8 @@ namespace BOG.Framework_NUnit
 
 		const string ShortTest = "The slow brown cow jumped over the moon with Elon Musk's help.";
 
-		[Test, Description("doesShortTestWithDefaultEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
-		public void doesShortTestWithDefaultEncryptionMethodReturnCorrectValue()
+		[Test, Description("SecureGram_ShortTestWithDefaultEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
+		public void SecureGram_ShortTestWithDefaultEncryptionMethodReturnCorrectValue()
 		{
 			string key = RandomString();
 			string salt = RandomString();
@@ -34,13 +34,15 @@ namespace BOG.Framework_NUnit
 			decrypted.LoadFromReceivedMessage(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, ShortTest);
 			Assert.AreEqual(decrypted.Message.Length, ShortTest.Length);
+			Assert.IsTrue(encrypted.Length > g.Message.Length);
+			Assert.IsFalse(decrypted.IsCompressed);
 			Assert.AreEqual(decrypted.Subject, g.Subject);
 			Assert.AreEqual(decrypted.Sender, g.Sender);
 			Assert.IsFalse(g.IsCompressed);
 		}
 
-		[Test, Description("doesLargeTestWithDefaultEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
-		public void doesLargeTestWithDefaultEncryptionMethodReturnCorrectValue()
+		[Test, Description("SecureGram_LargeTestWithDefaultEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
+		public void SecureGram_LargeTestWithDefaultEncryptionMethodReturnCorrectValue()
 		{
 			string key = RandomString();
 			string salt = RandomString();
@@ -54,13 +56,15 @@ namespace BOG.Framework_NUnit
 			decrypted.LoadFromReceivedMessage(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, g.Message);
 			Assert.AreEqual(decrypted.Message.Length, g.Message.Length);
+			Assert.IsTrue(encrypted.Length < g.Message.Length);
+			Assert.IsTrue(decrypted.IsCompressed);
 			Assert.AreEqual(decrypted.Subject, g.Subject);
 			Assert.AreEqual(decrypted.Sender, g.Sender);
 			Assert.IsFalse(g.IsCompressed);
 		}
 
-		[Test, Description("doesShortTestWithSpecificEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
-		public void doesShortTestWithSpecificEncryptionMethodReturnCorrectValue()
+		[Test, Description("SecureGram_ShortTestWithSpecificEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
+		public void SecureGram_ShortTestWithSpecificEncryptionMethodReturnCorrectValue()
 		{
 			string key = RandomString();
 			string salt = RandomString();
@@ -74,13 +78,15 @@ namespace BOG.Framework_NUnit
 			decrypted.LoadFromReceivedMessage<RijndaelManaged>(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, ShortTest);
 			Assert.AreEqual(decrypted.Message.Length, ShortTest.Length);
+			Assert.IsTrue(encrypted.Length > g.Message.Length);
+			Assert.IsFalse(decrypted.IsCompressed);
 			Assert.AreEqual(decrypted.Subject, g.Subject);
 			Assert.AreEqual(decrypted.Sender, g.Sender);
 			Assert.IsFalse(g.IsCompressed);
 		}
 
-		[Test, Description("doesLargeTestWithSpecificEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
-		public void doesLargeTestWithSpecificEncryptionMethodReturnCorrectValue()
+		[Test, Description("SecureGram_LargeTestWithSpecificEncryptionMethodReturnCorrectValue(): basic encryption / decryption validation with default method")]
+		public void SecureGram_LargeTestWithSpecificEncryptionMethodReturnCorrectValue()
 		{
 			string key = RandomString();
 			string salt = RandomString();
@@ -94,6 +100,8 @@ namespace BOG.Framework_NUnit
 			decrypted.LoadFromReceivedMessage<RijndaelManaged>(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, g.Message);
 			Assert.AreEqual(decrypted.Message.Length, g.Message.Length);
+			Assert.IsTrue(encrypted.Length < g.Message.Length);
+			Assert.IsTrue(decrypted.IsCompressed);
 			Assert.AreEqual(decrypted.Subject, g.Subject);
 			Assert.AreEqual(decrypted.Sender, g.Sender);
 			Assert.IsFalse(g.IsCompressed);

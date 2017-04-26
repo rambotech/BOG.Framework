@@ -63,7 +63,7 @@ The classes are:
   capability.  Also contains classes MemoryItem and MemoryList, which extend the capabilties of the core
   generic List<> class.
 
-### SecuredGram
+### SecureGram
   Creates an encrypted container which can be sent over a TCP/UDP connection between apps.  Supports automatic
   internal compression for large content.
 

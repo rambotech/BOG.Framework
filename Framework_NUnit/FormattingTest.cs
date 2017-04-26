@@ -10,7 +10,7 @@ namespace BOG.Framework
 	public class FormattingTest
 	{
 		[Test, Description("KiloToYotta, double == 0.0")]
-		public void KiloToYotta_d0()
+		public void Formatting_KiloToYotta_d0()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) 0);
 
@@ -18,7 +18,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 0.0")]
-		public void KiloToYotta_l0()
+		public void Formatting_KiloToYotta_l0()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) 0);
 
@@ -26,7 +26,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1.0")]
-		public void KiloToYotta_d1()
+		public void Formatting_KiloToYotta_d1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) 1);
 
@@ -34,7 +34,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1")]
-		public void KiloToYotta_l1()
+		public void Formatting_KiloToYotta_l1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) 1);
 
@@ -42,7 +42,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1023.0")]
-		public void KiloToYotta_d1023()
+		public void Formatting_KiloToYotta_d1023()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) 1023);
 
@@ -50,7 +50,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1023")]
-		public void KiloToYotta_l1023()
+		public void Formatting_KiloToYotta_l1023()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) 1023);
 
@@ -58,7 +58,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0")]
-		public void KiloToYotta_d1024()
+		public void Formatting_KiloToYotta_d1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) 1024);
 
@@ -66,7 +66,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024")]
-		public void KiloToYotta_l1024()
+		public void Formatting_KiloToYotta_l1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) 1024);
 
@@ -74,7 +74,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0 * 1024.0 - 1")]
-		public void KiloToYotta_d1024x1024_1()
+		public void Formatting_KiloToYotta_d1024x1024_1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024 * 1024 - 1));
 
@@ -82,7 +82,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024")]
-		public void KiloToYotta_l1024x1024_1()
+		public void Formatting_KiloToYotta_l1024x1024_1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) (1024 * 1024 - 1));
 
@@ -90,7 +90,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0 * 1024.0")]
-		public void KiloToYotta_d1024x1024()
+		public void Formatting_KiloToYotta_d1024x1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024 * 1024));
 
@@ -98,7 +98,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024 * 1024")]
-		public void KiloToYotta_l1024x1024()
+		public void Formatting_KiloToYotta_l1024x1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) (1024 * 1024));
 
@@ -106,7 +106,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0 * 1024.0 * 1024.0 - 1")]
-		public void KiloToYotta_d1024x1024x1024_1()
+		public void Formatting_KiloToYotta_d1024x1024x1024_1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024 * 1024 * 1024 - 1));
 
@@ -114,7 +114,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024.0 * 1024.0 * 1024.0 - 1")]
-		public void KiloToYotta_l1024x1024x1024_1()
+		public void Formatting_KiloToYotta_l1024x1024x1024_1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) (1024 * 1024 * 1024 - 1));
 
@@ -122,7 +122,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0 * 1024.0 * 1024.0")]
-		public void KiloToYotta_d1024x1024x1024()
+		public void Formatting_KiloToYotta_d1024x1024x1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024.0 * 1024.0 * 1024.0));
 
@@ -130,7 +130,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024.0 * 1024.0 * 1024.0")]
-		public void KiloToYotta_l1024x1024x1024()
+		public void Formatting_KiloToYotta_l1024x1024x1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) (1024 * 1024 * 1024));
 
@@ -138,7 +138,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024.0 * 1024.0 * 1024.0 * 1024.0 - 1")]
-		public void KiloToYotta_d1024x1024x1024x1024_1()
+		public void Formatting_KiloToYotta_d1024x1024x1024x1024_1()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024.0 * 1024.0 * 1024.0 * 1024.0 - 1));
 
@@ -146,12 +146,11 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("KiloToYotta, long == 1024.0 * 1024.0 * 1024.0 * 1024.0")]
-		public void KiloToYotta_d1024x1024x1024x1024()
+		public void Formatting_KiloToYotta_d1024x1024x1024x1024()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((double) (1024.0 * 1024.0 * 1024.0 * 1024.0));
 
 			Assert.That(answer == "1.000T", "1024.0 * 1024.0 * 1024.0 * 1024.0 == 1.000T");
 		}
-
 	}
 }

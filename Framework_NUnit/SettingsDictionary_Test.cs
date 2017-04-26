@@ -17,14 +17,14 @@ namespace BOG.Framework
 		string persist_file4 = Path.Combine(Path.GetTempPath(), "TestSettings4.xml");
 
 		[Test, Description("Create a new object, default instantiation method")]
-		public void Instantiate1()
+		public void SettingsDictionary_Instantiate1()
 		{
 			sd = new SettingsDictionary();
 			Assert.IsNotNull(sd);
 		}
 
 		[Test, Description("Create Test Settings, save in #1")]
-		public void LoadTestData1()
+		public void SettingsDictionary_LoadTestData1()
 		{
 			sd = new SettingsDictionary();
 			sd.SetSetting("Key1", "Things I don't like");
@@ -35,7 +35,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Create Test Settings, save in #2")]
-		public void LoadTestData2()
+		public void SettingsDictionary_LoadTestData2()
 		{
 			sd = new SettingsDictionary();
 			sd.SetSetting("Key1", "Things I really don't like");
@@ -46,7 +46,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Merge Settings 1 (precedence) and 2, save to 3")]
-		public void MergeTestData3()
+		public void SettingsDictionary_MergeTestData3()
 		{
 			SettingsDictionary sd1 = new SettingsDictionary(persist_file2);
 			sd1.LoadSettings();
@@ -59,7 +59,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Merge Settings 1 and 2 (precedence), save to 4")]
-		public void MergeTestData4()
+		public void SettingsDictionary_MergeTestData4()
 		{
 			SettingsDictionary sd1 = new SettingsDictionary(persist_file2);
 			sd1.LoadSettings();

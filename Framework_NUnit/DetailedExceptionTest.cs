@@ -9,7 +9,7 @@ namespace BOG.Framework
 	public class DetailedExceptionTest
 	{
 		[Test, Description("Long String, hide uid")]
-		public void LongSimpleUser()
+		public void DetailedException_LongSimpleUser()
 		{
 			string s = string.Empty;
 			try
@@ -24,7 +24,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Long String, hide pass")]
-		public void LongSimplePassword()
+		public void DetailedException_LongSimplePassword()
 		{
 			string s = string.Empty;
 			try
@@ -39,7 +39,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Uri String, hide user")]
-		public void UriSimpleUser()
+		public void DetailedException_UriSimpleUser()
 		{
 			string s = string.Empty;
 			try
@@ -54,7 +54,7 @@ namespace BOG.Framework
 		}
 
 		[Test, Description("Uri String, hide pass")]
-		public void UriSimplePassword()
+		public void DetailedException_UriSimplePassword()
 		{
 			string s = string.Empty;
 			try

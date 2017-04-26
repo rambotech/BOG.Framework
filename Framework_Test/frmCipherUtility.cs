@@ -8,6 +8,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using BOG.Framework;
+using System.Reflection;
 
 namespace BOG.Framework_Test
 {
@@ -20,12 +21,11 @@ namespace BOG.Framework_Test
 		public frmCipherUtility()
 		{
 			InitializeComponent();
-			//HydrateSymmetricAlgorithmClasses();
-
-			this.cbxEncryptionMethod.Items.Add("AesManaged");
-			this.cbxEncryptionMethod.Items.Add("TripleDESCryptoServiceProvider");
-			this.cbxEncryptionMethod.Items.Add("RijndaelManaged");
-			this.cbxEncryptionMethod.SelectedIndex = 0;
+			HydrateSymmetricAlgorithmClasses();
+			if (this.cbxEncryptionMethod.Items.Count > 0)
+			{
+				this.cbxEncryptionMethod.SelectedIndex = 0;
+			}
 		}
 
 		private void HydrateSymmetricAlgorithmClasses()
@@ -33,13 +33,14 @@ namespace BOG.Framework_Test
 			var type = typeof(SymmetricAlgorithm);
 			foreach (Type thisType in AppDomain.CurrentDomain.GetAssemblies()
 				.SelectMany(s => s.GetTypes())
-				.Where(p => type.IsAssignableFrom(p)))
+				.Where(p => type.IsAssignableFrom(p)).Where(t => type.IsClass))
 			{
-				foreach (Type usableType in AppDomain.CurrentDomain.GetAssemblies()
-					.SelectMany(s => s.GetTypes())
-					.Where(p => type.IsAssignableFrom(thisType)).Where(t => type.IsAbstract == false))
+				if (!thisType.IsAbstract && thisType.IsAnsiClass)
 				{
-					this.cbxEncryptionMethod.Items.Add(usableType.ToString());
+					if (thisType.Name.Contains("Managed") || thisType.Name.Contains("Provider"))
+					{
+						this.cbxEncryptionMethod.Items.Add(thisType.ToString());
+					}
 				}
 			}
 		}
@@ -78,56 +79,24 @@ namespace BOG.Framework_Test
 		{
 			try
 			{
+				var type = Type.GetType((string) this.cbxEncryptionMethod.Items[this.cbxEncryptionMethod.SelectedIndex]);
+				var cipher = new CipherUtility((System.Security.Cryptography.SymmetricAlgorithm) Activator.CreateInstance(type));
 				if (this.rbString.Checked)
 				{
-					switch (this.cbxEncryptionMethod.SelectedIndex)
-					{
-						case 0:
-							this.txtResult.Text = CipherUtility.Encrypt<AesManaged>(
-								this.txtSource.Text,
-								this.txtPassword.Text,
-								this.txtSalt.Text,
-								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
-							break;
-						case 1:
-							this.txtResult.Text = CipherUtility.Encrypt<TripleDESCryptoServiceProvider>(
-								this.txtSource.Text,
-								this.txtPassword.Text,
-								this.txtSalt.Text,
-								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
-							break;
-						case 2:
-							this.txtResult.Text = CipherUtility.Encrypt<RijndaelManaged>(
-								this.txtSource.Text,
-								this.txtPassword.Text,
-								this.txtSalt.Text,
-								this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
-							break;
-						default:
-							MessageBox.Show("Unsupported encryption type in selection list.");
-							break;
-					}
+					this.txtResult.Text = cipher.Encrypt(
+						this.txtSource.Text,
+						this.txtPassword.Text,
+						this.txtSalt.Text,
+						this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
+
 				}
 				else
 				{
-					switch (this.cbxEncryptionMethod.SelectedIndex)
-					{
-						case 0:
-							this.txtResult.Text = CipherUtility.EncryptByteArray<AesManaged>(
-								Encoding.UTF8.GetBytes(this.txtSource.Text), this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						case 1:
-							this.txtResult.Text = CipherUtility.EncryptByteArray<TripleDESCryptoServiceProvider>(
-								Encoding.UTF8.GetBytes(this.txtSource.Text), this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						case 2:
-							this.txtResult.Text = CipherUtility.EncryptByteArray<RijndaelManaged>(
-								Encoding.UTF8.GetBytes(this.txtSource.Text), this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						default:
-							MessageBox.Show("Unsupported encryption type in selection list.");
-							break;
-					}
+					this.txtResult.Text = cipher.EncryptByteArray(
+						Encoding.UTF8.GetBytes(this.txtSource.Text),
+						this.txtPassword.Text,
+						this.txtSalt.Text,
+						this.chkBase64LineBreaks.Checked ? Base64FormattingOptions.InsertLineBreaks : Base64FormattingOptions.None);
 				}
 			}
 			catch (Exception err)
@@ -140,113 +109,35 @@ namespace BOG.Framework_Test
 		{
 			try
 			{
+				var type = Type.GetType((string) this.cbxEncryptionMethod.Items[this.cbxEncryptionMethod.SelectedIndex]);
+				var cipher = new CipherUtility((System.Security.Cryptography.SymmetricAlgorithm) Activator.CreateInstance(type));
 				if (this.rbString.Checked)
 				{
-					switch (this.cbxEncryptionMethod.SelectedIndex)
-					{
-						case 0:
-							this.txtResult.Text = CipherUtility.Decrypt<AesManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						case 1:
-							this.txtResult.Text = CipherUtility.Decrypt<TripleDESCryptoServiceProvider>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						case 2:
-							this.txtResult.Text = CipherUtility.Decrypt<RijndaelManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
-							break;
-						default:
-							MessageBox.Show("Unsupported encryption type in selection list.");
-							break;
-					}
+					this.txtResult.Text = cipher.Decrypt(this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text);
 				}
 				else
 				{
-					switch (this.cbxEncryptionMethod.SelectedIndex)
-					{
-						case 0:
-							this.txtResult.Text = Encoding.UTF8.GetString(CipherUtility.DecryptByteArray<AesManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text));
-							break;
-						case 1:
-							this.txtResult.Text = Encoding.UTF8.GetString(CipherUtility.DecryptByteArray<TripleDESCryptoServiceProvider>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text));
-							break;
-						case 2:
-							this.txtResult.Text = Encoding.UTF8.GetString(CipherUtility.DecryptByteArray<RijndaelManaged>(
-								this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text));
-							break;
-						default:
-							MessageBox.Show("Unsupported encryption type in selection list.");
-							break;
-					}
+					this.txtResult.Text = Encoding.UTF8.GetString(
+						cipher.DecryptByteArray(
+							this.txtSource.Text,
+							this.txtPassword.Text,
+							this.txtSalt.Text));
 				}
 			}
 			catch (Exception err)
 			{
 				MessageBox.Show(BOG.Framework.DetailedException.WithUserContent(ref err), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-
-		private void AutoCrypt(bool asEncrypted)
-		{
-			try
-			{
-				CipherUtility.ValueState target = asEncrypted
-					? CipherUtility.ValueState.Encrypted : CipherUtility.ValueState.Decrypted;
-				switch (this.cbxEncryptionMethod.SelectedIndex)
-				{
-					case 0:
-						this.txtResult.Text = CipherUtility.AutoCrypt<AesManaged>(
-							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-						break;
-					case 1:
-						this.txtResult.Text = CipherUtility.AutoCrypt<TripleDESCryptoServiceProvider>(
-							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-						break;
-					case 2:
-						this.txtResult.Text = CipherUtility.AutoCrypt<RijndaelManaged>(
-							this.txtSource.Text, this.txtPassword.Text, this.txtSalt.Text, target);
-						break;
-					default:
-						MessageBox.Show("Unsupported encryption type in selection list.");
-						break;
-				}
-			}
-			catch (Exception err)
-			{
-				MessageBox.Show(BOG.Framework.DetailedException.WithUserContent(ref err), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		private void btnAutoToDecrypted_Click(object sender, EventArgs e)
-		{
-			AutoCrypt(false);
-		}
-
-		private void btnAutoToEncrypted_Click(object sender, EventArgs e)
-		{
-			AutoCrypt(true);
 		}
 
 		private void rbString_CheckedChanged(object sender, EventArgs e)
 		{
-			this.btnAutoToDecrypted.Enabled = true;
-			this.btnAutoToEncrypted.Enabled = true;
 			this.chkBase64LineBreaks.Enabled = true;
 		}
 
 		private void rbByteArray_CheckedChanged(object sender, EventArgs e)
 		{
-			this.btnAutoToDecrypted.Enabled = false;
-			this.btnAutoToEncrypted.Enabled = false;
 			this.chkBase64LineBreaks.Enabled = false;
-		}
-
-		private void chkBase64LineBreaks_CheckedChanged(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

@@ -259,7 +259,7 @@ namespace BOG.Framework
 		/// <param name="salt"></param>
 		public void LoadFromReceivedMessage(string encryptedContent, string key, string salt)
 		{
-			LoadFromReceivedMessage<TripleDESCryptoServiceProvider>(encryptedContent, key, salt);
+			LoadFromReceivedMessage<AesManaged>(encryptedContent, key, salt);
 		}
 
 		/// <summary>
@@ -272,9 +272,10 @@ namespace BOG.Framework
 		public void LoadFromReceivedMessage<T>(string encryptedContent, string key, string salt)
 			where T : SymmetricAlgorithm, new()
 		{
+			CipherUtility cipher = new CipherUtility(new T());
 			this.Load(
 				ObjectJsonSerializer<SecureGram>.CreateObjectFormat(
-					CipherUtility.Decrypt<T>(
+					cipher.Decrypt(
 						encryptedContent,
 						key,
 						salt)));
@@ -315,7 +316,7 @@ namespace BOG.Framework
 		/// <returns></returns>
 		public string CreateGramContent(string key, string salt)
 		{
-			return CreateGramContent<TripleDESCryptoServiceProvider>(key, salt);
+			return CreateGramContent<AesManaged>(key, salt);
 		}
 
 		/// <summary>
@@ -354,8 +355,9 @@ namespace BOG.Framework
 				work.Message = Convert.ToBase64String(messageCompressed.ToArray());
 			}
 
+			CipherUtility cipher = new CipherUtility(new T());
 			return
-				CipherUtility.Encrypt<T>(
+				cipher.Encrypt(
 					ObjectJsonSerializer<SecureGram>.CreateDocumentFormat(work),
 					key,
 					salt, 
