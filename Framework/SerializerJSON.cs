@@ -38,7 +38,7 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a JSON document from an object of type T
 		/// </summary>
 		/// <param name="serializableObject">The object to be serialized into JSON</param>
 		/// <returns>a string containing the JSON</returns>
@@ -125,6 +125,10 @@ namespace BOG.Framework
 			return serializableObject;
 		}
 
+	}
+
+	public static class ObjectJsonUtility
+	{
 		/// <summary>
 		/// BeautifyJSON :: make a JSON stream more human readable in a text editor.
 		/// Adds line breaks after comma (,) right square bracket (]) and right squiggly bracket (}), and corrects indentation.

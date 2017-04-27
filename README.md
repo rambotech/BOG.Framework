@@ -14,7 +14,7 @@ The classes are:
   Allows real-time monitoring of a service or other headless operation from any TCP client.
   
 ### CipherUtility.cs
-  A nice static class for encryption from an external source.
+  A class for enciphering / deciphering.  Allows client to override the SymmetricAlgorithm class used for cipher method.
 
 ### ConsoleControl:
   For console applications: a cleaner way to handle CTRL+BREAK.
@@ -70,8 +70,11 @@ The classes are:
 ### SerializableDictionary
   A replacement for the standard Dictionary<K,V> class, which does not allow serialization.
   
-### Serializer
+### SerializerXML
   A static class containing methods to serialize and deserialize XML between objects, strings and files.
+  
+### SerializerJSON
+  A static class containing methods to serialize and deserialize JSON between objects, strings and files.
   
 ### SettingsDictionary
   A kind of Dictionary<string,object> with internal methods to load, save and merge.  Originally designed

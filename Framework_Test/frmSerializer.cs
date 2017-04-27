@@ -31,6 +31,7 @@ namespace BOG.Framework_Test
 			this.lblFileNameJSON.Text = Path.GetTempFileName();
 			File.Delete(this.lblFileNameJSON.Text);
 			this.lblFileNameJSON.Text = this.lblFileNameJSON.Text.Replace(".tmp", ".json");
+			this.txtBeautificated.Text = ObjectJsonUtility.BeautifyJSON(this.txtJsonUgly.Text);
 			ObjectEnabling(true);
 		}
 
@@ -311,6 +312,11 @@ namespace BOG.Framework_Test
 					}
 				}
 			}
+		}
+
+		private void btnBeautify_Click(object sender, EventArgs e)
+		{
+			this.txtBeautificated.Text = ObjectJsonUtility.BeautifyJSON(this.txtJsonUgly.Text);
 		}
 	}
 }
