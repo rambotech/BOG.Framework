@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>2.0.0</version>
     <title>BOG.Framework</title>
-    <authors>$author$</authors>
+    <authors>John J Schultz</authors>
     <owners>John J Schultz</owners>
     <licenseUrl>https://github.com/rambotech/BOG.Framework/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/rambotech/BOG.Framework</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>A collection of utility classes.</description>
     <releaseNotes>Added as a nuget package.</releaseNotes>
     <copyright>Copyright 2010-2017, John J Schultz, Open Source under the MIT License</copyright>
     <tags>C# net40 net45 utility harvest monitor strings exception format formatting AD directory file scripting fuse logging password hash serialize serializing</tags>
