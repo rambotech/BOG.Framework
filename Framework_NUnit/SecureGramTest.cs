@@ -31,7 +31,7 @@ namespace BOG.Framework_NUnit
 			g.Message = ShortTest;
 			string encrypted = g.CreateGramContent(key, salt);
 			SecureGram decrypted = new SecureGram();
-			decrypted.LoadFromReceivedMessage(encrypted, key, salt);
+			decrypted.LoadGramContent(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, ShortTest);
 			Assert.AreEqual(decrypted.Message.Length, ShortTest.Length);
 			Assert.IsTrue(encrypted.Length > g.Message.Length);
@@ -53,7 +53,7 @@ namespace BOG.Framework_NUnit
 			g.Message = MakeLargeTest();
 			string encrypted = g.CreateGramContent(key, salt);
 			SecureGram decrypted = new SecureGram();
-			decrypted.LoadFromReceivedMessage(encrypted, key, salt);
+			decrypted.LoadGramContent(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, g.Message);
 			Assert.AreEqual(decrypted.Message.Length, g.Message.Length);
 			Assert.IsTrue(encrypted.Length < g.Message.Length);
@@ -75,7 +75,7 @@ namespace BOG.Framework_NUnit
 			g.Message = ShortTest;
 			string encrypted = g.CreateGramContent<RijndaelManaged>(key, salt);
 			SecureGram decrypted = new SecureGram();
-			decrypted.LoadFromReceivedMessage<RijndaelManaged>(encrypted, key, salt);
+			decrypted.LoadGramContent<RijndaelManaged>(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, ShortTest);
 			Assert.AreEqual(decrypted.Message.Length, ShortTest.Length);
 			Assert.IsTrue(encrypted.Length > g.Message.Length);
@@ -97,7 +97,7 @@ namespace BOG.Framework_NUnit
 			g.Message = MakeLargeTest();
 			string encrypted = g.CreateGramContent<RijndaelManaged>(key, salt);
 			SecureGram decrypted = new SecureGram();
-			decrypted.LoadFromReceivedMessage<RijndaelManaged>(encrypted, key, salt);
+			decrypted.LoadGramContent<RijndaelManaged>(encrypted, key, salt);
 			Assert.AreEqual(decrypted.Message, g.Message);
 			Assert.AreEqual(decrypted.Message.Length, g.Message.Length);
 			Assert.IsTrue(encrypted.Length < g.Message.Length);

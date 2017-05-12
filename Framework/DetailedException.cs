@@ -20,6 +20,17 @@ namespace BOG.Framework
 		static DateTime myIpAddressInfoExpires = DateTime.MinValue;
 
 		/// <summary>
+		/// Overload for StripUidPwd to assume that a token=value set (e.g. connection string) is present,
+		/// using a semi-colon (;) as a separator.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string StripUidPwd(string value)
+		{
+			return StripUidPwd(value, ";");
+		}
+
+		/// <summary>
 		/// Attempts to remove username and/or password in a URL or connection string
 		/// and substitute the values with "[contents:hidden]" (for URLs) or 
 		/// [contents hidden] for a connection string.  Allows URL or connection strings
@@ -45,7 +56,7 @@ namespace BOG.Framework
 				{
 					// Generic connection strings
 
-					oRegExp = new Regex(@"(^|" + delimiter + @")*\s*((uid|user\s*id|user|username|pwd|pass|password)\s*=\s*)([^" + delimiter + @"|$]+)", RegexOptions.IgnoreCase);
+					oRegExp = new Regex(@"(^|" + delimiter + @")*\s*((uid|user\s*id|user|user\s*name|pwd|pass|password)\s*=\s*)([^" + delimiter + @"|$]+)", RegexOptions.IgnoreCase);
 					sValue = oRegExp.Replace(sValue, "$1$2[contents hidden]");
 				}
 				// URI embedded username and password

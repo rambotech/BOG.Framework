@@ -257,9 +257,9 @@ namespace BOG.Framework
 		/// <param name="encryptedContent"></param>
 		/// <param name="key"></param>
 		/// <param name="salt"></param>
-		public void LoadFromReceivedMessage(string encryptedContent, string key, string salt)
+		public void LoadGramContent(string encryptedContent, string key, string salt)
 		{
-			LoadFromReceivedMessage<AesManaged>(encryptedContent, key, salt);
+			LoadGramContent<AesManaged>(encryptedContent, key, salt);
 		}
 
 		/// <summary>
@@ -269,7 +269,7 @@ namespace BOG.Framework
 		/// <param name="encryptedContent"></param>
 		/// <param name="key"></param>
 		/// <param name="salt"></param>
-		public void LoadFromReceivedMessage<T>(string encryptedContent, string key, string salt)
+		public void LoadGramContent<T>(string encryptedContent, string key, string salt)
 			where T : SymmetricAlgorithm, new()
 		{
 			CipherUtility cipher = new CipherUtility(new T());

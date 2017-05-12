@@ -36,6 +36,11 @@ The classes are:
 ### Fuse:
   Similar to an electrical fuse: records hits(frequency) and volume, and reports when thresholds are exceeded.
 
+### Iteration:
+  A class used to manage very large and deep argument sets. Designed to support multi-level looping, where
+  the values at each level for an iteration can be derived by passing in a zero-based index.  Uses 
+  the IterationItem class for an iteration level.
+
 ### Logger:
   Provides a method of logging to a file, using a timestamped filename and rollover to a new file when 
   either a file size threshold is met, or when the maximum elapsed time has exceeded a threshold.

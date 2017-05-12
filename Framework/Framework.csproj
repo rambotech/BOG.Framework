@@ -88,6 +88,8 @@
     <Compile Include="Formatting.cs" />
     <Compile Include="Fuse.cs" />
     <Compile Include="Hasher.cs" />
+    <Compile Include="Iteration.cs" />
+    <Compile Include="IterationItem.cs" />
     <Compile Include="SecureGram.cs" />
     <Compile Include="SerializerJSON.cs" />
     <Compile Include="Logger.cs" />
