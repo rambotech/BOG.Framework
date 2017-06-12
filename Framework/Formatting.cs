@@ -10,32 +10,44 @@ namespace BOG.Framework
 	public static class Formatting
 	{
 		/// <summary>
-		/// Changes large values to their less granular kilo, mega, ... yotta equivalent.
+		/// Changes large values to their less granular kilo, mega, ... yotta equivalent.  Uses 1024 to represent 1K.
 		/// </summary>
 		/// <param name="number">The value to compress</param>
 		/// <returns>1023, 1.0K, 1023.9K, 1.00M, etc.</returns>
 		public static string KiloToYotta(double number)
 		{
+			return KiloToYotta(number, true);
+		}
+
+		/// <summary>
+		/// Changes large values to their less granular kilo, mega, ... yotta equivalent.  Uses 1024 to represent 1K.
+		/// </summary>
+		/// <param name="number">The value to compress</param>
+		/// <param name="use1024As1K">true for 1024 as 1K, or false for 1000 as 1K</param>
+		/// <returns>1023, 1.0K, 1023.9K, 1.00M, etc.</returns>
+		public static string KiloToYotta(double number, bool use1024As1K )
+		{
+			double baseValue = use1024As1K ? 1024.0 : 1000.0;
 			string Result;
 
-			if (Math.Abs(number) < 1024.0)
+			if (Math.Abs(number) < baseValue)
 				Result = string.Format("{0:#,0}", number);
-			else if (Math.Abs(number) < 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.0}K", number / 1024.0);
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.00}M", number / (1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}G", number / (1024.0 * 1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}T", number / (1024.0 * 1024.0 * 1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}P", number / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}E", number / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}Z", number / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
-			else if (Math.Abs(number) < 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0)
-				Result = string.Format("{0:#,0.000}Y", number / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
+			else if (Math.Abs(number) < baseValue * baseValue)
+				Result = string.Format("{0:#,0.0}K", number / baseValue);
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.00}M", number / (baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}G", number / (baseValue * baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}T", number / (baseValue * baseValue * baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}P", number / (baseValue * baseValue * baseValue * baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}E", number / (baseValue * baseValue * baseValue * baseValue * baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}Z", number / (baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue));
+			else if (Math.Abs(number) < baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue)
+				Result = string.Format("{0:#,0.000}Y", number / (baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue * baseValue));
 			else
 				Result = string.Format("{0:#,0}", number);
 
@@ -49,7 +61,18 @@ namespace BOG.Framework
 		/// <returns>1023, 1.0K, 1023.9K, 1.00M, etc.</returns>
 		public static string KiloToYotta(long number)
 		{
-			return KiloToYotta((double) number);
+			return KiloToYotta((double) number, true);
+		}
+
+		/// <summary>
+		/// Changes large values to their less granular kilo, mega, ... yotta equivalent.
+		/// </summary>
+		/// <param name="number">The value to compress</param>
+		/// <param name="use1024As1K">true for 1024 as 1K, or false for 1000 as 1K</param>
+		/// <returns>1023, 1.0K, 1023.9K, 1.00M, etc.</returns>
+		public static string KiloToYotta(long number, bool use1024As1K)
+		{
+			return KiloToYotta((double) number, use1024As1K);
 		}
 
 		private static string[] _ones =

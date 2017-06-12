@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using BOG.Framework;
 
-namespace BOG.Framework
+namespace BOG.Framework_NUnit
 {
 	[TestFixture]
 	public class DetailedExceptionTest

@@ -1,45 +1,52 @@
 # BOG.Framework
 A general collection of utility methods and classes, which has become my Swiss Army knife over the years.
-Contains NUnit testing, and a collection of WinForms for demonstration.
+Contains an NUnit 3 testing project, and a hsands-on collection of WinForms for demonstration and experimentation.
 
 The classes are:
 
-### AccessControl:
+### AccessControl
   A wrapper for the ACL method for folders, to add/remove users and change inheritance.
   
-### AssemblyVersion:
+### AssemblyInfo
+  A publicly-available class to extract data from the AssemblyInfo.cs information, incorporated into the assembly.
+
+### AssemblyVersion
   A class which uses reflection to extract the assembly info for an executable or assembly.
 
-### BabbleOn:
+### BabbleOn
   Allows real-time monitoring of a service or other headless operation from any TCP client.
   
-### CipherUtility.cs
+### CipherUtility
   A class for enciphering / deciphering.  Allows client to override the SymmetricAlgorithm class used for cipher method.
 
-### ConsoleControl:
+### ConsoleControl
   For console applications: a cleaner way to handle CTRL+BREAK.
 
-### DetailedException:
+### DetailedException
   Enables formatting of an exception with:
   - Optional header/footer content:
   - One of three level of details for display or logging: User, Machine or Enterprise.
   - Optional masking of user and password, or only password, in URLs and connection strings.
   
 ### DynamicScripting
-  A wrapper for the CodeDom namespace for simple real-time compilation and execution of C#/VB scripts.
+  A wrapper for the CodeDom namespace for simple real-time compilation and execution of C#/VB code.
 
-### Formatting:
-  Common phrase formatting. Currently provides a method of squashing a number into Kilo, Mega, ..., Yota.
-  E.g.  (2,325,078 becomes 2.33M).  Also contains a method of writing out a dollar amount into a phrase
-  as it would appear on a paper check.
+### Formatting
+  Provides methods for 
+  - Squashing a number into Kilo, Mega, ..., Yota (e.g. 2,325,078 becomes 2.33M).
+  - Writing out a dollar amount into a phrase as it would appear on a paper check (e.g. FIVE HUNDRED AND 50/100).
 
-### Fuse:
-  Similar to an electrical fuse: records hits(frequency) and volume, and reports when thresholds are exceeded.
+### Fuse
+  Similar to an electrical fuse: records frequency and/or volume, and reports when thresholds are exceeded.
 
-### Iteration:
-  A class used to manage very large and deep argument sets. Designed to support multi-level looping, where
-  the values at each level for an iteration can be derived by passing in a zero-based index.  Uses 
-  the IterationItem class for an iteration level.
+### Hasher
+  Various hashing methods chosen by an enumerator.
+
+### Iteration
+  A class used to manage very large and deep argument sets, where the extropolation can result in millions
+  or even billions of combinations. Designed to support multi-level nested looping, where the values at each level 
+  for an iteration can be derived by passing in a zero-based index--and vice-versa.  Uses the IterationItem class 
+  for an iteration level.
 
 ### Logger:
   Provides a method of logging to a file, using a timestamped filename and rollover to a new file when 
@@ -86,4 +93,14 @@ The classes are:
   as a class to store user settings for a desktop application, outside of the app.config architecture.
   
 ### StringEx
-  Some useful string methods, like search and replace with wildcards, currency formatting, filtering (include and exclude), and placeholder replacement.
+  Some useful string methods:
+  - Search and replace with wildcards
+  - Currency parsing
+  - Hex to/from methods.
+  - Filtering (include and exclude)
+  - Placeholder replacement for allowing Environment, Common Folders and Custom Dictionary replacement in 
+    a path string.
+
+### Url
+  A Url parser which is designed to validate listener url's for a HttpListener object, is less restrictive on
+  host portions, and can rebuild a URL after parsing it to remove unnecessary URL encoding.

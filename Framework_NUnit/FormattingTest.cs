@@ -4,7 +4,7 @@ using System.Text;
 using BOG.Framework;
 using NUnit.Framework;
 
-namespace BOG.Framework
+namespace BOG.Framework_NUnit
 {
 	[TestFixture]
 	public class FormattingTest
@@ -49,12 +49,28 @@ namespace BOG.Framework
 			Assert.That(answer == "1,023", "1023.0 == 1,023");
 		}
 
+		[Test, Description("KiloToYotta, double == 1023.0, baseValue = 1000")]
+		public void Formatting_KiloToYotta_d1023_b1000()
+		{
+			string answer = BOG.Framework.Formatting.KiloToYotta((double) 1023, false);
+
+			Assert.That(answer == "1.0K", "1023.0 == 1.0K");
+		}
+
 		[Test, Description("KiloToYotta, long == 1023")]
 		public void Formatting_KiloToYotta_l1023()
 		{
 			string answer = BOG.Framework.Formatting.KiloToYotta((long) 1023);
 
 			Assert.That(answer == "1,023", "1023 == 1,023");
+		}
+
+		[Test, Description("KiloToYotta, long == 1023, baseValue = 1000")]
+		public void Formatting_KiloToYotta_l1023_b1000()
+		{
+			string answer = BOG.Framework.Formatting.KiloToYotta((long) 1023, false);
+
+			Assert.That(answer == "1.0K", "1023 == 1.0K");
 		}
 
 		[Test, Description("KiloToYotta, double == 1024.0")]

@@ -23,6 +23,10 @@ namespace BOG.Framework
 	//	string Message = null;
 	//}
 
+	/// <summary>
+	/// A container for a sending a secure message over an unsecure wire to a peer.
+	/// This is a non-negotiated protocol.  The sender and receiver are expected to the know the message key.
+	/// </summary>
 	[Serializable]
 	public class SecureGram : ICloneable, ISerializable
 	{
@@ -66,12 +70,12 @@ namespace BOG.Framework
 		/// <summary>
 		/// Initializes a new instance of the class <see cref="SecureGram"/>, with all properties as parameters.
 		/// </summary>
-		/// <param name="Sender">The value to assign to this property</param>
-		/// <param name="Created">The value to assign to this property</param>
-		/// <param name="Subject">The value to assign to this property</param>
-		/// <param name="MessageLength">The value to assign to this property</param>
-		/// <param name="IsCompressed">The value to assign to this property</param>
-		/// <param name="Message">The value to assign to this property</param>
+		/// <param name="sender">The value to assign to this property</param>
+		/// <param name="created">The value to assign to this property</param>
+		/// <param name="subject">The value to assign to this property</param>
+		/// <param name="messageLength">The value to assign to this property</param>
+		/// <param name="isCompressed">The value to assign to this property</param>
+		/// <param name="message">The value to assign to this property</param>
 		public SecureGram(string sender, string created, string subject, Int32 messageLength, bool isCompressed, string message)
 		{
 			this._sender = sender;
@@ -122,7 +126,7 @@ namespace BOG.Framework
 		/// <summary>
 		/// Load the properties of this instance, from a KeyValuePair collection.
 		/// </summary>
-		/// <param name="params">The KeyValuePair collection for the property values.</param>
+		/// <param name="parms">The KeyValuePair collection for the property values.</param>
 		public void Load(List<KeyValuePair<string, object>> parms)
 		{
 			foreach (KeyValuePair<string, object> item in parms)
@@ -228,6 +232,7 @@ namespace BOG.Framework
 			return this.Clone();
 		}
 
+		/// <summary>
 		/// Serializable support method: returns the property values to a serialization client object.
 		/// </summary>
 		/// <param name="info">Provided by the serializer.</param>

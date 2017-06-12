@@ -127,6 +127,9 @@ namespace BOG.Framework
 
 	}
 
+	/// <summary>
+	/// Static class for the BeautifyJSON method.
+	/// </summary>
 	public static class ObjectJsonUtility
 	{
 		/// <summary>

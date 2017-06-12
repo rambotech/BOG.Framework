@@ -4,15 +4,37 @@ using System.Linq;
 
 namespace BOG.Framework
 {
+	/// <summary>
+	/// Allows Parameter sets to be added for loops, and allows the lopp enumerations to be represented by an index, and
+	/// vice-versa.  Intended to support large and deep looping with millions to even trillions of combinations.
+	/// </summary>
 	public class Iteration
 	{
-		public enum EndValueEval : int { Inclusive = 0, Exclusive = 1 }
+		/// <summary>
+		/// EndValueEval is for numeric sequences, and specifies how the range limit value is handled.
+		/// </summary>
+		public enum EndValueEval : int {
+			/// <summary>
+			/// The range limit should be used      ( 1 &lt;= x &lt;= Value )
+			/// </summary>
+			Inclusive = 0,
+			/// <summary>
+			/// The range limit should not be used  ( 1 &lt;= x &lt; Value )
+			/// </summary>
+			Exclusive = 1
+		}
 
 		private SerializableDictionary<int, IterationItem> _IterationItems = new SerializableDictionary<int, IterationItem>();
 		private long _TotalIterationCount = 0L;
 
-		// Read-only properties: returns a copy of the original.
+		/// <summary>
+		/// Gets the number of items in this iteration.
+		/// </summary>
 		public long TotalIterationCount { get { return _TotalIterationCount; } }
+
+		/// <summary>
+		/// Returns a copy of the specific iteration value used.
+		/// </summary>
 		public SerializableDictionary<int, IterationItem> GetIterationItems {
 			get {
 				SerializableDictionary<int, IterationItem> returnValue = new SerializableDictionary<int, IterationItem>();
@@ -24,10 +46,18 @@ namespace BOG.Framework
 			}
 		}
 
+		/// <summary>
+		/// Creates a default instantiation.
+		/// </summary>
 		public Iteration()
 		{
 		}
 
+		/// <summary>
+		/// Gets whether an iteration with a specific name already exists in the iteration items.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns>false if not found</returns>
 		public bool IterationItemNameExists(string name)
 		{
 			bool result = false;
@@ -43,6 +73,11 @@ namespace BOG.Framework
 			return result;
 		}
 
+		/// <summary>
+		/// Gets a list of the items associated with an iteration name.
+		/// </summary>
+		/// <param name="forName">the iteration name.</param>
+		/// <returns>A dictionary of the items, with the key being the ordinal sequence (0...N)</returns>
 		public SerializableDictionary<int, IterationItem> GetIterationItemsForName(string forName)
 		{
 			SerializableDictionary<int, IterationItem> result = new SerializableDictionary<int, IterationItem>();
@@ -66,9 +101,10 @@ namespace BOG.Framework
 		/// for (double value = initialValue, value &gt; limitValue, value -= incrementValue)  // when increment is negative
 		/// </summary>
 		/// <param name="name">Name of the parameter</param>
-		/// <param name="initialValue"></param>
-		/// <param name="incrementValue"></param>
-		/// <param name="finalValue"></param>
+		/// <param name="initialValue">the starting value</param>
+		/// <param name="incrementValue">the step or increment to the next value</param>
+		/// <param name="limitValue">the end value</param>
+		/// <param name="endValueEval">whether the end value itself can be included in the list of items.</param>
 		/// <returns>The number of items created for the iteration item.</returns>
 		public int AddNumberRange(string name, double initialValue, double incrementValue, double limitValue, EndValueEval endValueEval)
 		{
@@ -127,12 +163,12 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
-		/// Add numbers by range, using an increment for as an iteration item.
+		/// Add numbers by start and loop count.
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="initialValue"></param>
-		/// <param name="incrementValue"></param>
-		/// <param name="iterationCount"></param>
+		/// <param name="name">Name of the parameter</param>
+		/// <param name="initialValue">the starting value</param>
+		/// <param name="incrementValue">the step or increment to the next value</param>
+		/// <param name="iterationCount">the number of times to increment the value and add the new value to list.</param>
 		/// <returns>The number of items created for the iteration item.</returns>
 		public int AddNumberSequence(string name, double initialValue, double incrementValue, int iterationCount)
 		{
@@ -168,7 +204,10 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
-		/// Adds items from a list of items.
+		/// Adds items from a list of items.  This allows non-sequence values to be added. Eg.
+		/// { "91352", 66202", "34761" }   // zip codes
+		/// { "Fred", "Harry", "Sally" }
+		/// 
 		/// </summary>
 		/// <param name="name">The iteration item name</param>
 		/// <param name="itemValues"></param>
@@ -203,7 +242,11 @@ namespace BOG.Framework
 			return result;
 		}
 
-		// returns the items and their values for a particular index.  The index reamins unchanged.
+		/// <summary>
+		/// Returns the items and their values for a particular index.
+		/// </summary>
+		/// <param name="indexSpecific">The zero-based index of the sequence.</param>
+		/// <returns>A dictionary of strings where the key is the IterationItem name, and the value is its value for this index.</returns>
 		public Dictionary<string, string> GetIterationValueSet(Int64 indexSpecific)
 		{
 			if (indexSpecific < 0)
@@ -222,8 +265,6 @@ namespace BOG.Framework
 			Dictionary<string, string> result = new Dictionary<string, string>();
 			for (int ItemInSetIndex = _IterationItems.Count - 1; ItemInSetIndex >= 0; ItemInSetIndex--)
 			{
-				//for (int ItemInSetIndex = 0; ItemInSetIndex < _IterationItems.Count; ItemInSetIndex++)
-				//{
 				Int64 whole = index / (Int64) _IterationItems[ItemInSetIndex].IterationValues.Count;
 				int remainder = (int) (index % (Int64) _IterationItems[ItemInSetIndex].IterationValues.Count);
 				result.Add(_IterationItems[ItemInSetIndex].Name, _IterationItems[ItemInSetIndex].IterationValues[remainder]);

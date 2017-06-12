@@ -118,6 +118,7 @@ namespace BOG.Framework
 		/// <param name="value">byte array to encrypt</param>
 		/// <param name="password"></param>
 		/// <param name="salt"></param>
+		/// <param name="base64Options"></param>
 		/// <returns>Base64 encoded string containing protected content</returns>
 		public string EncryptByteArray(byte[] value, string password, string salt, Base64FormattingOptions base64Options)
 		{
