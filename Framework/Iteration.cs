@@ -33,16 +33,27 @@ namespace BOG.Framework
 		public long TotalIterationCount { get { return _TotalIterationCount; } }
 
 		/// <summary>
-		/// Returns a copy of the specific iteration value used.
+		/// Gets a copy of the iteration set, or sets the iteration set values.
 		/// </summary>
-		public SerializableDictionary<int, IterationItem> GetIterationItems {
-			get {
+		public SerializableDictionary<int, IterationItem> IterationItems
+		{
+			get
+			{
 				SerializableDictionary<int, IterationItem> returnValue = new SerializableDictionary<int, IterationItem>();
 				foreach (int key in _IterationItems.Keys)
 				{
 					returnValue.Add(key, (IterationItem) _IterationItems[key].Clone());
 				}
 				return returnValue;
+			}
+			set
+			{
+				_IterationItems.Clear();
+				foreach (int key in value.Keys)
+				{
+					_IterationItems.Add(key, (IterationItem) value[key].Clone());
+					_TotalIterationCount = (_TotalIterationCount == 0L ? 1L : _TotalIterationCount) * _IterationItems[key].IterationValues.Count;
+				}
 			}
 		}
 

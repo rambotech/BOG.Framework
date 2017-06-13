@@ -14,14 +14,14 @@ namespace BOG.Framework_NUnit
 		{
 			Iteration iter = new Iteration();
 			Assert.True(
-				iter.GetIterationItems.Count == 0,
+				iter.IterationItems.Count == 0,
 				"Count: expected {0}, got {1}",
-				new object[] { 0, iter.GetIterationItems.Count });
+				new object[] { 0, iter.IterationItems.Count });
 			iter.AddListItems("ListItem", new List<string>(new string[] { "A", "B", "C" }));
 			Assert.True(
-				iter.GetIterationItems.Count == 1,
+				iter.IterationItems.Count == 1,
 				"GetIterationItems.Count: expected {0}, got {1}",
-				new object[] { 1, iter.GetIterationItems.Count });
+				new object[] { 1, iter.IterationItems.Count });
 			Assert.True(
 				iter.IterationItemNameExists("ListItem"),
 				"iter.IterationItemNameExists(\"ListItem\")",
@@ -53,14 +53,14 @@ namespace BOG.Framework_NUnit
 		{
 			Iteration iter = new Iteration();
 			Assert.True(
-				iter.GetIterationItems.Count == 0,
+				iter.IterationItems.Count == 0,
 				"Count: expected {0}, got {1}",
-				new object[] { 0, iter.GetIterationItems.Count });
+				new object[] { 0, iter.IterationItems.Count });
 			iter.AddNumberRange("NumberRange-01", 0, 1, 10, Iteration.EndValueEval.Exclusive);
 			Assert.True(
-				iter.GetIterationItems.Count == 1,
+				iter.IterationItems.Count == 1,
 				"Count: expected {0}, got {1}",
-				new object[] { 1, iter.GetIterationItems.Count });
+				new object[] { 1, iter.IterationItems.Count });
 			Assert.True(iter.TotalIterationCount == 10,
 				"Count: expected {0}, got {1}",
 				new object[] { 10, iter.TotalIterationCount });
@@ -71,14 +71,14 @@ namespace BOG.Framework_NUnit
 		{
 			Iteration iter = new Iteration();
 			Assert.True(
-				iter.GetIterationItems.Count == 0,
+				iter.IterationItems.Count == 0,
 				"Count: expected {0}, got {1}",
-				new object[] { 0, iter.GetIterationItems.Count });
+				new object[] { 0, iter.IterationItems.Count });
 			iter.AddNumberRange("NumberRange-01", 0, 1, 10, Iteration.EndValueEval.Inclusive);
 			Assert.True(
-				iter.GetIterationItems.Count == 1,
+				iter.IterationItems.Count == 1,
 				"Count: expected {0}, got {1}",
-				new object[] { 1, iter.GetIterationItems.Count });
+				new object[] { 1, iter.IterationItems.Count });
 			Assert.True(iter.TotalIterationCount == 11,
 				"Count: expected {0}, got {1}",
 				new object[] { 10, iter.TotalIterationCount });
@@ -89,14 +89,14 @@ namespace BOG.Framework_NUnit
 		{
 			Iteration iter = new Iteration();
 			Assert.True(
-				iter.GetIterationItems.Count == 0,
+				iter.IterationItems.Count == 0,
 				"Count: expected {0}, got {1}",
-				new object[] { 0, iter.GetIterationItems.Count });
+				new object[] { 0, iter.IterationItems.Count });
 			iter.AddNumberRange("NumberRange-01", 10, -1, 0, Iteration.EndValueEval.Exclusive);
 			Assert.True(
-				iter.GetIterationItems.Count == 1,
+				iter.IterationItems.Count == 1,
 				"Count: expected {0}, got {1}",
-				new object[] { 1, iter.GetIterationItems.Count });
+				new object[] { 1, iter.IterationItems.Count });
 			Assert.True(iter.TotalIterationCount == 10,
 				"Count: expected {0}, got {1}",
 				new object[] { 10, iter.TotalIterationCount });
@@ -107,14 +107,14 @@ namespace BOG.Framework_NUnit
 		{
 			Iteration iter = new Iteration();
 			Assert.True(
-				iter.GetIterationItems.Count == 0,
+				iter.IterationItems.Count == 0,
 				"Count: expected {0}, got {1}",
-				new object[] { 0, iter.GetIterationItems.Count });
+				new object[] { 0, iter.IterationItems.Count });
 			iter.AddNumberRange("NumberRange-01", 10, -1, 0, Iteration.EndValueEval.Inclusive);
 			Assert.True(
-				iter.GetIterationItems.Count == 1,
+				iter.IterationItems.Count == 1,
 				"Count: expected {0}, got {1}",
-				new object[] { 1, iter.GetIterationItems.Count });
+				new object[] { 1, iter.IterationItems.Count });
 			Assert.True(iter.TotalIterationCount == 11,
 				"Count: expected {0}, got {1}",
 				new object[] { 10, iter.TotalIterationCount });
@@ -131,18 +131,18 @@ namespace BOG.Framework_NUnit
 			Iteration iter = new Iteration();
 
 			iter.AddListItems("List", new List<string>(IterationSets["List"]));
-			Assert.AreEqual(iter.GetIterationItems.Count, 1);
+			Assert.AreEqual(iter.IterationItems.Count, 1);
 			Assert.AreEqual(iter.TotalIterationCount, IterationSets["List"].LongLength);
 
 			iter.AddNumberRange("Numbers01", 10, -1, 0, Iteration.EndValueEval.Inclusive);
-			Assert.AreEqual(iter.GetIterationItems.Count, 2);
+			Assert.AreEqual(iter.IterationItems.Count, 2);
 			Assert.AreEqual(
 				iter.TotalIterationCount,
 				IterationSets["List"].LongLength * IterationSets["Numbers01"].LongLength
 				);
 
 			iter.AddNumberSequence("Numbers02", 250, 5, 7);
-			Assert.AreEqual(iter.GetIterationItems.Count, 3);
+			Assert.AreEqual(iter.IterationItems.Count, 3);
 			Assert.AreEqual(
 				iter.TotalIterationCount,
 				IterationSets["List"].LongLength * IterationSets["Numbers01"].LongLength * IterationSets["Numbers02"].LongLength
@@ -182,13 +182,36 @@ namespace BOG.Framework_NUnit
 			Assert.AreEqual(masterIndex, iter.TotalIterationCount);
 		}
 
-		#region Helpers
-		private Iteration GetIterationForListItems()
+		[Test, Description("IterationItem (NumberRange:Inclusive, Negative) is accurate")]
+		public void Iteration_GetSet_OK()
 		{
-			Iteration result = new Iteration();
+			Dictionary<string, string[]> IterationSets = new Dictionary<string, string[]>();
+			IterationSets.Add("List", new string[] { "A", "B", "C" });
+			IterationSets.Add("Numbers01", new string[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0" });
+			IterationSets.Add("Numbers02", new string[] { "250", "255", "260", "265", "270", "275", "280" });
 
-			return result;
+			Iteration iter = new Iteration();
+
+			iter.AddListItems("List", new List<string>(IterationSets["List"]));
+			iter.AddNumberRange("Numbers01", 10, -1, 0, Iteration.EndValueEval.Inclusive);
+			iter.AddNumberSequence("Numbers02", 250, 5, 7);
+
+			string serialized = ObjectXMLSerializer<Iteration>.CreateDocumentFormat(iter);
+			Iteration iterCloned = ObjectXMLSerializer<Iteration>.CreateObjectFormat(serialized);
+
+			Assert.AreEqual(iter.IterationItems.Count, iterCloned.IterationItems.Count, "Iteration item count mismatch");
+			foreach (int key in iter.IterationItems.Keys)
+			{
+				Assert.AreEqual(
+					iter.IterationItems[key].Name,
+					iterCloned.IterationItems[key].Name,
+					"Iteration item name mismatch for key " + key.ToString());
+				Assert.AreEqual(
+					iter.IterationItems[key].IterationValues.Count, 
+					iterCloned.IterationItems[key].IterationValues.Count, 
+					"Iteration item count mismatch for key " + key.ToString());
+			}
+			Assert.AreEqual(iter.TotalIterationCount, iterCloned.TotalIterationCount, "Total count mismatch");
 		}
-		#endregion
 	}
 }

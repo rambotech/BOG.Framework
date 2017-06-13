@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>BOG.Framework</id>
     <version>2.0.1</version>
     <title>BOG.Framework</title>
     <authors>John J Schultz</authors>
