@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{44AA18D9-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{901B1D4E-7687-4DB9-9077-6535954D8738}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
