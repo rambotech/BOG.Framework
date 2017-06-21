@@ -84,9 +84,11 @@ The classes are:
   
 ### SerializerXML
   A static class containing methods to serialize and deserialize XML between objects, strings and files.
+  Also contains methods to convert to/from a secure transport container.
   
 ### SerializerJSON
   A static class containing methods to serialize and deserialize JSON between objects, strings and files.
+  Also contains methods to convert to/from a secure transport container.
   
 ### SettingsDictionary
   A kind of Dictionary<string,object> with internal methods to load, save and merge.  Originally designed

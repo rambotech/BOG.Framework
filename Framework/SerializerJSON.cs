@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -91,6 +92,80 @@ namespace BOG.Framework
 		}
 
 		/// <summary>
+		/// Takes an object, serializes it to JSON, compresses it with GZip, encrypts it, then creates a Base64 string
+		/// of its content. This string becomes the (secure) transit container for the receiver.
+		/// </summary>
+		/// <param name="serializableObject">The object to serialize</param>
+		/// <param name="password">The password used for encryption.</param>
+		/// <param name="salt">The salt used for encryption.</param>
+		public static string CreateTransitContainerForObject(T serializableObject, string password, string salt)
+		{
+			return CreateTransitContainerForObject(serializableObject, password, salt, new AesManaged());
+		}
+
+		/// <summary>
+		/// Takes an object, serializes it to JSON, compresses it with GZip, encrypts it, then creates a Base64 string
+		/// of its content. This string becomes the (secure) transit container for the receiver.
+		/// This overload allows a specific method to be used for the encryption.
+		/// </summary>
+		/// <param name="serializableObject">The object to serialize</param>
+		/// <param name="password">The password used for encryption.</param>
+		/// <param name="salt">The salt used for encryption.</param>
+		/// <param name="algorithm">an instance of an inheriting class of SymmetricAlgorithm to do the encryption.</param>
+		public static string CreateTransitContainerForObject(T serializableObject, string password, string salt, SymmetricAlgorithm algorithm)
+		{
+			using (MemoryStream m = new MemoryStream())
+			{
+				using (System.IO.Compression.GZipStream outGZipStream = new GZipStream(m, CompressionMode.Compress))
+				{
+					using (StreamWriter sw = new StreamWriter(outGZipStream))
+					{
+						sw.Write(CreateDocumentFormat(serializableObject));
+					}
+				}
+				return new CipherUtility(algorithm).EncryptByteArray(m.ToArray(), password, salt, Base64FormattingOptions.InsertLineBreaks);
+			}
+		}
+
+		/// <summary>
+		/// Takes the (secure) transit container, a Base64 string, decrypts it, decompresses it with GZip (to JSON), 
+		/// and returns the deserialized object.
+		/// </summary>
+		/// <param name="secureBase64">The string with the transit container content</param>
+		/// <param name="password">The password used for encryption.</param>
+		/// <param name="salt">The salt used for encryption.</param>
+		public static T CreateObjectFromTransitContainer(string secureBase64, string password, string salt)
+		{
+			return CreateObjectFromTransitContainer(secureBase64, password, salt, new AesManaged());
+		}
+
+		/// <summary>
+		/// Takes the (secure) transit container, a Base64 string, decrypts it, decompresses it with GZip (to JSON), 
+		/// and returns the deserialized object.
+		/// This overload allows a specific method to be used for the decryption.
+		/// </summary>
+		/// <param name="secureBase64">The string with the transit container content</param>
+		/// <param name="password">The password used for encryption.</param>
+		/// <param name="salt">The salt used for encryption.</param>
+		/// <param name="algorithm">an instance of an inheriting class of SymmetricAlgorithm to do the encryption.</param>
+		public static T CreateObjectFromTransitContainer(string secureBase64, string password, string salt, SymmetricAlgorithm algorithm)
+		{
+			T serializableObject = null;
+
+			using (MemoryStream m = new MemoryStream(new CipherUtility(algorithm).DecryptByteArray(secureBase64, password, salt)))
+			{
+				using (System.IO.Compression.GZipStream inGZipStream = new GZipStream(m, CompressionMode.Decompress))
+				{
+					using (StreamReader sr = new StreamReader(inGZipStream))
+					{
+						serializableObject = CreateObjectFormat(sr.ReadToEnd());
+					}
+				}
+				return serializableObject;
+			}
+		}
+
+		/// <summary>
 		/// Creates an object from a compressed file containing JSON representing an instance of an object of that class type.
 		/// </summary>
 		/// <param name="filename">the file containing JSON</param>
@@ -124,7 +199,6 @@ namespace BOG.Framework
 			}
 			return serializableObject;
 		}
-
 	}
 
 	/// <summary>

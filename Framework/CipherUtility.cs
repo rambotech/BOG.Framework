@@ -34,7 +34,7 @@ namespace BOG.Framework
 		/// </summary>
 		public CipherUtility(SymmetricAlgorithm cryptoAlgorithm)
 		{
-			this.CryptoAlgorithm = cryptoAlgorithm;
+			this.CryptoAlgorithm = cryptoAlgorithm ?? new AesManaged();
 		}
 
 		/// <summary>

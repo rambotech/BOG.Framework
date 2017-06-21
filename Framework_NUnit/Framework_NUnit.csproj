@@ -82,8 +82,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrapeTest.cs" />
     <Compile Include="SecureGramTest.cs" />
+    <Compile Include="SerializableJson_Test.cs" />
+    <Compile Include="SerializableXml_Test.cs" />
     <Compile Include="SettingsDictionary_Test.cs" />
     <Compile Include="StringExTest.cs" />
+    <Compile Include="Support\StringSet.cs" />
     <Compile Include="UrlTest.cs" />
   </ItemGroup>
   <ItemGroup>
