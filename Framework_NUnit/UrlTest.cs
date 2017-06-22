@@ -138,21 +138,5 @@ namespace BOG.Framework_NUnit
 				});
 			}
 		}
-
-		#region Internal Helpers
-		private string CleanProperty(string source)
-		{
-			string result = string.Empty;
-			if (string.Compare("{empty}", source, true) == 0)
-			{
-				result = string.Empty;
-			}
-			else
-			{
-				result = source.Trim();
-			}
-			return result;
-		}
-		#endregion
 	}
 }
