@@ -10,20 +10,17 @@ namespace BOG.Framework_NUnit
 	public class ScrapeTest
 	{
 		[Test, Description("Check for 3 items, in any order")]
-		public void MemoryList_RandomNonUniqueIgnoreCase()
+		public void ScrapeTest_RegexChunk()
 		{
-			MemoryList<string> t = new MemoryList<string>("testlist", false, true, MemoryList<string>.MemoryListRetrieveSequence.Random);
+            string source = "<td>05/30/17</td><td>3</td><td>X2</td><td>05/31/17</td><td>2</td><td c=34>X4</td>";
+            string startExpr = @">\d\d/\d\d/\d\d<";
+            string endExpr = @">X\d<";
 
-			Assert.That(t.CountAll() == 0, "(1) Count() == 0");
-			Assert.That(!t.HasValues(), "t.HasValues() == false");
+            var scrape = new Scrape();
+            var results = scrape.RegExChunk(source, startExpr, true, 0, endExpr, true, 1, 0, 1000);
 
-			t.StoreValue("Robert");
-			t.StoreValue("robert");
-			t.StoreValue("Fred");
-
-			Assert.That(t.CountAll() == 3, "Count() == 3");
-			Assert.That(t.ConsumedCount() == 0, "t.ConsumedCount() == 0");
-			Assert.That(t.UnconsumedCount() == 3, "t.UnconsumedCount() == 3");
-		}
-	}
+			Assert.That(results.Count == 2, string.Format("Count == {0}", results.Count));
+            Assert.That(results.Count == 2, string.Format("Count == {0}", results.Count));
+        }
+    }
 }

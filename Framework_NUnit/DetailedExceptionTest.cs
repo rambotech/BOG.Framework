@@ -24,7 +24,22 @@ namespace BOG.Framework_NUnit
 					methodOutput));
 		}
 
-		private string StripCredentials(string original)
+        [Test]
+        public void DetailedException_ArgumentException()
+        {
+            string result = null;
+            try
+            {
+                throw new ArgumentException("non-base exception class test");
+            }
+            catch (ArgumentException err)
+            {
+                result = DetailedException.WithEnterpriseContent(ref err);
+            }
+            Assert.That(result.Contains("ArgumentException"), "Specific type of ArgumentException expected, but not found in text");
+        }
+
+        private string StripCredentials(string original)
 		{
 			string result = string.Empty;
 			try

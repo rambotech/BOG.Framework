@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 
 namespace BOG.Framework
 {
@@ -127,7 +128,7 @@ namespace BOG.Framework
 		/// <param name="headerMessage">optional text to prefix to the error report.</param>
 		/// <param name="footerMessage">optional text to suffix to the error report.</param>
 		/// <returns>The formatted error description</returns>
-		public static string WithEnterpriseContent(ref Exception ReportException, string headerMessage, string footerMessage)
+		public static string WithEnterpriseContent<T>(ref T ReportException, string headerMessage, string footerMessage) where T : _Exception
 		{
 			DateTime Timestamp = DateTime.Now;
 			try
@@ -201,8 +202,8 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="ReportException">a reference to the exception</param>
 		/// <returns></returns>
-		public static string WithEnterpriseContent(ref Exception ReportException)
-		{
+		public static string WithEnterpriseContent<T>(ref T ReportException) where T : _Exception
+        {
 			return WithEnterpriseContent(ref ReportException, string.Empty, string.Empty);
 		}
 
@@ -215,8 +216,8 @@ namespace BOG.Framework
 		/// <param name="headerMessage">optional text to prefix to the error report.</param>
 		/// <param name="footerMessage">optional text to suffix to the error report.</param>
 		/// <returns></returns>
-		public static string WithMachineContent(ref Exception ReportException, string headerMessage, string footerMessage)
-		{
+		public static string WithMachineContent<T>(ref T ReportException, string headerMessage, string footerMessage) where T : _Exception
+        {
 			DateTime Timestamp = DateTime.Now;
 			return
 				"\r\n" +
@@ -240,8 +241,8 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="ReportException">a reference to the exception</param>
 		/// <returns></returns>
-		public static string WithMachineContent(ref Exception ReportException)
-		{
+		public static string WithMachineContent<T>(ref T ReportException) where T : _Exception
+        {
 			return WithMachineContent(ref ReportException, string.Empty, string.Empty);
 		}
 
@@ -254,8 +255,8 @@ namespace BOG.Framework
 		/// <param name="headerMessage">optional text to prefix to the error report.</param>
 		/// <param name="footerMessage">optional text to suffix to the error report.</param>
 		/// <returns></returns>
-		public static string WithUserContent(ref Exception ReportException, string headerMessage, string footerMessage)
-		{
+		public static string WithUserContent<T>(ref T ReportException, string headerMessage, string footerMessage) where T : _Exception
+        {
 			DateTime Timestamp = DateTime.Now;
 			return
 				(headerMessage.Trim().Length == 0 ? string.Empty : headerMessage + "\r\n") +
@@ -270,8 +271,8 @@ namespace BOG.Framework
 		/// </summary>
 		/// <param name="ReportException">a reference to the exception</param>
 		/// <returns></returns>
-		public static string WithUserContent(ref Exception ReportException)
-		{
+		public static string WithUserContent<T>(ref T ReportException) where T : _Exception
+        {
 			return WithUserContent(ref ReportException, string.Empty, string.Empty);
 		}
 
