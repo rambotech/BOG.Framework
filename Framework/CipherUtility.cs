@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Text;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace BOG.Framework
 {
-	using System;
-	using System.Text;
-	using System.Security.Cryptography;
-	using System.IO;
 
 	/// <summary>
 	/// Drived from: http://www.superstarcoders.com/blogs/posts/symmetric-encryption-in-c-sharp.aspx
