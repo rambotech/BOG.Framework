@@ -1,3 +1,7 @@
+**This project is deprecated: it only supports .NET Framework 2.x/3.x/4.x, and is no longer maintained.**
+
+**For compatiblity with NET Core and NET Standard, see its replacement project [BOG.SwissArmyKnife](https://github.com/rambotech/BOG.SwissArmyKnife).**
+
 # BOG.Framework
 A general collection of utility methods and classes, which has become my Swiss Army knife over the years.
 Contains an NUnit 3 testing project, and a hsands-on collection of WinForms for demonstration and experimentation.
