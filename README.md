@@ -4,7 +4,7 @@
 
 # BOG.Framework
 A general collection of utility methods and classes, which has become my Swiss Army knife over the years.
-Contains an NUnit 3 testing project, and a hsands-on collection of WinForms for demonstration and experimentation.
+Contains an NUnit 3 testing project, and a hands-on collection of WinForms for demonstration and experimentation.
 
 The classes are:
 
@@ -18,7 +18,7 @@ The classes are:
   A class which uses reflection to extract the assembly info for an executable or assembly.
 
 ### BabbleOn
-  Allows real-time monitoring of a service or other headless operation from any TCP client.
+  Allows real-time monitoring of a service or other headless operation from any telnet client.
   
 ### CipherUtility
   A class for enciphering / deciphering.  Allows client to override the SymmetricAlgorithm class used for cipher method.

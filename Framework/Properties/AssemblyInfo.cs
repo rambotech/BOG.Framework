@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Framework")]
+[assembly: AssemblyTitle("BOG.Framework")]
 [assembly: AssemblyDescription("Swiss Army knife of common utilities")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bits of Genius")]
-[assembly: AssemblyProduct("Framework")]
-[assembly: AssemblyCopyright("Copyright (c) 2010-2017, John J Schultz, Open Source under the MIT License")]
+[assembly: AssemblyProduct("BOG.Framework")]
+[assembly: AssemblyCopyright("Copyright (c) John J Schultz, Open Source under the MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
