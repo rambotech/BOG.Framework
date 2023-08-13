@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "develop", "release", "master" ]
+    
+  pull_request:
+    branches: [ "release", "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+  
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore Packages
+      run: nuget restore Framework.sln
+
+    - name: Build solution
+      run: msbuild Framework.sln -t:rebuild -property:Configuration=Release
+
+    - name: NuGet package publish
+      if: github.event.ref == 'refs/heads/master'
+      env:
+        NGKEY: ${{ secrets.NUGET_API_KEY }}
+        NGSRC: ${{ vars.NUGET_SOURCE }}
+      run: |
+        dotnet nuget push ./bin/release/Framework/BOG.Framework.*.nupkg --api-key ${NGKEY} --source ${NGSRC} --skip-duplicate
