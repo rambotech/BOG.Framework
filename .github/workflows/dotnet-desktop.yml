@@ -36,4 +36,7 @@ jobs:
         NGKEY: ${{ secrets.NUGET_API_KEY }}
         NGSRC: ${{ vars.NUGET_SOURCE }}
       run: |
-        dotnet nuget push ./bin/release/Framework/BOG.Framework.*.nupkg --api-key ${NGKEY} --source ${NGSRC} --skip-duplicate
+        echo NGSRC = ${NGSRC}
+        echo NGSRC_src = ${{ vars.NUGET_SOURCE }}
+        echo dotnet nuget push ./Framework/bin/release/Framework/BOG.Framework.*.nupkg --api-key ${NGKEY} --source ${NGSRC} --skip-duplicate
+        dotnet nuget push ./Framework/bin/release/Framework/BOG.Framework.*.nupkg --api-key ${NGKEY} --source ${NGSRC} --skip-duplicate
