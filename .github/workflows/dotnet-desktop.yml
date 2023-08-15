@@ -33,4 +33,4 @@ jobs:
     - name: NuGet package publish
       if: github.event.ref == 'refs/heads/master'
       run: |
-        dotnet nuget push ./Framework/bin/release/Framework/BOG.Framework.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ vars.NUGET_SOURCE }} --skip-duplicate
+        dotnet nuget push ./Framework/bin/release/BOG.Framework.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ vars.NUGET_SOURCE }} --skip-duplicate
