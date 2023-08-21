@@ -6,6 +6,8 @@
 A general collection of utility methods and classes, which has become my Swiss Army knife over the years.
 Contains an NUnit 3 testing project, and a hands-on collection of WinForms for demonstration and experimentation.
 
+Develop: [![CI](https://github.com/rambotech/BOG.Framework/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/rambotech/BOG.Framework/actions/workflows/dotnet-desktop.yml)
+
 The classes are:
 
 ### AccessControl
