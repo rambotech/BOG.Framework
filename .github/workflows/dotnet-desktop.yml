@@ -33,19 +33,21 @@ jobs:
     - name: Nuget pack (develop branch)
       if: github.event.ref == 'refs/heads/develop'
       run: |
-        nuget pack ./Framework.csproj -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory ./Framework/bin/develop
+        pwd  
+        ls -la
+        nuget pack ./BOG.Framework/Framework/Framework.csproj -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory ./BOG.Framework/Framework/bin/develop
 
     - name: Nuget pack (release branch)
       if: github.event.ref == 'refs/heads/release'
       run: |
-        nuget pack ./Framework.csproj -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory ./Framework/bin/release
+        nuget pack ./Framework.csproj -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory ./BOG.Framework/Framework/bin/release
 
     - name: Nuget pack (master branch)
       if: github.event.ref == 'refs/heads/master'
       run: |
-        nuget pack ./Framework.csproj -NonInteractive -SolutionDirectory . -OutputDirectory ./Framework/bin/release
+        nuget pack ./Framework.csproj -NonInteractive -SolutionDirectory . -OutputDirectory ./BOG.Framework/Framework/bin/release
 
     - name: NuGet package publish (master branch)
       if: github.event.ref == 'refs/heads/master'
       run: |
-        dotnet nuget push ./Framework/bin/release/BOG.Framework.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ vars.NUGET_SOURCE }} --skip-duplicate
+        dotnet nuget push ./BOG.Framework/Framework/bin/release/BOG.Framework.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ vars.NUGET_SOURCE }} --skip-duplicate
