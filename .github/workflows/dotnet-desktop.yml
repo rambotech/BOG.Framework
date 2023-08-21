@@ -30,6 +30,16 @@ jobs:
     - name: Build solution
       run: msbuild Framework.sln -t:rebuild -property:Configuration=Release
 
+    - name: Nuget pack (develop branch)
+      if: github.event.ref == 'refs/heads/develop'
+      run: |
+        nuget pack ./Framework -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory ./Framework/bin/develop Framework.sln 
+
+    - name: Nuget pack (master branch)
+      if: github.event.ref == 'refs/heads/master'
+      run: |
+        nuget pack ./Framework -NonInteractive -SolutionDirectory . -OutputDirectory ./Framework/bin/release Framework.sln 
+
     - name: NuGet package publish
       if: github.event.ref == 'refs/heads/master'
       run: |
