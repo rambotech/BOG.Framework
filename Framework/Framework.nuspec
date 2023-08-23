@@ -9,6 +9,7 @@
     <licenseUrl>https://github.com/rambotech/BOG.Framework/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/rambotech/BOG.Framework</projectUrl>
     <iconUrl>https://github.com/rambotech/BOG.Framework/Framework/multitool.png</iconUrl>
+		<PackageOutputPath>bin\Release</PackageOutputPath>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of utility classes.</description>
     <releaseNotes>Added as a nuget package.</releaseNotes>
