@@ -30,6 +30,16 @@ jobs:
     - name: Build solution
       run: msbuild Framework.sln -t:rebuild -property:Configuration=Release
 
+    - name: Unit Tests (develop branch)
+      if: github.event.ref == 'refs/heads/develop'
+      run: |
+        msbuild -t:test
+
+    - name: Unit Tests (release branch)
+      if: github.event.ref == 'refs/heads/release'
+      run: |
+        msbuild -t:test
+
     - name: Nuget pack (develop branch)
       if: github.event.ref == 'refs/heads/develop'
       run: |
