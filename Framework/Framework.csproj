@@ -82,6 +82,7 @@
     <Compile Include="CipherUtility.cs" />
     <Compile Include="ConsoleControl.cs" />
     <Compile Include="DetailedException.cs" />
+    <Compile Include="FileQueue.cs" />
     <Compile Include="Formatting.cs" />
     <Compile Include="Fuse.cs" />
     <Compile Include="Hasher.cs" />

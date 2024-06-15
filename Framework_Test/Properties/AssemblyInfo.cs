@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bits of Genius")]
 [assembly: AssemblyProduct("Framework_Test")]
-[assembly: AssemblyCopyright("Copyright (c) 2010-2017, John J Schultz, Open Source under the MIT License")]
+[assembly: AssemblyCopyright("Copyright (c) 2010-2024, John J Schultz, Open Source under the MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.1.5.0")]
-[assembly: AssemblyFileVersion("2.1.5.0")]
+[assembly: AssemblyVersion("2.1.6.0")]
+[assembly: AssemblyFileVersion("2.1.6.0")]

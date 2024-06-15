@@ -1,17 +1,13 @@
-﻿using System;
+﻿using BOG.Framework;
+using BOG.Framework.Extensions;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using BOG.Framework;
-using BOG.Framework.Extensions;
 
 namespace BOG.Framework_Test
 {
-	public partial class frmStringEx : Form
+    public partial class frmStringEx : Form
 	{
 		Dictionary<string, string[]> FilterTestSet = new Dictionary<string, string[]>();
 		public frmStringEx()

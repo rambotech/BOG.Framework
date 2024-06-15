@@ -13,7 +13,7 @@ namespace BOG.Framework_NUnit
 		public void MemoryList_isEmpty()
 		{
 			MemoryList<string> l = new MemoryList<string>();
-			Assert.False(l.HasValues());
+			Assert.That(!l.HasValues());
 		}
 
 		[Test, Description("HasValues() on non-empty list")]
@@ -21,7 +21,7 @@ namespace BOG.Framework_NUnit
 		{
 			MemoryList<string> l = new MemoryList<string>();
 			l.StoreValue("V");
-			Assert.True(l.HasValues());
+			Assert.That(l.HasValues());
 		}
 
 		[Test, Description("HasValues() on non-empty list with items recalled")]
@@ -30,7 +30,7 @@ namespace BOG.Framework_NUnit
 			MemoryList<string> l = new MemoryList<string>();
 			l.StoreValue("V");
 			string v = l.RecallValue();
-			Assert.False(l.HasValues());
+			Assert.That(!l.HasValues());
 		}
 
 		[Test, Description("Unique, Case-insensitive, Count check")]
@@ -39,7 +39,7 @@ namespace BOG.Framework_NUnit
 			MemoryList<string> l = new MemoryList<string>("MyListName", true, true);
 			l.StoreValue("Giraffe");
 			l.StoreValue("giraffe");
-			Assert.True(l.UnconsumedCount() == 1);
+			Assert.That(l.UnconsumedCount() == 1);
 		}
 
 		[Test, Description("NonUnique, Case-sensitive, Count check")]

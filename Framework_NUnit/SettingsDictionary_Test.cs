@@ -20,7 +20,7 @@ namespace BOG.Framework
 		public void SettingsDictionary_Instantiate1()
 		{
 			sd = new SettingsDictionary();
-			Assert.IsNotNull(sd);
+			Assert.That(sd != null);
 		}
 
 		[Test, Description("Create Test Settings, save in #1")]

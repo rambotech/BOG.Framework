@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -264,7 +265,7 @@ namespace BOG.Framework.Extensions
 			StringBuilder s = new StringBuilder();
 			for (int i = 0; i < decodedByteArray.Length; i++)
 			{
-				s.Append((char) decodedByteArray[i]);
+				s.Append((char)decodedByteArray[i]);
 			}
 			return (s.ToString());
 		}
@@ -281,7 +282,7 @@ namespace BOG.Framework.Extensions
 			char[] encodedArray = new char[inputStr.Length * 2];
 
 			for (int i = 0; i < inputStr.Length; i++)
-				rawByteArray[i] = (byte) inputStr[i];
+				rawByteArray[i] = (byte)inputStr[i];
 
 			Convert.ToBase64CharArray(
 				rawByteArray,
@@ -328,7 +329,7 @@ namespace BOG.Framework.Extensions
 			int index = 0;
 			while (index < source.Length)
 			{
-				result.Append(string.Format(formatter, (byte) source[index], spacer));
+				result.Append(string.Format(formatter, (byte)source[index], spacer));
 				index++;
 				if (charsPerLine > 0 && (index % charsPerLine == 0))
 					result.AppendLine();
@@ -351,15 +352,15 @@ namespace BOG.Framework.Extensions
 			while (index < source.Length)
 			{
 				string thisChar = source.Substring(index, 1).ToUpper();
-				int HexCharLocation = (int) HexCharacters.IndexOf(thisChar);
+				int HexCharLocation = (int)HexCharacters.IndexOf(thisChar);
 				if (HexCharLocation >= 0)
 				{
 					hexValue *= 16;
-					hexValue += (byte) HexCharLocation;
-					hexIndex = (byte) ((hexIndex + 1) % 2);
+					hexValue += (byte)HexCharLocation;
+					hexIndex = (byte)((hexIndex + 1) % 2);
 					if (hexIndex == 0)
 					{
-						result.Append((char) hexValue);
+						result.Append((char)hexValue);
 						hexValue = 0;
 					}
 				}
@@ -418,12 +419,12 @@ namespace BOG.Framework.Extensions
 			while (index < source.Length)
 			{
 				string thisChar = source.Substring(index, 1).ToUpper();
-				int HexCharLocation = (int) HexCharacters.IndexOf(thisChar);
+				int HexCharLocation = (int)HexCharacters.IndexOf(thisChar);
 				if (HexCharLocation >= 0)
 				{
 					hexValue *= 16;
-					hexValue += (byte) HexCharLocation;
-					hexToggle = (byte) ((hexToggle + 1) % 2);
+					hexValue += (byte)HexCharLocation;
+					hexToggle = (byte)((hexToggle + 1) % 2);
 					if (hexToggle == 0)
 					{
 						buffer[hexIndex++] = hexValue;
@@ -464,7 +465,7 @@ namespace BOG.Framework.Extensions
 					}
 					if (Index < source.Length)
 					{
-						Result.Append(string.Format("{0:x2} ", (byte) source[Index]));
+						Result.Append(string.Format("{0:x2} ", (byte)source[Index]));
 					}
 					else
 					{
@@ -516,7 +517,7 @@ namespace BOG.Framework.Extensions
 				sourceWork = sourceWork.Substring(1, sourceWork.Length - 2);
 				Negative = true;
 			}
-			return (Negative ? (double) -1.0 : (double) 1.0) * double.Parse(sourceWork);
+			return (Negative ? (double)-1.0 : (double)1.0) * double.Parse(sourceWork);
 		}
 
 		/// <summary>
@@ -571,15 +572,15 @@ namespace BOG.Framework.Extensions
 			// Locate and replace environment variable placeholders, e.g.  "%ALLUSERSPROFILE%"
 			foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
 			{
-				string searchFor = "%" + (string) env.Key + "%";
-				string replaceWith = (string) env.Value;
+				string searchFor = "%" + (string)env.Key + "%";
+				string replaceWith = (string)env.Value;
 				result = ReplaceNoCase(result, searchFor, replaceWith, true);
 			}
 
 			// Locate and replace special folder placeholders, e.g.  "[CommonApplicationData]"
 			foreach (string specialFolderName in Enum.GetNames(typeof(Environment.SpecialFolder)))
 			{
-				Environment.SpecialFolder f = (Environment.SpecialFolder) Enum.Parse(typeof(Environment.SpecialFolder), specialFolderName);
+				Environment.SpecialFolder f = (Environment.SpecialFolder)Enum.Parse(typeof(Environment.SpecialFolder), specialFolderName);
 				string searchFor = "[" + specialFolderName + "]";
 				string replaceWith = Environment.GetFolderPath(f);
 				result = ReplaceNoCase(result, searchFor, replaceWith, true);
@@ -652,6 +653,92 @@ namespace BOG.Framework.Extensions
 				}
 			}
 			return response.ToString();
+		}
+
+		/// <summary>
+		/// Creates a MD5 signature returned as a string
+		/// </summary>
+		/// <param name="original"></param>
+		/// <returns>hash value as hex string</returns>
+		public static string ToHashMD5(this string original)
+		{
+			using (var o = MD5.Create())
+			{
+				var ba = System.Text.Encoding.ASCII.GetBytes(original);
+				var md5 = o.ComputeHash(ba);
+				return ByteArrayToHex(md5);
+            }
+		}
+
+        /// <summary>
+        /// Creates a SHA signature returned as a string
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns>hash value as hex string</returns>
+        public static string ToHashSHA1(this string original)
+        {
+            using (var o = SHA1.Create())
+            {
+                var ba = System.Text.Encoding.ASCII.GetBytes(original);
+                var sha = o.ComputeHash(ba);
+                return ByteArrayToHex(sha);
+            }
+        }
+
+        /// <summary>
+        /// Creates a SHA signature returned as a string
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns>hash value as hex string</returns>
+        public static string ToHashSHA256(this string original)
+        {
+            using (var o = SHA256.Create())
+            {
+                var ba = System.Text.Encoding.ASCII.GetBytes(original);
+                var sha = o.ComputeHash(ba);
+                return ByteArrayToHex(sha);
+            }
+        }
+
+        /// <summary>
+        /// Creates a SHA signature returned as a string
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns>hash value as hex string</returns>
+        public static string ToHashSHA384(this string original)
+        {
+            using (var o = SHA384.Create())
+            {
+                var ba = System.Text.Encoding.ASCII.GetBytes(original);
+                var sha = o.ComputeHash(ba);
+                return ByteArrayToHex(sha);
+            }
+        }
+
+        /// <summary>
+        /// Creates a SHA signature returned as a string
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns>hash value as hex string</returns>
+        public static string ToHashSHA512(this string original)
+        {
+            using (var o = SHA512.Create())
+            {
+                var ba = System.Text.Encoding.ASCII.GetBytes(original);
+                var sha = o.ComputeHash(ba);
+                return ByteArrayToHex(sha);
+            }
+        }
+
+        // Display the byte array in a readable format.
+        public static string ByteArrayToHex(byte[] array)
+		{
+			var sb = new StringBuilder();
+			for (int i = 0; i < array.Length; i++)
+			{
+				sb.Append($"{array[i]:X2}");
+			}
+			return sb.ToString();
 		}
 	}
 }

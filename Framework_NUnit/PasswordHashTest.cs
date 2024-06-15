@@ -21,21 +21,21 @@ namespace BOG.Framework_NUnit
 		public void PasswordHash_Password1Valid()
 		{
 			hash1 = PasswordHash.CreateHash(password1);
-			Assert.IsTrue(PasswordHash.ValidatePassword(password1, hash1));
+			Assert.That(PasswordHash.ValidatePassword(password1, hash1));
 		}
 
 		[Test, Description("Password 2 valid hash")]
 		public void PasswordHash_Password2Valid()
 		{
 			hash2 = PasswordHash.CreateHash(password2);
-			Assert.IsTrue(PasswordHash.ValidatePassword(password2, hash2));
+			Assert.That(PasswordHash.ValidatePassword(password2, hash2));
 		}
 
 		[Test, Description("Password 3 valid hash")]
 		public void PasswordHash_Password3Valid()
 		{
 			hash3 = PasswordHash.CreateHash(password3);
-			Assert.IsTrue(PasswordHash.ValidatePassword(password3, hash3));
+			Assert.That(PasswordHash.ValidatePassword(password3, hash3));
 		}
 	}
 }
