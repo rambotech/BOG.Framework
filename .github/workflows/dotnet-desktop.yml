@@ -33,7 +33,7 @@ jobs:
     - name: Unit Tests (develop branch)
       if: github.event.ref == 'refs/heads/develop'
       run: |
-        msbuild -t:test
+        dotnet test
 
     - name: Unit Tests (release branch)
       if: github.event.ref == 'refs/heads/release'
