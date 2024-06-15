@@ -38,13 +38,8 @@ jobs:
     - name: Unit Tests (release branch)
       if: github.event.ref == 'refs/heads/release'
       run: |
-        msbuild -t:test
+        dotnet test
          
-    - name: Nuget pack (develop branch)
-      if: github.event.ref == 'refs/heads/develop'
-      run: |
-        msbuild -t:pack
-
     - name: Nuget pack (release branch)
       if: github.event.ref == 'refs/heads/release'
       run: |
