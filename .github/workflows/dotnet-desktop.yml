@@ -10,13 +10,13 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@4.1.1
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+      uses: microsoft/setup-msbuild@v1.3.1
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
@@ -33,20 +33,25 @@ jobs:
     - name: Unit Tests (develop branch)
       if: github.event.ref == 'refs/heads/develop'
       run: |
-        dotnet test
+        msbuild -t:test
 
     - name: Unit Tests (release branch)
       if: github.event.ref == 'refs/heads/release'
       run: |
-        dotnet test
-         
+        msbuild -t:test
+
+    - name: Nuget pack (develop branch)
+      if: github.event.ref == 'refs/heads/develop'
+      run: |
+        msbuild -t:pack
+
     - name: Nuget pack (release branch)
       if: github.event.ref == 'refs/heads/release'
       run: |
         nuget pack Framework\Framework.csproj -NonInteractive -Verbosity detailed -SolutionDirectory . -OutputDirectory Framework\bin\release
 
     - name: Nuget pack (master branch)
-      if: github.event.ref == 'refs/heads/master'
+      if: github.event.ref == 'refs\heads\master'
       run: |
         nuget pack Framework\Framework.csproj -NonInteractive -SolutionDirectory . -OutputDirectory Framework\bin\release
 
@@ -54,4 +59,3 @@ jobs:
       if: github.event.ref == 'refs/heads/master'
       run: |
         dotnet nuget push Framework\bin\Release\BOG.Framework.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ vars.NUGET_SOURCE }} --skip-duplicate
-

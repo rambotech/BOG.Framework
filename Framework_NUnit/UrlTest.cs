@@ -10,6 +10,7 @@ using BOG.Framework;
 using NUnit.Framework;
 using System.Collections;
 using NUnit.Framework.Interfaces;
+using System.Diagnostics;
 
 namespace BOG.Framework_NUnit
 {
@@ -83,11 +84,11 @@ namespace BOG.Framework_NUnit
 
             /* uncomment the lines below to debug a specific line in an iterative test from a CSV source */
 
-            //if (DataRow == 2)
-            //{
-            //	string ignored = "break point here";  // set breakpoint here to debug a particular row.
-            //}
-
+            if (DataRow == 27)
+            {
+                // set breakpoint here to debug a particular row.
+                Debug.WriteLine("break point here");
+            }
             BOG.Framework.Url testObj = null;
 
             if (!string.IsNullOrWhiteSpace(ThrowsException))
@@ -136,7 +137,7 @@ namespace BOG.Framework_NUnit
                     Assert.That(string.Compare(Query, testObj.GetRaw(Url.UrlPart.Query), false) == 0, $"non-UrlDecoded Query mismatch (Row {DataRow}).");
                     Assert.That(string.Compare(Fragment, testObj.GetRaw(Url.UrlPart.Fragment), false) == 0, $"non-UrlDecoded Fragment mismatch (Row {DataRow}).");
 
-                    Assert.That(string.Compare(ToString, testObj.ToString().ToLowerInvariant(), false) ==0, $"original Url reconstruction (Row {DataRow}).");
+                    Assert.That(string.Compare(ToString, testObj.ToString(), false) ==0, $"original Url reconstruction (Row {DataRow}).");
                 });
             }
         }
